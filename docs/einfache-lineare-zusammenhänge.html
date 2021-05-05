@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Einfache lineare Zusammenhänge | EDV2</title>
+  <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Einfache lineare Zusammenhänge | EDV2" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Einfache lineare Zusammenhänge | EDV2" />
+  
+  <meta name="twitter:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+<meta name="author" content="Max Brede" />
+
+
+<meta name="date" content="2021-05-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hilfsmittel-für-die-inferenzstatistik.html"/>
+<link rel="next" href="literatur.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EDV 2 <br> SoSe 21</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html"><i class="fa fa-check"></i>Lehrplan</a>
+<ul>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#semesterplan"><i class="fa fa-check"></i>Semesterplan</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#übungsformat"><i class="fa fa-check"></i>Übungsformat</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#lehrziele-für-jede-sitzung"><i class="fa fa-check"></i>Lehrziele für jede Sitzung</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#prüfungsleistung"><i class="fa fa-check"></i>Prüfungsleistung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html"><i class="fa fa-check"></i>Deskriptive Statistik und Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisatorisches"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#data-cleaning"><i class="fa fa-check"></i>Data Cleaning</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisationsformen-von-datensätzen"><i class="fa fa-check"></i>Organisationsformen von Datensätzen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a>
+<ul>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#organisatorisches-1"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik-1"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html"><i class="fa fa-check"></i>Einfache lineare Zusammenhänge</a>
+<ul>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#test-auf-korrelation"><i class="fa fa-check"></i>Test auf Korrelation</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#einfache-lineare-regression"><i class="fa fa-check"></i>Einfache lineare Regression</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+<li class="divider"></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EDV2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="einfache-lineare-zusammenhänge" class="section level1">
+<h1>Einfache lineare Zusammenhänge</h1>
+<div id="datensatz" class="section level3">
+<h3>Datensatz</h3>
+<p>Für die Tests auf linearen Zusammenhänge werden wir den Datensatz <code>df_wide</code> mit den folgenden Variablen benutzen:</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Inhalt
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>group</code>
+</td>
+<td style="text-align:left;">
+Treatment-Gruppe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>pre_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill vor dem Treatment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>post_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill nach dem Treatment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_iq</code>
+</td>
+<td style="text-align:left;">
+Intelligenz-Quotient aus HAWIE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_wahr_log</code>
+</td>
+<td style="text-align:left;">
+Skalenwert Wahrnehmungsgebundenes logisches Denken aus HAWIE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="test-auf-korrelation" class="section level2">
+<h2>Test auf Korrelation</h2>
+<div id="test-hintergrund" class="section level3">
+<h3>Test-Hintergrund</h3>
+<p>Die empirische Korrelation zweier gemeinsam normalverteilter Variablen lässt sich daraufhin testen, ob sie
+mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang’ (<span class="math inline">\(\text{H}_{0}:\rho_{X,Y} = 0\)</span>) verträglich ist.</p>
+<p>Dabei wird genutzt, dass bei Multinormalverteilung und Unkorreliertheit der Variablen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> die Teststatistik <span class="math inline">\(t_r = r_{x,y} \sqrt{{n-2}\over{1-r_{x,y}}^2}\)</span> <span class="math inline">\(t-\)</span>verteilt ist, mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.</p>
+<p>Man testet also die Teststatistik <span class="math inline">\(t\)</span> gegen die <span class="math inline">\(t_{n-2}\)</span> -Verteilung.</p>
+<p>Ist der Test signifikant, wird die <span class="math inline">\(H_1\)</span> angenommen, also dass die ‘wahre’ Korrelation zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> ungleich 0 ist.</p>
+<p>Gerichtete Hypothesen lassen sich analog testen.</p>
+</div>
+<div id="test-auf-korrelation-in-r" class="section level3">
+<h3>Test auf Korrelation in R</h3>
+<p>Man kann den Test in R mit Vektoren als Eingabe…</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="einfache-lineare-zusammenhänge.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_wide<span class="sc">$</span>hawie_iq, df_wide<span class="sc">$</span>hawie_wahr_log)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  df_wide$hawie_iq and df_wide$hawie_wahr_log
+## t = 7.0471, df = 48, p-value = 6.228e-09
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.5424104 0.8272449
+## sample estimates:
+##       cor 
+## 0.7130958</code></pre>
+<p>… und mit Modellformel als Eingabe aufrufen.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="einfache-lineare-zusammenhänge.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, <span class="at">data =</span> df_wide)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  hawie_iq and hawie_wahr_log
+## t = 7.0471, df = 48, p-value = 6.228e-09
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.5424104 0.8272449
+## sample estimates:
+##       cor 
+## 0.7130958</code></pre>
+<p>Das <code>alternative</code>-Argument bietet die Möglichkeit, die Richtung des Signifikanztests anzugeben.</p>
+<p>Dabei steht <code>'greater'</code> für einen rechtsseitigen, <code>'lesser'</code> für einen linksseitigen und der Standard <code>'two.sided'</code> für einen zweiseitigen Test.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="einfache-lineare-zusammenhänge.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
+<span id="cb57-2"><a href="einfache-lineare-zusammenhänge.html#cb57-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df_wide,</span>
+<span id="cb57-3"><a href="einfache-lineare-zusammenhänge.html#cb57-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&#39;greater&#39;</span>) </span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  hawie_iq and hawie_wahr_log
+## t = 7.0471, df = 48, p-value = 3.114e-09
+## alternative hypothesis: true correlation is greater than 0
+## 95 percent confidence interval:
+##  0.5740402 1.0000000
+## sample estimates:
+##       cor 
+## 0.7130958</code></pre>
+<p>Der Output lässt sich noch ein bisschen schicker mit der <code>tidy</code>-Funktion aus dem <code>broom</code>-Paket darstellen (ist auch im <code>tidyverse</code> enthalten):</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="einfache-lineare-zusammenhänge.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
+<span id="cb59-2"><a href="einfache-lineare-zusammenhänge.html#cb59-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df_wide,</span>
+<span id="cb59-3"><a href="einfache-lineare-zusammenhänge.html#cb59-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&#39;greater&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-4"><a href="einfache-lineare-zusammenhänge.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 8
+##   estimate statistic       p.value parameter conf.low
+##      &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1    0.713      7.05 0.00000000311        48    0.574
+##   conf.high method                              
+##       &lt;dbl&gt; &lt;chr&gt;                               
+## 1         1 Pearson&#39;s product-moment correlation
+##   alternative
+##   &lt;chr&gt;      
+## 1 greater</code></pre>
+</div>
+<div id="aufgabe-1" class="section level3">
+<h3>Aufgabe</h3>
+<p>Wie kann ich das Ergebnis interpretieren?</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="einfache-lineare-zusammenhänge.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
+<span id="cb61-2"><a href="einfache-lineare-zusammenhänge.html#cb61-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df_wide,</span>
+<span id="cb61-3"><a href="einfache-lineare-zusammenhänge.html#cb61-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&#39;greater&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-4"><a href="einfache-lineare-zusammenhänge.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 8
+##   estimate statistic       p.value parameter conf.low
+##      &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1    0.713      7.05 0.00000000311        48    0.574
+##   conf.high method                              
+##       &lt;dbl&gt; &lt;chr&gt;                               
+## 1         1 Pearson&#39;s product-moment correlation
+##   alternative
+##   &lt;chr&gt;      
+## 1 greater</code></pre>
+<ul>
+<li>A: Die Logik-Leitung beeinflusst den IQ signifikant positiv.</li>
+<li>B: Es gibt keine Korrelation zwischen Logik-Leistung und IQ.</li>
+<li>C: Die Logik-Leistung und der IQ sind signifikant von Null unterschiedlich korreliert.</li>
+<li>D: Es gibt einen signifikanten, positiv linearen Zusammenhang zwischen Logik-Leistung und IQ.</li>
+</ul>
+<details>
+<summary>
+Lösung
+</summary>
+C und D könnte man so sagen, D hat aber natürlich mehr Informationsgehalt.
+</details>
+</div>
+</div>
+<div id="einfache-lineare-regression" class="section level2">
+<h2>Einfache lineare Regression</h2>
+<div id="modellanpassung" class="section level3">
+<h3>Modellanpassung</h3>
+<p>Bei der einfachen linearen Regression werden anhand der paarweise vorhandenen Daten zweier
+Variablen X und Y die Parameter a und b der Vorhersagegleichung <span class="math inline">\(\hat{Y} = bX + a\)</span> so bestimmt,
+dass die Werte von <span class="math inline">\(Y\)</span> (dem Kriterium) bestmöglich mit der Vorhersage <span class="math inline">\(\hat{Y}\)</span> aus den Werten
+von <span class="math inline">\(X\)</span> (dem Prädiktor) übereinstimmen.</p>
+<p>Als Maß für die Güte der Vorhersage wird die
+Summe der quadrierten Residuen <span class="math inline">\(E = Y - \hat{Y}\)</span> , also der Abweichungen von vorhergesagten und
+Kriteriumswerten herangezogen.</p>
+<p>Lineare Modelle wie das der Regression lassen sich mit lm() anpassen und so die Parameter a und b schätzen.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="einfache-lineare-zusammenhänge.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula=</span> <span class="sc">&lt;</span>Modellformel<span class="sc">&gt;</span> , <span class="at">data=</span><span class="sc">&lt;</span>Datensatz<span class="sc">&gt;</span>)</span></code></pre></div>
+<p>Ein von lm() zurückgegebenes Objekt stellt ein deskriptives Modell der Daten dar, das in anderen Funktionen weiter verwendet werden kann.</p>
+<div id="beispiel-für-deskriptive-modellanpassung" class="section level4">
+<h4>Beispiel für deskriptive Modellanpassung</h4>
+<p>Als Beispiel soll die Leistung auf der Skala zum wahrnehmungsgebundenen logischen Denken als Kriterium mit dem IQ als Prädiktor vorhergesagt werden.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="einfache-lineare-zusammenhänge.html#cb64-1" aria-hidden="true" tabindex="-1"></a>(fitI <span class="ot">&lt;-</span> <span class="fu">lm</span>(hawie_wahr_log <span class="sc">~</span> hawie_iq, <span class="at">data =</span> df_wide)) </span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = hawie_wahr_log ~ hawie_iq, data = df_wide)
+## 
+## Coefficients:
+## (Intercept)     hawie_iq  
+##     -3.2874       0.1301</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="einfache-lineare-zusammenhänge.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_wide, <span class="fu">aes</span>(<span class="at">x =</span> hawie_iq, <span class="at">y =</span> hawie_wahr_log)) <span class="sc">+</span></span>
+<span id="cb66-2"><a href="einfache-lineare-zusammenhänge.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb66-3"><a href="einfache-lineare-zusammenhänge.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span>  y <span class="sc">~</span> x ,</span>
+<span id="cb66-4"><a href="einfache-lineare-zusammenhänge.html#cb66-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&#39;lm&#39;</span>,<span class="at">col =</span><span class="st">&#39;red&#39;</span>,<span class="at">se =</span> F)</span></code></pre></div>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-52-1.png" width="500px" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="beta-gewicht" class="section level3">
+<h3><span class="math inline">\(\beta\)</span>-Gewicht</h3>
+<p>Will man statt des <span class="math inline">\(b\)</span>-Gewichtes das standardisierte <span class="math inline">\(\beta\)</span>-Gewicht angeben, muss in der Modellformel z-transformiert werden.</p>
+<p>Dafür könenn wir entweder alle Teile der <code>formula</code> <code>scale</code>n:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="einfache-lineare-zusammenhänge.html#cb67-1" aria-hidden="true" tabindex="-1"></a>(fitZ <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">scale</span>(hawie_wahr_log) <span class="sc">~</span> <span class="fu">scale</span>(hawie_iq), </span>
+<span id="cb67-2"><a href="einfache-lineare-zusammenhänge.html#cb67-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df_wide))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = scale(hawie_wahr_log) ~ scale(hawie_iq), data = df_wide)
+## 
+## Coefficients:
+##     (Intercept)  scale(hawie_iq)  
+##      -2.284e-16        7.131e-01</code></pre>
+<p>Oder wir benutzen die Index-pipe <code>%$%</code> aus dem <code>magrittr</code>-Paket und ein zwischengeschaltetes <code>mutate</code>, um die Skalierung ein bisschen übersichtlicher zu gestalten:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="einfache-lineare-zusammenhänge.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb69-2"><a href="einfache-lineare-zusammenhänge.html#cb69-2" aria-hidden="true" tabindex="-1"></a>fitZ <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb69-3"><a href="einfache-lineare-zusammenhänge.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hawie_wahr_log =</span> <span class="fu">scale</span>(hawie_wahr_log),</span>
+<span id="cb69-4"><a href="einfache-lineare-zusammenhänge.html#cb69-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">hawie_iq =</span> <span class="fu">scale</span>(hawie_iq)) <span class="sc">%$%</span></span>
+<span id="cb69-5"><a href="einfache-lineare-zusammenhänge.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(hawie_wahr_log <span class="sc">~</span> hawie_iq)</span>
+<span id="cb69-6"><a href="einfache-lineare-zusammenhänge.html#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="einfache-lineare-zusammenhänge.html#cb69-7" aria-hidden="true" tabindex="-1"></a>fitZ</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = hawie_wahr_log ~ hawie_iq)
+## 
+## Coefficients:
+## (Intercept)     hawie_iq  
+##  -2.284e-16    7.131e-01</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="einfache-lineare-zusammenhänge.html#cb71-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb71-2"><a href="einfache-lineare-zusammenhänge.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hawie_wahr_log =</span> <span class="fu">scale</span>(hawie_wahr_log),</span>
+<span id="cb71-3"><a href="einfache-lineare-zusammenhänge.html#cb71-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">hawie_iq =</span> <span class="fu">scale</span>(hawie_iq)) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-4"><a href="einfache-lineare-zusammenhänge.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">scale</span>(hawie_iq), </span>
+<span id="cb71-5"><a href="einfache-lineare-zusammenhänge.html#cb71-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="fu">scale</span>(hawie_wahr_log))) <span class="sc">+</span></span>
+<span id="cb71-6"><a href="einfache-lineare-zusammenhänge.html#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb71-7"><a href="einfache-lineare-zusammenhänge.html#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">formula =</span>  y <span class="sc">~</span> x ,</span>
+<span id="cb71-8"><a href="einfache-lineare-zusammenhänge.html#cb71-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">&#39;lm&#39;</span>,<span class="at">col =</span><span class="st">&#39;red&#39;</span>,<span class="at">se =</span> F)</span></code></pre></div>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-55-1.png" width="500px" style="display: block; margin: auto;" /></p>
+</div>
+<div id="weitere-parameter" class="section level3">
+<h3>weitere Parameter</h3>
+<p><code>lm()</code> gibt eine Liste zurück, die ein deskriptives Modell der Daten darstellt.</p>
+<p>R bietet weitere Funktionen um einzelne Parameter dieses Outputs auszulesen.</p>
+<p>Zum Beispiel:
+<code>residuals()</code> zum Anzeigen der Residuen, <code>coef()</code> zur Ausgabe der geschätzten Modellparameter und <code>fitted()</code> für die vorhergesagten Werte.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="einfache-lineare-zusammenhänge.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residuals</span>(fitZ)</span></code></pre></div>
+<pre><code>##            1            2            3            4 
+## -0.051410121 -0.124304792  2.196986725  0.843014168 
+##            5            6            7            8 
+## -0.394825317  0.107961353  0.235184545 -1.080533632 
+##            9           10           11           12 
+##  0.537853351 -0.675313884 -0.704970155  0.813357897 
+##           13           14           15           16 
+##  0.002918400  0.440286430  0.715790976  0.191946144 
+##           17           18           19           20 
+##  0.107961353 -0.051410121 -0.040320001  0.035066681 
+##           21           22           23           24 
+## -1.107697893 -0.267602125  0.007902421 -0.440555728 
+##           25           26           27           28 
+## -1.758765916 -0.024245860 -0.702478144  0.453868560 
+##           29           30           31           32 
+##  0.383465899  0.553927492 -0.037827990  0.208020285 
+##           33           34           35           36 
+## -0.340496797 -0.067484261  0.770119496 -0.294766385 
+##           37           38           39           40 
+##  0.148707743  0.699716835  0.497106961  1.407605390 
+##           41           42           43           44 
+##  0.599657903  0.802267777 -0.299750406  0.078305082 
+##           45           46           47           48 
+## -0.948326419 -0.618493353 -0.805029086 -1.323889897 
+##           49           50 
+## -0.078574381 -0.599927202 
+## attr(,&quot;scaled:center&quot;)
+## [1] 10.08
+## attr(,&quot;scaled:scale&quot;)
+## [1] 3.009102</code></pre>
+<p>Im <code>broom</code>-Paket gibt es außerdem die <code>augment</code>-Funktion, die uns den zum Fitten genutzten Datensatz mit einer Reihe von Zusatzinfos ausgibt.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="einfache-lineare-zusammenhänge.html#cb74-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">augment</span>(fitZ)</span></code></pre></div>
+<pre><code>## # A tibble: 50 x 8
+##    hawie_wahr_log[,1] hawie_iq[,1] .fitted  .resid
+##                 &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1             0.306         0.501  0.357  -0.0514
+##  2            -0.0266        0.137  0.0977 -0.124 
+##  3             0.306        -2.65  -1.89    2.20  
+##  4             0.638        -0.287 -0.205   0.843 
+##  5             1.30          2.38   1.70   -0.395 
+##  6             0.638         0.743  0.530   0.108 
+##  7            -0.359        -0.833 -0.594   0.235 
+##  8            -2.02         -1.32  -0.940  -1.08  
+##  9            -0.359        -1.26  -0.897   0.538 
+## 10            -1.36         -0.954 -0.681  -0.675 
+##      .hat .sigma   .cooksd .std.resid
+##     &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 0.0251  0.716 0.0000696    -0.0735
+##  2 0.0204  0.716 0.000327     -0.177 
+##  3 0.164   0.624 1.12          3.39  
+##  4 0.0217  0.705 0.0160        1.20  
+##  5 0.136   0.713 0.0282       -0.600 
+##  6 0.0313  0.716 0.000387      0.155 
+##  7 0.0342  0.715 0.00202       0.338 
+##  8 0.0555  0.697 0.0723       -1.57  
+##  9 0.0523  0.711 0.0168        0.780 
+## 10 0.0386  0.709 0.0190       -0.972 
+## # … with 40 more rows</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="einfache-lineare-zusammenhänge.html#cb76-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="einfache-lineare-zusammenhänge.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">augment</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb76-3"><a href="einfache-lineare-zusammenhänge.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hawie_iq, </span>
+<span id="cb76-4"><a href="einfache-lineare-zusammenhänge.html#cb76-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> hawie_wahr_log))<span class="sc">+</span></span>
+<span id="cb76-5"><a href="einfache-lineare-zusammenhänge.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .fitted, <span class="at">ymax =</span> hawie_wahr_log), <span class="at">col =</span> <span class="st">&#39;orange&#39;</span>) <span class="sc">+</span></span>
+<span id="cb76-6"><a href="einfache-lineare-zusammenhänge.html#cb76-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb76-7"><a href="einfache-lineare-zusammenhänge.html#cb76-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">formula =</span>  y <span class="sc">~</span> x ,</span>
+<span id="cb76-8"><a href="einfache-lineare-zusammenhänge.html#cb76-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">&#39;lm&#39;</span>,<span class="at">col =</span><span class="st">&#39;red&#39;</span>,<span class="at">se =</span> F)</span></code></pre></div>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-58-1.png" width="500px" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="regressionsanalyse" class="section level2">
+<h2>Regressionsanalyse</h2>
+<div id="test-hintergrund-1" class="section level3">
+<h3>Test-Hintergrund</h3>
+<p>Unter Voraussetzungen von Varianzhomogenität und Normalverteilung der <span class="math inline">\(Y\)</span>-Werte für jeden möglichen Wert von <span class="math inline">\(X\)</span> können Regressionskoeffizienten ähnlich wie Korrelationskoeffizienten auf Unterschiedlichkeit von 0 getestet werden.</p>
+<p>Dazu wird genutzt, dass der Term <span class="math inline">\(t = {{b}\over{{s_{Y \cdot X}}\over {s_X \sqrt{N-1}}}}\)</span> <span class="math inline">\(t_{N-1}\)</span>-verteilt ist, wenn das tatsächliche <span class="math inline">\(b^*\)</span> nicht unterschiedlich von 0 ist und für jeden Wert von <span class="math inline">\(X\)</span> <span class="math inline">\(Y\)</span> normalverteilt ist mit <span class="math inline">\(\mu = b^*X + a^*\)</span> und einer Varianz <span class="math inline">\(\sigma^2\)</span>. Die Nullhypothese ist also <span class="math inline">\(\text{H}_0: b^* = 0\)</span>.</p>
+</div>
+<div id="test-in-r" class="section level3">
+<h3>Test in R</h3>
+<p>Um zusätzliche Informationen (insbesondere inferenzstatistische Kennwerte) eine mit <code>lm()</code> erstellten Regressions-Modells zu erhalten, kann einfach <code>summary()</code> verwendet werden.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="einfache-lineare-zusammenhänge.html#cb77-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
+<span id="cb77-2"><a href="einfache-lineare-zusammenhänge.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = hawie_wahr_log ~ hawie_iq)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.75877 -0.38124 -0.01066  0.45047  2.19699 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -2.284e-16  1.002e-01   0.000        1
+## hawie_iq     7.131e-01  1.012e-01   7.047 6.23e-09
+##                
+## (Intercept)    
+## hawie_iq    ***
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7083 on 48 degrees of freedom
+## Multiple R-squared:  0.5085, Adjusted R-squared:  0.4983 
+## F-statistic: 49.66 on 1 and 48 DF,  p-value: 6.228e-09</code></pre>
+<p>Außerdem gibt es auch hier einen hübschen <code>broom</code>-Output, für den wir mit <code>conf.int</code> angeben können, Konfidenzintervalle für die Regressionsgewichte ausgeben lassen zu wollen:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="einfache-lineare-zusammenhänge.html#cb79-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a href="einfache-lineare-zusammenhänge.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 7
+##   term         estimate std.error statistic
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept) -2.28e-16     0.100 -2.28e-15
+## 2 hawie_iq     7.13e- 1     0.101  7.05e+ 0
+##         p.value conf.low conf.high
+##           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 1.00            -0.201     0.201
+## 2 0.00000000623    0.510     0.917</code></pre>
+</div>
+<div id="aufgabe-2" class="section level3">
+<h3>Aufgabe</h3>
+<!-- \footnotesize -->
+<!-- \ttfamily{ -->
+<!-- \begin{tabular}{|l r r r r r l|} -->
+<!-- \hline -->
+<!-- \#\# & \multicolumn{6}{l|}{Call:} \\ -->
+<!-- \#\# & \multicolumn{6}{l|}{lm(formula = scale(hawie\_wahr\_log)~\textasciitilde~scale(hawie\_iq), data = df\_wide)} \\ -->
+<!-- \#\# & \multicolumn{6}{l|}{} \\ -->
+<!-- \#\# & \multicolumn{6}{l|}{Coefficients:} \\ -->
+<!-- \#\# & &Estimate &Std. Error& t value &Pr(>$|\text{t}|$) &\\ -->
+<!-- \#\# & (Intercept)& -2.840e-16&1.084e-01&0.000&1&\\ -->
+<!-- \#\# &  scale(hawie\_iq)& 6.511e-01& 1.095e-01 & 5.944& 3.06e-07 &\\ -->
+<!-- \hline -->
+<!-- \end{tabular}} \medskip \newline -->
+<!-- \normalfont -->
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="einfache-lineare-zusammenhänge.html#cb81-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="einfache-lineare-zusammenhänge.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 7
+##   term         estimate std.error statistic
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept) -2.28e-16     0.100 -2.28e-15
+## 2 hawie_iq     7.13e- 1     0.101  7.05e+ 0
+##         p.value conf.low conf.high
+##           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 1.00            -0.201     0.201
+## 2 0.00000000623    0.510     0.917</code></pre>
+<p><strong>Wie lässt sich das Ergebnis interpretieren?</strong>
+* A: Höhere IQ-Werte hängen mit höheren Logik-Leistungswerten zusammen.
+* B: Es gibt keine Korrelation zwischen IQ-Werten und Logik-Leistung.
+* C: Mit jedem Anstieg des IQ um eine Streuungs-Einheit, steigt die Vorhersage um 0.7130958 Streuungs-Einheiten.
+* D: Man kann wegen der unzureichenden Berücksichtigung nicht-linearer Zusammenhänge keine Aussage treffen.</p>
+<details>
+<summary>
+Lösung
+</summary>
+C könnte man so sagen.
+</details>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hilfsmittel-für-die-inferenzstatistik.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literatur.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["EDV2_SS21.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
