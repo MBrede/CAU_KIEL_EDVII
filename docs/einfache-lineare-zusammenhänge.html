@@ -24,7 +24,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2021-05-20" />
+<meta name="date" content="2021-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,26 +310,26 @@ mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang�
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  df_wide$hawie_iq and df_wide$hawie_wahr_log
-## t = 0.97596, df = 48, p-value = 0.334
+## t = 8.0781, df = 48, p-value = 1.678e-10
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1444671  0.4022206
+##  0.6094958 0.8564580
 ## sample estimates:
 ##       cor 
-## 0.1394898</code></pre>
+## 0.7590665</code></pre>
 <p>… und mit Modellformel als Eingabe aufrufen.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="einfache-lineare-zusammenhänge.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, <span class="at">data =</span> df_wide)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  hawie_iq and hawie_wahr_log
-## t = 0.97596, df = 48, p-value = 0.334
+## t = 8.0781, df = 48, p-value = 1.678e-10
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1444671  0.4022206
+##  0.6094958 0.8564580
 ## sample estimates:
 ##       cor 
-## 0.1394898</code></pre>
+## 0.7590665</code></pre>
 <p>Das <code>alternative</code>-Argument bietet die Möglichkeit, die Richtung des Signifikanztests anzugeben.</p>
 <p>Dabei steht <code>'greater'</code> für einen rechtsseitigen, <code>'lesser'</code> für einen linksseitigen und der Standard <code>'two.sided'</code> für einen zweiseitigen Test.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="einfache-lineare-zusammenhänge.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
@@ -339,22 +339,22 @@ mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang�
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  hawie_iq and hawie_wahr_log
-## t = 0.97596, df = 48, p-value = 0.167
+## t = 8.0781, df = 48, p-value = 8.392e-11
 ## alternative hypothesis: true correlation is greater than 0
 ## 95 percent confidence interval:
-##  -0.09919406  1.00000000
+##  0.6375781 1.0000000
 ## sample estimates:
 ##       cor 
-## 0.1394898</code></pre>
+## 0.7590665</code></pre>
 <p>Der Output lässt sich noch ein bisschen schicker mit der <code>tidy</code>-Funktion aus dem <code>broom</code>-Paket darstellen (ist auch im <code>tidyverse</code> enthalten):</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="einfache-lineare-zusammenhänge.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
 <span id="cb59-2"><a href="einfache-lineare-zusammenhänge.html#cb59-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df_wide,</span>
 <span id="cb59-3"><a href="einfache-lineare-zusammenhänge.html#cb59-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&#39;greater&#39;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb59-4"><a href="einfache-lineare-zusammenhänge.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 8
-##   estimate statistic p.value parameter conf.low
-##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
-## 1    0.139     0.976   0.167        48  -0.0992
+##   estimate statistic  p.value parameter conf.low
+##      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1    0.759      8.08 8.39e-11        48    0.638
 ##   conf.high method                              
 ##       &lt;dbl&gt; &lt;chr&gt;                               
 ## 1         1 Pearson&#39;s product-moment correlation
@@ -370,9 +370,9 @@ mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang�
 <span id="cb61-3"><a href="einfache-lineare-zusammenhänge.html#cb61-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&#39;greater&#39;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb61-4"><a href="einfache-lineare-zusammenhänge.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 8
-##   estimate statistic p.value parameter conf.low
-##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
-## 1    0.139     0.976   0.167        48  -0.0992
+##   estimate statistic  p.value parameter conf.low
+##      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1    0.759      8.08 8.39e-11        48    0.638
 ##   conf.high method                              
 ##       &lt;dbl&gt; &lt;chr&gt;                               
 ## 1         1 Pearson&#39;s product-moment correlation
@@ -417,7 +417,7 @@ Kriteriumswerten herangezogen.</p>
 ## 
 ## Coefficients:
 ## (Intercept)     hawie_iq  
-##     7.02487      0.03011</code></pre>
+##     -6.7909       0.1742</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="einfache-lineare-zusammenhänge.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_wide, <span class="fu">aes</span>(<span class="at">x =</span> hawie_iq, <span class="at">y =</span> hawie_wahr_log)) <span class="sc">+</span></span>
 <span id="cb66-2"><a href="einfache-lineare-zusammenhänge.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb66-3"><a href="einfache-lineare-zusammenhänge.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span>  y <span class="sc">~</span> x ,</span>
@@ -437,7 +437,7 @@ Kriteriumswerten herangezogen.</p>
 ## 
 ## Coefficients:
 ##     (Intercept)  scale(hawie_iq)  
-##      -8.020e-18        1.395e-01</code></pre>
+##      -4.971e-16        7.591e-01</code></pre>
 <p>Oder wir benutzen die Index-pipe <code>%$%</code> aus dem <code>magrittr</code>-Paket und ein zwischengeschaltetes <code>mutate</code>, um die Skalierung ein bisschen übersichtlicher zu gestalten:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="einfache-lineare-zusammenhänge.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb69-2"><a href="einfache-lineare-zusammenhänge.html#cb69-2" aria-hidden="true" tabindex="-1"></a>fitZ <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span> </span>
@@ -452,7 +452,7 @@ Kriteriumswerten herangezogen.</p>
 ## 
 ## Coefficients:
 ## (Intercept)     hawie_iq  
-##  -8.020e-18    1.395e-01</code></pre>
+##  -4.971e-16    7.591e-01</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="einfache-lineare-zusammenhänge.html#cb71-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb71-2"><a href="einfache-lineare-zusammenhänge.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hawie_wahr_log =</span> <span class="fu">scale</span>(hawie_wahr_log),</span>
 <span id="cb71-3"><a href="einfache-lineare-zusammenhänge.html#cb71-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">hawie_iq =</span> <span class="fu">scale</span>(hawie_iq)) <span class="sc">%&gt;%</span> </span>
@@ -471,62 +471,62 @@ Kriteriumswerten herangezogen.</p>
 <code>residuals()</code> zum Anzeigen der Residuen, <code>coef()</code> zur Ausgabe der geschätzten Modellparameter und <code>fitted()</code> für die vorhergesagten Werte.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="einfache-lineare-zusammenhänge.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residuals</span>(fitZ)</span></code></pre></div>
 <pre><code>##            1            2            3            4 
-## -0.283203766  2.860715124  1.464483616  0.018783798 
+## -0.132244120  0.553125355 -0.286404915  0.288579211 
 ##            5            6            7            8 
-##  1.079800552  0.382792987 -1.000885207  0.258749737 
+##  1.748985446 -0.244745860 -0.946823542  0.371897320 
 ##            9           10           11           12 
-##  3.108801623 -0.959537457 -0.905636392  0.362119112 
+##  0.611492617 -0.075993249 -0.036450587 -0.357247601 
 ##           13           14           15           16 
-## -1.697892772 -0.678223768 -0.812603955 -0.688560705 
+## -0.034334195 -0.736411877  1.438547463 -0.469749341 
 ##           17           18           19           20 
-## -0.001890077  1.807818930  0.039457673 -0.365899266 
+## -0.146835935  0.682335303 -0.244745860 -0.905164488 
 ##           21           22           23           24 
-## -0.262529891 -0.781593142  0.225522547 -0.750582330 
+## -1.634309409 -0.330180362 -0.200970413 -0.161427751 
 ##           25           26           27           28 
-## -0.117812767 -0.990548269 -0.616202143  0.777812988 
+##  0.121942993  0.723994358 -0.721820061  0.682335303 
 ##           29           30           31           32 
-## -0.345225391 -0.055791142  0.488378739 -0.097138892 
+## -0.146835935  0.136534808  0.721877965 -0.088468673 
 ##           33           34           35           36 
-##  0.746802175 -1.209840333  1.474820553 -0.676007390 
+## -0.455157526  0.430264583 -1.198894262 -0.655210160 
 ##           37           38           39           40 
-##  1.017778927 -0.159160517 -0.440474206 -0.427920891 
+## -0.203086806 -0.103060488  0.234444733 -0.273929492 
 ##           41           42           43           44 
-##  0.331108299 -0.990548269  0.132490110  0.215185610 
+##  0.119826600  0.401080952 -0.384314840  0.065692122 
 ##           45           46           47           48 
-## -1.563512585  0.862724865  0.767476050 -0.138486642 
+##  1.342753931 -1.046849860  0.626084433  0.009441252 
 ##           49           50 
-## -0.988331892 -0.417583954 
+##  0.482282669  0.428148191 
 ## attr(,&quot;scaled:center&quot;)
-## [1] 9.92
+## [1] 9.96
 ## attr(,&quot;scaled:scale&quot;)
-## [1] 2.912605</code></pre>
+## [1] 3.096805</code></pre>
 <p>Im <code>broom</code>-Paket gibt es außerdem die <code>augment</code>-Funktion, die uns den zum Fitten genutzten Datensatz mit einer Reihe von Zusatzinfos ausgibt.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="einfache-lineare-zusammenhänge.html#cb74-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">augment</span>(fitZ)</span></code></pre></div>
 <pre><code>## # A tibble: 50 x 8
 ##    hawie_wahr_log[,1] hawie_iq[,1]  .fitted  .resid
 ##                 &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-##  1            -0.316       -0.234  -0.0327  -0.283 
-##  2             3.12         1.84    0.257    2.86  
-##  3             1.40        -0.456  -0.0637   1.46  
-##  4             0.0275       0.0622  0.00868  0.0188
-##  5             1.06        -0.160  -0.0223   1.08  
-##  6             0.371       -0.0860 -0.0120   0.383 
-##  7            -1.00        -0.0119 -0.00165 -1.00  
-##  8             0.371        0.803   0.112    0.259 
-##  9             3.12         0.0622  0.00868  3.11  
-## 10            -1.00        -0.308  -0.0430  -0.960 
-##      .hat .sigma    .cooksd .std.resid
-##     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-##  1 0.0211  1.01  0.000883      -0.286 
-##  2 0.0892  0.912 0.439          3.00  
-##  3 0.0243  0.988 0.0273         1.48  
-##  4 0.0201  1.01  0.00000369     0.0190
-##  5 0.0205  0.998 0.0125         1.09  
-##  6 0.0202  1.01  0.00154        0.387 
-##  7 0.0200  1.00  0.0104        -1.01  
-##  8 0.0332  1.01  0.00119        0.263 
-##  9 0.0201  0.901 0.101          3.14  
-## 10 0.0219  1.00  0.0105        -0.970 
+##  1             -0.310      -0.234  -0.178   -0.132 
+##  2              1.95        1.84    1.40     0.553 
+##  3             -0.633      -0.456  -0.347   -0.286 
+##  4              0.336       0.0622  0.0473   0.289 
+##  5              1.63       -0.160  -0.122    1.75  
+##  6             -0.310      -0.0860 -0.0653  -0.245 
+##  7             -0.956      -0.0119 -0.00900 -0.947 
+##  8              0.982       0.803   0.610    0.372 
+##  9              0.659       0.0622  0.0473   0.611 
+## 10             -0.310      -0.308  -0.234   -0.0760
+##      .hat .sigma  .cooksd .std.resid
+##     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 0.0211  0.664 0.000445     -0.203
+##  2 0.0892  0.659 0.0380        0.881
+##  3 0.0243  0.663 0.00241      -0.441
+##  4 0.0201  0.663 0.00201       0.443
+##  5 0.0205  0.613 0.0756        2.69 
+##  6 0.0202  0.664 0.00145      -0.376
+##  7 0.0200  0.650 0.0216       -1.45 
+##  8 0.0332  0.662 0.00567       0.575
+##  9 0.0201  0.659 0.00904       0.939
+## 10 0.0219  0.665 0.000153     -0.117
 ## # … with 40 more rows</code></pre>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="einfache-lineare-zusammenhänge.html#cb76-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
 <span id="cb76-2"><a href="einfache-lineare-zusammenhänge.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">augment</span>() <span class="sc">%&gt;%</span> </span>
@@ -556,29 +556,35 @@ Kriteriumswerten herangezogen.</p>
 ## lm(formula = hawie_wahr_log ~ hawie_iq)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.6979 -0.6860 -0.1281  0.3776  3.1088 
+##      Min       1Q   Median       3Q      Max 
+## -1.63431 -0.31924 -0.08223  0.42138  1.74899 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept) -8.020e-18  1.415e-01   0.000    1.000
-## hawie_iq     1.395e-01  1.429e-01   0.976    0.334
+## (Intercept) -4.971e-16  9.302e-02   0.000        1
+## hawie_iq     7.591e-01  9.397e-02   8.078 1.68e-10
+##                
+## (Intercept)    
+## hawie_iq    ***
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1 on 48 degrees of freedom
-## Multiple R-squared:  0.01946,    Adjusted R-squared:  -0.0009706 
-## F-statistic: 0.9525 on 1 and 48 DF,  p-value: 0.334</code></pre>
+## Residual standard error: 0.6578 on 48 degrees of freedom
+## Multiple R-squared:  0.5762, Adjusted R-squared:  0.5674 
+## F-statistic: 65.26 on 1 and 48 DF,  p-value: 1.678e-10</code></pre>
 <p>Außerdem gibt es auch hier einen hübschen <code>broom</code>-Output, für den wir mit <code>conf.int</code> angeben können, Konfidenzintervalle für die Regressionsgewichte ausgeben lassen zu wollen:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="einfache-lineare-zusammenhänge.html#cb79-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
 <span id="cb79-2"><a href="einfache-lineare-zusammenhänge.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 7
-##   term         estimate std.error statistic p.value
-##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept) -8.02e-18     0.141 -5.67e-17   1    
-## 2 hawie_iq     1.39e- 1     0.143  9.76e- 1   0.334
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept) -4.97e-16    0.0930 -5.34e-15 1.00e+ 0
+## 2 hawie_iq     7.59e- 1    0.0940  8.08e+ 0 1.68e-10
 ##   conf.low conf.high
 ##      &lt;dbl&gt;     &lt;dbl&gt;
-## 1   -0.284     0.284
-## 2   -0.148     0.427</code></pre>
+## 1   -0.187     0.187
+## 2    0.570     0.948</code></pre>
 </div>
 <div id="aufgabe-2" class="section level3">
 <h3>Aufgabe</h3>
@@ -599,19 +605,21 @@ Kriteriumswerten herangezogen.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="einfache-lineare-zusammenhänge.html#cb81-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
 <span id="cb81-2"><a href="einfache-lineare-zusammenhänge.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="at">conf.int =</span> T)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 7
-##   term         estimate std.error statistic p.value
-##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept) -8.02e-18     0.141 -5.67e-17   1    
-## 2 hawie_iq     1.39e- 1     0.143  9.76e- 1   0.334
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept) -4.97e-16    0.0930 -5.34e-15 1.00e+ 0
+## 2 hawie_iq     7.59e- 1    0.0940  8.08e+ 0 1.68e-10
 ##   conf.low conf.high
 ##      &lt;dbl&gt;     &lt;dbl&gt;
-## 1   -0.284     0.284
-## 2   -0.148     0.427</code></pre>
-<p><strong>Wie lässt sich das Ergebnis interpretieren?</strong>
-* A: Höhere IQ-Werte hängen mit höheren Logik-Leistungswerten zusammen.
-* B: Es gibt keine Korrelation zwischen IQ-Werten und Logik-Leistung.
-* C: Mit jedem Anstieg des IQ um eine Streuungs-Einheit, steigt die Vorhersage um 0.1394898 Streuungs-Einheiten.
-* D: Man kann wegen der unzureichenden Berücksichtigung nicht-linearer Zusammenhänge keine Aussage treffen.</p>
+## 1   -0.187     0.187
+## 2    0.570     0.948</code></pre>
+<p><strong>Wie lässt sich das Ergebnis interpretieren?</strong></p>
+<ul>
+<li>A: Höhere IQ-Werte hängen mit höheren Logik-Leistungswerten zusammen.</li>
+<li>B: Es gibt keine Korrelation zwischen IQ-Werten und Logik-Leistung.</li>
+<li>C: Mit jedem Anstieg des IQ um eine Streuungs-Einheit, steigt die Vorhersage um 0.7590665 Streuungs-Einheiten.</li>
+<li>D: Man kann wegen der unzureichenden Berücksichtigung nicht-linearer Zusammenhänge keine Aussage treffen.</li>
+</ul>
 <details>
 <summary>
 Lösung
