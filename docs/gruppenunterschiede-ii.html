@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Gruppenunterschiede II | EDV2</title>
+  <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Gruppenunterschiede II | EDV2" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Gruppenunterschiede II | EDV2" />
+  
+  <meta name="twitter:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+<meta name="author" content="Max Brede" />
+
+
+<meta name="date" content="2021-06-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gruppenunterschiede-i.html"/>
+<link rel="next" href="literatur.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/rglWebGL-binding-0.106.8/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.106.8/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.106.8/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/rglTimer.src.js"></script>
+<script src="libs/CanvasMatrix4-0.106.8/CanvasMatrix.src.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EDV 2 <br> SoSe 21</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html"><i class="fa fa-check"></i>Lehrplan</a>
+<ul>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#semesterplan"><i class="fa fa-check"></i>Semesterplan</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#übungsformat"><i class="fa fa-check"></i>Übungsformat</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#lehrziele-für-jede-sitzung"><i class="fa fa-check"></i>Lehrziele für jede Sitzung</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#prüfungsleistung"><i class="fa fa-check"></i>Prüfungsleistung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html"><i class="fa fa-check"></i>Deskriptive Statistik und Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisatorisches"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#data-cleaning"><i class="fa fa-check"></i>Data Cleaning</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisationsformen-von-datensätzen"><i class="fa fa-check"></i>Organisationsformen von Datensätzen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a>
+<ul>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#organisatorisches-1"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik-1"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html"><i class="fa fa-check"></i>Einfache lineare Zusammenhänge</a>
+<ul>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#test-auf-korrelation"><i class="fa fa-check"></i>Test auf Korrelation</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#einfache-lineare-regression"><i class="fa fa-check"></i>Einfache lineare Regression</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html"><i class="fa fa-check"></i>Lineare Zusammenhänge II</a>
+<ul>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#organisatorisches-2"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#multiple-lineare-regression"><i class="fa fa-check"></i>Multiple Lineare Regression</a></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#regressionsdiagnostik"><i class="fa fa-check"></i>Regressionsdiagnostik</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html"><i class="fa fa-check"></i>Gruppenunterschiede I</a>
+<ul>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#organisatorisches-3"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#t-test"><i class="fa fa-check"></i>t-Test</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#varianzanalyse"><i class="fa fa-check"></i>Varianzanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html"><i class="fa fa-check"></i>Gruppenunterschiede II</a>
+<ul>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#organisatorisches-4"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#einfaktorielle-varianzanalyse"><i class="fa fa-check"></i>Einfaktorielle Varianzanalyse</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#zweifaktorielle-varianzanalyse"><i class="fa fa-check"></i>Zweifaktorielle Varianzanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+<li class="divider"></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EDV2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gruppenunterschiede-ii" class="section level1">
+<h1>Gruppenunterschiede II</h1>
+<div id="organisatorisches-4" class="section level2">
+<h2>Organisatorisches</h2>
+<div id="semesterplan-5" class="section level3">
+<h3>Semesterplan</h3>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Einheit
+</th>
+<th style="text-align:left;">
+Vorlesung
+</th>
+<th style="text-align:left;">
+Übungswoche
+</th>
+<th style="text-align:left;">
+Thema
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+23.04.21
+</td>
+<td style="text-align:left;">
+keine Übung
+</td>
+<td style="text-align:left;">
+Deskriptive Statistik
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Data Cleaning
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+07.05.21
+</td>
+<td style="text-align:left;">
+KW 19
+</td>
+<td style="text-align:left;">
+Hilfsmittel für die Inferenzstatistik
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Lineare Regression I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+21.05.21
+</td>
+<td style="text-align:left;">
+KW 21
+</td>
+<td style="text-align:left;">
+Lineare Regression II
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+04.06.21
+</td>
+<td style="text-align:left;">
+KW 23
+</td>
+<td style="text-align:left;">
+t- Tests
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+einfaktorielle Varianzanalyse
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+18.06.21
+</td>
+<td style="text-align:left;">
+KW 25
+</td>
+<td style="text-align:left;">
+zweifaktorielle Varianzanalyse
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+02.07.21
+</td>
+<td style="text-align:left;">
+KW 27
+</td>
+<td style="text-align:left;">
+Kontrasttests
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="datensatz-3" class="section level3">
+<h3>Datensatz</h3>
+<p>Wir verwenden den (leicht erweiterten), simulierten Datensatz aus den letzten Wochen:</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Inhalt
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>vp_nr</code>
+</td>
+<td style="text-align:left;">
+VP-Nummer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>group</code>
+</td>
+<td style="text-align:left;">
+Treatment-Gruppe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sex</code>
+</td>
+<td style="text-align:left;">
+Geschlecht
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_iq</code>
+</td>
+<td style="text-align:left;">
+Intelligenz-Quotient aus HAWIE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_wahr_log</code>
+</td>
+<td style="text-align:left;">
+Skalenwert wahrnehmungsgebundenes  logisches Denken aus HAWIE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>pre_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill vor dem Treatment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>peri_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill während des Treatments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>post_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill nach dem Treatment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>substance</code>
+</td>
+<td style="text-align:left;">
+Substanzgabe vor der jeweiligen Testung
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="einfaktorielle-varianzanalyse" class="section level2">
+<h2>Einfaktorielle Varianzanalyse</h2>
+<div id="ein-abhängiger-faktor" class="section level3">
+<h3>ein abhängiger Faktor</h3>
+<p>Die einfaktorielle Varianzanalyse mit abhängigen Gruppen dient dazu, Mittelwerte zu vergleichen, die aus einer Reihe von Beobachtungen stammen, bei denen statistische Abhängigkeit angenommen werden muss. Das ist zum Beispiel bei einem Design mit wiederholten Messungen in jeweils ein und derselben Versuchsperson der Fall.</p>
+<p>Wenn die Variablen normalverteilt, die wiederholten Messungen untereinander (zwischen den Versuchspersonen) unabhängig sind und Sphärizität gegeben ist, ist die Teststatistik im Falle der Gültigkeit der <span class="math inline">\(\text{H}_0: {\mu}_1 = {\mu}_2 \ldots = {\mu}_k\)</span> <span class="math inline">\(F_{k-1,(k-1)(N-1)}\)</span>-verteilt.</p>
+<p>Für die Durchführung der Varianzanalyse mit abhängigen Gruppen mit <code>ezANOVA()</code> muss</p>
+<ul>
+<li>der Datensatz im LONG-Format vorliegen (zumindest muss die AV über alle Messzeitpunkte in einer Variable abgelegt sein)</li>
+<li>Ein Blockbildungsfaktor, also eine Kennzeichnung des Messzeitpunktes vorliegen</li>
+<li>wie vorher auch eine Variable, die die Versuchsperson codiert, vorliegen.</li>
+</ul>
+<p>Im Folgenden wird der Blockbildungsfaktor <Block> genannt.</p>
+<p>Der aus dem unabhängigen Fall bekannte Funktionsaufruf muss nur so geändert werden, dass statt des vorher mit dem <code>between</code>-Argument angegebenen unabhängigen Faktors mit dem <code>within</code>-Argument der abhängige oder Blockbildungsfaktor angegeben wird.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="gruppenunterschiede-ii.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> <span class="sc">&lt;</span>data<span class="sc">&gt;</span>, </span>
+<span id="cb139-2"><a href="gruppenunterschiede-ii.html#cb139-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">dv =</span> <span class="sc">&lt;</span>AV<span class="sc">&gt;</span>, </span>
+<span id="cb139-3"><a href="gruppenunterschiede-ii.html#cb139-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">wid =</span> <span class="sc">&lt;</span>VP<span class="sc">-</span>Code<span class="sc">&gt;</span>,</span>
+<span id="cb139-4"><a href="gruppenunterschiede-ii.html#cb139-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">within =</span> <span class="sc">&lt;</span>Block<span class="sc">&gt;</span>)</span></code></pre></div>
+<p>In unserem Beispiel-Datensatz sieht das so aus:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="gruppenunterschiede-ii.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb140-2"><a href="gruppenunterschiede-ii.html#cb140-2" aria-hidden="true" tabindex="-1"></a>anova_time <span class="ot">&lt;-</span> </span>
+<span id="cb140-3"><a href="gruppenunterschiede-ii.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb140-4"><a href="gruppenunterschiede-ii.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&#39;skill&#39;</span>),</span>
+<span id="cb140-5"><a href="gruppenunterschiede-ii.html#cb140-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&#39;time&#39;</span>,</span>
+<span id="cb140-6"><a href="gruppenunterschiede-ii.html#cb140-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&#39;skill&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb140-7"><a href="gruppenunterschiede-ii.html#cb140-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> skill,</span>
+<span id="cb140-8"><a href="gruppenunterschiede-ii.html#cb140-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
+<span id="cb140-9"><a href="gruppenunterschiede-ii.html#cb140-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">within =</span> time)</span></code></pre></div>
+<p>Das Ganze führt dann zu dem folgenden Ergebnis:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="gruppenunterschiede-ii.html#cb141-1" aria-hidden="true" tabindex="-1"></a>anova_time</span></code></pre></div>
+<pre><code>## $ANOVA
+##   Effect DFn DFd        F          p p&lt;.05        ges
+## 2   time   2 398 4.329244 0.01380361     * 0.01245873
+## 
+## $`Mauchly&#39;s Test for Sphericity`
+##   Effect         W            p p&lt;.05
+## 2   time 0.8678891 8.090194e-07     *
+## 
+## $`Sphericity Corrections`
+##   Effect       GGe      p[GG] p[GG]&lt;.05       HFe
+## 2   time 0.8833057 0.01757486         * 0.8906258
+##       p[HF] p[HF]&lt;.05
+## 2 0.0173103         *</code></pre>
+<p>Der Output besteht aus den Ergebnistabellen für zwei inferenzstatistische Tests und einer Ergebnistabelle für die Testergebnisse nach Sphärizitäts-Korrektur.
+Als Erstes ist da das Ergebnis eines Mauchly-Tests (ein Test auf Sphärizität):</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="gruppenunterschiede-ii.html#cb143-1" aria-hidden="true" tabindex="-1"></a>anova_time<span class="sc">$</span><span class="st">`</span><span class="at">Mauchly&#39;s Test for Sphericity</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-132">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-132">Tab. 16: </span> </caption><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">W</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.868</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.09e-07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td></tr>
+</table>
+
+<p>Mit</p>
+<ul>
+<li>Angaben zu dem/n Faktor(en) für den/die Sphärizität überprüft wurde</li>
+<li>der entsprechenden Teststatistik</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+</ul>
+<p>Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="gruppenunterschiede-ii.html#cb144-1" aria-hidden="true" tabindex="-1"></a>anova_time<span class="sc">$</span><span class="st">`</span><span class="at">ANOVA</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-133">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-133">Tab. 17: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">398</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4.33</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0138</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0125</td></tr>
+</table>
+
+<p>Mit</p>
+<ul>
+<li>einer Angabe des Effekts, für den die Ergebnisse berichtet werden</li>
+<li>Zähler- und Nennerfreiheitsgraden</li>
+<li>den entsprechenden Quadratsummen</li>
+<li>dem F-Wert</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+<li>einem Schätzer für die Effektstärke <span class="math inline">\(\eta^2\)</span></li>
+</ul>
+<p>Und zu guter Letzt mit dem Ergebnis der Varianzanalyse nach Greenhouse-Geisser und Hyunh-Feldt-Korrektur</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="gruppenunterschiede-ii.html#cb145-1" aria-hidden="true" tabindex="-1"></a>anova_time<span class="sc">$</span><span class="st">`</span><span class="at">Sphericity Corrections</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-134">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-134">Tab. 18: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">GGe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">HFe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.883</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0176</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.891</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0173</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td></tr>
+</table>
+
+<p>Mit</p>
+<ul>
+<li>Einer Angabe des Effekts, für den die Ergebnisse berichtet werden</li>
+<li>dem <span class="math inline">\(\epsilon\)</span> nach Greenhouse-Geisser</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+<li>dem <span class="math inline">\(\epsilon\)</span> nach Hyunh-Feldt</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+</ul>
+<div id="aufgabe-9" class="section level4">
+<h4>Aufgabe</h4>
+<pre><code>## $ANOVA
+##   Effect DFn DFd        F          p p&lt;.05        ges
+## 2   time   2 398 4.329244 0.01380361     * 0.01245873
+## 
+## $`Mauchly&#39;s Test for Sphericity`
+##   Effect         W            p p&lt;.05
+## 2   time 0.8678891 8.090194e-07     *
+## 
+## $`Sphericity Corrections`
+##   Effect       GGe      p[GG] p[GG]&lt;.05       HFe
+## 2   time 0.8833057 0.01757486         * 0.8906258
+##       p[HF] p[HF]&lt;.05
+## 2 0.0173103         *</code></pre>
+<p><strong>Wie interpretieren wir das Ergebnis?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Es gibt keinen Unterschied.</p></li>
+<li><p>Da Sphärizität nicht gegeben ist, ist das Ergebnis nicht zu interpretieren.</p></li>
+<li><p>Mit Berücksichtigung des mit Sphärizitäts-Korrektur nach Huynh-Feldt signifikant gewordenen Tests nehmen wir unsere <span class="math inline">\(\text{H}_1\)</span> an, also dass sich die Skillwerte zu den Testzeitpunkten unterscheiden, es also einen Effekt der Treatments gab.</p></li>
+<li><p>Da wir die Normalverteiltheit der Variablen nicht überprüft haben, können wir keine Aussage machen.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li><p>ist falsch, da Interpretation der <span class="math inline">\(H_0\)</span></p></li>
+<li><p>ist falsch, zwar ist die Voraussetzung der Sphärizität nicht gegeben, da wir aber dafür korrigieren ist dieser Umstand zu vernachlässigen.</p></li>
+<li><p>kann man so sagen</p></li>
+<li><p>Stimmt nicht ganz, aus Robustheits-Gründen wird das Ergebnis in der Regel schon valide sein.</p></li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+<div id="zweifaktorielle-varianzanalyse" class="section level2">
+<h2>Zweifaktorielle Varianzanalyse</h2>
+<div id="zwei-unabhängige-faktoren" class="section level3">
+<h3>Zwei unabhängige Faktoren</h3>
+<p>Das Modell der zweifaktoriellen Varianzanalyse erlaubt es, drei Effekte zu testen: den Haupteffekt der ersten sowie der zweiten UV und den Interaktionseffekt.</p>
+<p>Statistische <span class="math inline">\(H_0\)</span>en:</p>
+<p><span class="math inline">\(\begin{array}{l l c l c l c l} \text{H}_{0A}: &amp; \mu_{1\cdot} &amp; = &amp; \mu_{2\cdot} &amp; = &amp; \cdots &amp; = &amp; \mu_{J\cdot} \\ \text{H}_{0B}: &amp; \mu_{\cdot 1} &amp; = &amp; \mu_{\cdot 2} &amp; = &amp; \cdots &amp; = &amp; \mu_{\cdot K} \\ \text{H}_{0I}: &amp; \forall {\mu}_{jk} &amp; \text{ gilt}: &amp;{\mu}_{jk} &amp; = &amp; {\mu}_{j\cdot}&amp; + {\mu}_{\cdot k} -&amp; \mu \end{array}\)</span></p>
+<p>Die <span class="math inline">\(H_1\)</span> ist dann entsprechend immer “nicht <span class="math inline">\(H_0\)</span>.”</p>
+<p>Die Auswertung funktioniert dann ganz ähnlich zum einfaktoriellen Fall, wir müssen nur den zusätzlichen between-Faktor angeben. Dabei wird vom <code>ez</code>-Paket die folgende etwas ungewöhnliche Syntax zur Verkettung der Faktoren eingeführt:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="gruppenunterschiede-ii.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> <span class="sc">&lt;</span>data<span class="sc">&gt;</span>, </span>
+<span id="cb147-2"><a href="gruppenunterschiede-ii.html#cb147-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">dv =</span> <span class="sc">&lt;</span>AV<span class="sc">&gt;</span>, </span>
+<span id="cb147-3"><a href="gruppenunterschiede-ii.html#cb147-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">wid =</span> <span class="sc">&lt;</span>VP<span class="sc">-</span>Code<span class="sc">&gt;</span>,</span>
+<span id="cb147-4"><a href="gruppenunterschiede-ii.html#cb147-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">between =</span> .(<span class="sc">&lt;</span>UV1<span class="sc">&gt;</span>,<span class="sc">&lt;</span>UV2<span class="sc">&gt;</span>))</span></code></pre></div>
+<p>Das <code>.()</code> ist eine extra für diesen Zweck eingeführte Liste</p>
+<p>Wenn man sich an die ungewöhnliche Notation gewöhnt hat, ist die Anwendung aber ganz leicht:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="gruppenunterschiede-ii.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb148-2"><a href="gruppenunterschiede-ii.html#cb148-2" aria-hidden="true" tabindex="-1"></a>anova_groupXsex <span class="ot">&lt;-</span> </span>
+<span id="cb148-3"><a href="gruppenunterschiede-ii.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb148-4"><a href="gruppenunterschiede-ii.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> post_skill,</span>
+<span id="cb148-5"><a href="gruppenunterschiede-ii.html#cb148-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
+<span id="cb148-6"><a href="gruppenunterschiede-ii.html#cb148-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">between =</span> .(group,sex))</span></code></pre></div>
+<p>Der Output ist dann auch nicht weiter überraschend, wir bekommen wieder eine Ergebnistabelle für die ANOVA und eine für den Levene-Test. Die Tabelle für die ANOVA ist jetzt aber natürlich etwas länger<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="gruppenunterschiede-ii.html#cb149-1" aria-hidden="true" tabindex="-1"></a>anova_groupXsex<span class="sc">$</span>ANOVA</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-138">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-138">Tab. 19: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">192</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">66.5&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.6e-29</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.509&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">sex</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">192</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.59&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.209&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0082</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group:sex</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">192</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.659</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.578&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0102</td></tr>
+</table>
+
+<div id="aufgabe-10" class="section level4">
+<h4>Aufgabe</h4>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="gruppenunterschiede-ii.html#cb150-1" aria-hidden="true" tabindex="-1"></a>anova_groupXsex</span></code></pre></div>
+<pre><code>## $ANOVA
+##      Effect DFn DFd         F            p p&lt;.05
+## 1     group   3 192 66.471321 1.602553e-29     *
+## 2       sex   1 192  1.586832 2.093085e-01      
+## 3 group:sex   3 192  0.658699 5.784263e-01      
+##           ges
+## 1 0.509470743
+## 2 0.008197002
+## 3 0.010187322
+## 
+## $`Levene&#39;s Test for Homogeneity of Variance`
+##   DFn DFd      SSn      SSd         F         p p&lt;.05
+## 1   7 192 9.348968 317.8641 0.8067247 0.5826385</code></pre>
+<p><strong>Wie interpretieren wir das Ergebnis?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Da der Levene-Test nicht signifikant geworden ist können wir keine Varianzhomogenität annehmen. Deswegen können wir die Ergebnisse nicht interpretieren.</p></li>
+<li><p>Nicht alle Effekte sind signifikant geworden, deswegen können wir nichts interpretieren.</p></li>
+<li><p>Da der Test des Haupteffekts der Gruppe signifikant geworden ist, entscheiden wir uns dazu anzunehmen, dass die unterschiedlichen Interventionen zu unterschiedlichen Skillwerten führen.</p></li>
+<li><p>Da der Interaktionseffekt nicht signifikant geworden ist, nehmen wir an, dass der Erwartungswertverlauf parallel ist.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li><p>Blödsinn, genau verkehrt herum</p></li>
+<li><p>Stimmt auch nicht. Dahingegen kann man sich merken, dass der Satz “Der Interaktionseffekt ist signifikant geworden, deswegen sind die Haupteffekte schwer zu interpretieren” richtig ist.</p></li>
+<li><p>Kann man so sagen</p></li>
+<li><p>Interpretation der <span class="math inline">\(H_0\)</span></p></li>
+</ol>
+</details>
+</div>
+<div id="typen-von-quadratsummen" class="section level4">
+<h4>Typen von Quadratsummen</h4>
+<iframe width="900" height="600" src="https://maxteflon.shinyapps.io/EDV2/">
+</iframe>
+</div>
+</div>
+<div id="zwei-abhängige-faktoren" class="section level3">
+<h3>Zwei abhängige Faktoren</h3>
+<p>Statistische <span class="math inline">\(H_0\)</span>en:</p>
+<p><span class="math inline">\(\begin{array}{l l c l c l c l} \text{H}_{0A}: &amp; \mu_{1\cdot} &amp; = &amp; \mu_{2\cdot} &amp; = &amp; \cdots &amp; = &amp; \mu_{J\cdot} \\ \text{H}_{0B}: &amp; \mu_{\cdot 1} &amp; = &amp; \mu_{\cdot 2} &amp; = &amp; \cdots &amp; = &amp; \mu_{\cdot K} \\ \text{H}_{0I}: &amp; \forall {\mu}_{jk} &amp; \text{ gilt}: &amp;{\mu}_{jk} &amp; = &amp; {\mu}_{j\cdot}&amp; + {\mu}_{\cdot k} -&amp; \mu \end{array}\)</span></p>
+<p>Für die Durchführung der Zweifaktoriellen Varianzanalyse mit abhängigen Gruppen mit <code>ezANOVA</code> müssen natürlich wieder die zu benutzenden Faktoren im <code>long</code>-Format vorliegen.
+Die Erweiterung vom einfaktoriellen Fall funktioniert dann wieder äquivalent zum unabhängigen Fall.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="gruppenunterschiede-ii.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> <span class="sc">&lt;</span>data<span class="sc">&gt;</span>, </span>
+<span id="cb152-2"><a href="gruppenunterschiede-ii.html#cb152-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">dv =</span> <span class="sc">&lt;</span>AV<span class="sc">&gt;</span>, </span>
+<span id="cb152-3"><a href="gruppenunterschiede-ii.html#cb152-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">wid =</span> <span class="sc">&lt;</span>VP<span class="sc">-</span>Code<span class="sc">&gt;</span>,</span>
+<span id="cb152-4"><a href="gruppenunterschiede-ii.html#cb152-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">within =</span> .(<span class="sc">&lt;</span>UV1<span class="sc">&gt;</span>,<span class="sc">&lt;</span>UV2<span class="sc">&gt;</span>))</span></code></pre></div>
+<p>Für diese Auswertung passt unser bisheriger Datensatz nicht so ganz.
+Wir benutzen deswegen kurz ein anderes Beispiel:</p>
+<p>In einem (fiktiven) Versuch zum Modell-Lernen wurde 10 Kindern an vier Terminen jeweils ein Video vorgespielt. Die Videos waren Darstellungen des folgenden Designs:</p>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-142">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-142">Tab. 20: </span> </caption><col><col><col><tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 1pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Aggressives Modell</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 1pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Nicht aggressives Modell</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0.4pt 2pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Kind als Modell</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0.4pt 2pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0.4pt 2pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 0.4pt 3pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Jugendliche:r als Modell</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 0.4pt 3pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 0.4pt 3pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 0.4pt 4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Erwachsene:r als Modell</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 0.4pt 4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 0.4pt 4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV: Fremdurteil Aggressionen</td></tr>
+</table>
+
+Dabei wurde die AV von einem Beobachter erhoben, der auf einem Fragebogen ein (der Einfachheit halber) normalverteiltes Urteil über das aggressive Verhalten des Kindes nach dem Versuch angegeben hat.</p>
+<p>Der zugehörige Datensatz sieht wie folgt aus:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="gruppenunterschiede-ii.html#cb153-1" aria-hidden="true" tabindex="-1"></a>aggr_df</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-144">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-144">Tab. 21: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Kind_ID</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">aggrMod_kind_aggr</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">nAggrMod_kind_aggr</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">aggrMod_erw_aggr</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">nAggrMod_erw_aggr</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">aggrMod_jug_aggr</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">nAggrMod_jug_aggr</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">13.4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.61&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9.08</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.37&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">11.4&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.32</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10.6&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.66</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9.11&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10.3&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.22</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">12.4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.22&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9.48</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.1&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">12.5&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.58</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">12.6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.44&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13.6&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.17&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9.55</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.64</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">12.4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.73&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15.7&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.51&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.26</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.09</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.27&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8.71</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.85&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.9&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.28</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">13.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.43&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9.23</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4.65&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9.38</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.68</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.687</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.71</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.45&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13.9&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.09</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">14&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.12&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">11.4&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.243</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.1&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.01</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8.64&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8.08</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.11&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">12.3&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.28</td></tr>
+</table>
+
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="gruppenunterschiede-ii.html#cb154-1" aria-hidden="true" tabindex="-1"></a>anova_behavXmodel <span class="ot">&lt;-</span> aggr_df <span class="sc">%&gt;%</span> </span>
+<span id="cb154-2"><a href="gruppenunterschiede-ii.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb154-3"><a href="gruppenunterschiede-ii.html#cb154-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&#39;model_behav&#39;</span>, <span class="st">&#39;model&#39;</span>, <span class="st">&#39;.value&#39;</span>),</span>
+<span id="cb154-4"><a href="gruppenunterschiede-ii.html#cb154-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">&#39;(.+)_(.+)_(.+)&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-5"><a href="gruppenunterschiede-ii.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> aggr,</span>
+<span id="cb154-6"><a href="gruppenunterschiede-ii.html#cb154-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> Kind_ID,</span>
+<span id="cb154-7"><a href="gruppenunterschiede-ii.html#cb154-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">within =</span> .(model, model_behav))</span></code></pre></div>
+<p>Das Ergebnis beteht dann wie im einfaktoriellen Fall wieder aus drei Tabellen, einmal dem Ergebnis eines Mauchly-Tests für den ersten Faktor und die Interaktion:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="gruppenunterschiede-ii.html#cb155-1" aria-hidden="true" tabindex="-1"></a>anova_behavXmodel<span class="sc">$</span><span class="st">`</span><span class="at">Mauchly&#39;s Test for Sphericity</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-146">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-146">Tab. 22: </span> </caption><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">W</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">model</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.895</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.642</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">model:model_behav</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.746</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.309</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td></tr>
+</table>
+
+<div id="aufgabe-11" class="section level4">
+<h4>Aufgabe</h4>
+<p>Warum taucht kein Test für die Sphärizität des Modellverhaltens auf?</p>
+<ol style="list-style-type: decimal">
+<li><p>Da das Modellverhalten ein unabhängiger Faktor ist.</p></li>
+<li><p>Bestimmt weil der Test des zweiten Faktors irgendwie in den anderen beiden Tests implizit ist.</p></li>
+<li><p>Da Zirkularität bei einer 2x2-Kovarianzmatrix immer gegeben ist.</p></li>
+<li><p>Weil R einen Fehler gemacht hat.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li><p>ist Unsinn</p></li>
+<li><p>die Voraussetzung gilt für alle drei Variablen, wir könnten auch nicht alle Tests durchführen wollen</p></li>
+<li><p>Stimmt</p></li>
+<li><p>ist bei einem gut etablierten und getesteten Paket eher unwahrscheinlich, aber kann natürlich sein</p></li>
+</ol>
+</details>
+<p>Als zweites dem Ergebnis der Varianzanalyse, natürlich wieder mit drei Zeilen für Haupteffekte und Interaktion:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="gruppenunterschiede-ii.html#cb156-1" aria-hidden="true" tabindex="-1"></a>anova_behavXmodel<span class="sc">$</span>ANOVA</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-147">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-147">Tab. 23: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">model</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.87</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.183&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0602</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">model_behav</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">44.7&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9e-05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.56&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">model:model_behav</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.72</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0927</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0769</td></tr>
+</table>
+
+<p>Und zu guter Letzt dem Ergebnis der Varianzanalyse nach den bekannten Korrekturen:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="gruppenunterschiede-ii.html#cb157-1" aria-hidden="true" tabindex="-1"></a>anova_behavXmodel<span class="sc">$</span><span class="st">`</span><span class="at">Sphericity Corrections</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-148">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-148">Tab. 24: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">GGe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">HFe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">model</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.905</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.187</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.12&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.183&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">model:model_behav</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.797</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.108</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.942</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0968</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td></tr>
+</table>
+
+</div>
+</div>
+<div id="zweifaktorielle-varianzanalyse-mit-split-plot-design" class="section level3">
+<h3>Zweifaktorielle Varianzanalyse mit split-plot-Design</h3>
+<p>Ein Split-Plot-Design liegt im zweifaktoriellen Fall vor, wenn within- und between-Faktoren kombiniert werden.</p>
+<p>Für die Durchführung der Zweifaktoriellen Varianzanalyse mit split-plot-Design über <code>ezANOVA</code> müssen natürlich genau wie in den vorangegangenen Fällen die zu benutzenden Faktoren im <code>long</code>-Format vorliegen.</p>
+<p>Wir wollen die Haupteffekte und die Interaktion vom Testzeitpunkt und dem Treatment untersuchen. Dafür müssen wir natürlich wieder zuerst den Datensatz pivotieren um dann entsprechend das <code>within</code> und das <code>between</code>-Argument setzen.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="gruppenunterschiede-ii.html#cb158-1" aria-hidden="true" tabindex="-1"></a>anova_timeXgroup <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb158-2"><a href="gruppenunterschiede-ii.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">&#39;skill&#39;</span>),</span>
+<span id="cb158-3"><a href="gruppenunterschiede-ii.html#cb158-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&#39;time&#39;</span>,</span>
+<span id="cb158-4"><a href="gruppenunterschiede-ii.html#cb158-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&#39;skill&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb158-5"><a href="gruppenunterschiede-ii.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> skill,</span>
+<span id="cb158-6"><a href="gruppenunterschiede-ii.html#cb158-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
+<span id="cb158-7"><a href="gruppenunterschiede-ii.html#cb158-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">between =</span> group,</span>
+<span id="cb158-8"><a href="gruppenunterschiede-ii.html#cb158-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">within =</span> time)</span></code></pre></div>
+<p>Die Ergebnisse sind dann wie im abhängigen Fall in die drei Tabellen für den Mauchly-Test</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="gruppenunterschiede-ii.html#cb159-1" aria-hidden="true" tabindex="-1"></a>anova_timeXgroup<span class="sc">$</span><span class="st">`</span><span class="at">Mauchly&#39;s Test for Sphericity</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-150">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-150">Tab. 25: </span> </caption><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">W</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.95</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00707</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group:time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.95</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.00707</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td></tr>
+</table>
+
+<p>Die Ergebnisse der ANOVA:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="gruppenunterschiede-ii.html#cb160-1" aria-hidden="true" tabindex="-1"></a>anova_timeXgroup<span class="sc">$</span>ANOVA</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-151">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-151">Tab. 26: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">196</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">73.2&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.36e-32</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.265&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">392</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.92</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.00293&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0201</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group:time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">392</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">25.4&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.79e-25</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.209&nbsp;</td></tr>
+</table>
+
+<p>Und die Sphärizitäts-Korrektur aufgeteilt.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="gruppenunterschiede-ii.html#cb161-1" aria-hidden="true" tabindex="-1"></a>anova_timeXgroup<span class="sc">$</span><span class="st">`</span><span class="at">Sphericity Corrections</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-152">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-152">Tab. 27: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">GGe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">HFe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.953</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00343&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.962</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00333&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group:time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.953</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.19e-24</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.962</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.35e-24</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td></tr>
+</table>
+
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-153">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-153">Tab. 28: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">196</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">73.2&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.36e-32</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.265&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">392</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5.92</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.00293&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0201</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group:time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">392</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">25.4&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.79e-25</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.209&nbsp;</td></tr>
+</table>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-153">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-153">Tab. 28: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">GGe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[GG]&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">HFe</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p[HF]&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.953</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00343&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.962</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00333&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group:time</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.953</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.19e-24</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.962</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.35e-24</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*</td></tr>
+</table>
+
+<strong>Wie interpretieren wir das?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Es gibt eine signifikante Interaktion zwischen Untersuchungszeitpunkt und Experimentalgruppe.</p></li>
+<li><p>Der signifikante Haupteffekt von  führt uns zu der Annahme, dass die Interventionen eine Veränderung über den Untersuchungsverlauf auslösen, der signifikante Haupteffekt von  führt uns zu der Annahme, dass es einen Unterschied in der Wirkung der Treatments gibt.</p></li>
+<li><p>Da wir die Voraussetzungen nicht überprüft haben, können wir keine Aussage aus den Ergebnissen ziehen.</p></li>
+<li><p>Die Ergebnisse legen einen linearen Zusammenhang zwischen Untersuchungsverlauf, Experimentalgruppe und motorischem Skill nahe.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li>Stimmt.</li>
+</ol>
+</details>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Und in diesem Beispiel auch nicht mehr ganz richtig. Um zu einer akkuraten Schätzung für das <span class="math inline">\(\eta^2\)</span> zu kommen, müsste man eigentlich noch das <code>observed</code>-Argument auf <code>sex</code> setzen, aber das würde hier jetzt ein bisschen zu weit führen.<a href="gruppenunterschiede-ii.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gruppenunterschiede-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literatur.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["EDV2_SS21.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Gruppenunterschiede I | EDV2</title>
+  <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Gruppenunterschiede I | EDV2" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Gruppenunterschiede I | EDV2" />
+  
+  <meta name="twitter:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  
+
+<meta name="author" content="Max Brede" />
+
+
+<meta name="date" content="2021-06-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lineare-zusammenhänge-ii.html"/>
+<link rel="next" href="gruppenunterschiede-ii.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/rglWebGL-binding-0.106.8/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.106.8/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.106.8/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.106.8/rglTimer.src.js"></script>
+<script src="libs/CanvasMatrix4-0.106.8/CanvasMatrix.src.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EDV 2 <br> SoSe 21</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html"><i class="fa fa-check"></i>Lehrplan</a>
+<ul>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#semesterplan"><i class="fa fa-check"></i>Semesterplan</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#übungsformat"><i class="fa fa-check"></i>Übungsformat</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#lehrziele-für-jede-sitzung"><i class="fa fa-check"></i>Lehrziele für jede Sitzung</a></li>
+<li class="chapter" data-level="" data-path="lehrplan.html"><a href="lehrplan.html#prüfungsleistung"><i class="fa fa-check"></i>Prüfungsleistung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html"><i class="fa fa-check"></i>Deskriptive Statistik und Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisatorisches"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#data-cleaning"><i class="fa fa-check"></i>Data Cleaning</a></li>
+<li class="chapter" data-level="" data-path="deskriptive-statistik-und-data-cleaning.html"><a href="deskriptive-statistik-und-data-cleaning.html#organisationsformen-von-datensätzen"><i class="fa fa-check"></i>Organisationsformen von Datensätzen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a>
+<ul>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#organisatorisches-1"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik-1"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html"><i class="fa fa-check"></i>Einfache lineare Zusammenhänge</a>
+<ul>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#test-auf-korrelation"><i class="fa fa-check"></i>Test auf Korrelation</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#einfache-lineare-regression"><i class="fa fa-check"></i>Einfache lineare Regression</a></li>
+<li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html"><i class="fa fa-check"></i>Lineare Zusammenhänge II</a>
+<ul>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#organisatorisches-2"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#multiple-lineare-regression"><i class="fa fa-check"></i>Multiple Lineare Regression</a></li>
+<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#regressionsdiagnostik"><i class="fa fa-check"></i>Regressionsdiagnostik</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html"><i class="fa fa-check"></i>Gruppenunterschiede I</a>
+<ul>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#organisatorisches-3"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#t-test"><i class="fa fa-check"></i>t-Test</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#varianzanalyse"><i class="fa fa-check"></i>Varianzanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html"><i class="fa fa-check"></i>Gruppenunterschiede II</a>
+<ul>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#organisatorisches-4"><i class="fa fa-check"></i>Organisatorisches</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#einfaktorielle-varianzanalyse"><i class="fa fa-check"></i>Einfaktorielle Varianzanalyse</a></li>
+<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#zweifaktorielle-varianzanalyse"><i class="fa fa-check"></i>Zweifaktorielle Varianzanalyse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+<li class="divider"></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EDV2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gruppenunterschiede-i" class="section level1">
+<h1>Gruppenunterschiede I</h1>
+<div id="organisatorisches-3" class="section level2">
+<h2>Organisatorisches</h2>
+<div id="semesterplan-4" class="section level3">
+<h3>Semesterplan</h3>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Einheit
+</th>
+<th style="text-align:left;">
+Vorlesung
+</th>
+<th style="text-align:left;">
+Übungswoche
+</th>
+<th style="text-align:left;">
+Thema
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+23.04.21
+</td>
+<td style="text-align:left;">
+keine Übung
+</td>
+<td style="text-align:left;">
+Deskriptive Statistik
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Data Cleaning
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+07.05.21
+</td>
+<td style="text-align:left;">
+KW 19
+</td>
+<td style="text-align:left;">
+Hilfsmittel für die Inferenzstatistik
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Lineare Regression I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+21.05.21
+</td>
+<td style="text-align:left;">
+KW 21
+</td>
+<td style="text-align:left;">
+Lineare Regression II
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+04.06.21
+</td>
+<td style="text-align:left;">
+KW 23
+</td>
+<td style="text-align:left;">
+t- Tests
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+einfaktorielle Varianzanalyse
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+18.06.21
+</td>
+<td style="text-align:left;">
+KW 25
+</td>
+<td style="text-align:left;">
+zweifaktorielle Varianzanalyse
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+02.07.21
+</td>
+<td style="text-align:left;">
+KW 27
+</td>
+<td style="text-align:left;">
+Kontrasttests
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="datensatz-2" class="section level3">
+<h3>Datensatz</h3>
+<p>Wir verwenden den (leicht erweiterten), simulierten Datensatz aus den letzten Wochen:</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Inhalt
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>vp_nr</code>
+</td>
+<td style="text-align:left;">
+VP-Nummer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>group</code>
+</td>
+<td style="text-align:left;">
+Treatment-Gruppe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sex</code>
+</td>
+<td style="text-align:left;">
+Geschlecht
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_iq</code>
+</td>
+<td style="text-align:left;">
+Intelligenz-Quotient aus HAWIE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>hawie_wahr_log</code>
+</td>
+<td style="text-align:left;">
+Skalenwert wahrnehmungsgebundenes
+logisches Denken aus HAWIE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>pre_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill vor dem Treatment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>post_skill</code>
+</td>
+<td style="text-align:left;">
+motorischer Skill nach dem Treatment
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="t-test" class="section level2">
+<h2>t-Test</h2>
+<div id="ein-stichproben-problem" class="section level3">
+<h3>Ein-Stichproben-Problem</h3>
+<p>Beim Ein-Stichproben-t-Test wird der Erwartungswert einer Stichprobe gegen den bekannten Erwartungswert einer Population getestet.(<span class="math inline">\(\text{H}_0: \mu = \mu_0\)</span>)</p>
+<p>Der Test setzt eigentlich voraus, dass die abhängige Variable normalverteilt ist. Wenn die Stichprobe groß genug ist, um eine näherungsweise Normalverteilung des Mittelwertes zu gewährleisten, kann man die <span class="math inline">\(t\)</span>-Statistik aber ohne viele Probleme mit der entsprechenden <span class="math inline">\(t\)</span>-Verteilung (<span class="math inline">\(t_{n-1}\)</span>) verglichen werden.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="gruppenunterschiede-i.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>), <span class="at">mu=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="gruppenunterschiede-i.html#cb109-1" aria-hidden="true" tabindex="-1"></a>muH0 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb109-2"><a href="gruppenunterschiede-i.html#cb109-2" aria-hidden="true" tabindex="-1"></a>(tResults <span class="ot">&lt;-</span> <span class="fu">t.test</span>(df_wide<span class="sc">$</span>hawie_iq, <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="at">mu=</span>muH0))</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  df_wide$hawie_iq
+## t = -4.132, df = 149, p-value = 5.976e-05
+## alternative hypothesis: true mean is not equal to 100
+## 95 percent confidence interval:
+##  91.76135 97.09199
+## sample estimates:
+## mean of x 
+##  94.42667</code></pre>
+</div>
+<div id="zwei-stichproben-problem-abhängiger-fall" class="section level3">
+<h3>Zwei-Stichproben-Problem, abhängiger Fall</h3>
+<p>Beim abhängigen Zwei-Stichproben-Fall wird im Prinzip derselbe Test durchgeführt, nur dass hier die Differenzwerte der Beobachtungen als Stichprobe genutzt werden. Da die Frage hier nicht ist, ob der Erwartungswert einer Population einem spezifischen Erwartungswert gleich ist, sondern ob sich die Erwartungswerte der jeweiligen Beobachtungen unterscheiden, ist die Nullhypothese hier: <span class="math display">\[\text{H}_0: { \mu}_D =  { \mu}_1 - { \mu}_2= 0 \]</span></p>
+<p>Die Teststatistik ist hier auch <span class="math inline">\(t_{n-1}\)</span>-verteilt. Dabei steht das <span class="math inline">\(n\)</span> hier aber für die Anzahl der Beobachtungs-Paare, nicht die Gesamtzahl der Beobachtungen.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="gruppenunterschiede-i.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span>df_wide<span class="sc">$</span>pre_skill, </span>
+<span id="cb111-2"><a href="gruppenunterschiede-i.html#cb111-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span>df_wide<span class="sc">$</span>post_skill,</span>
+<span id="cb111-3"><a href="gruppenunterschiede-i.html#cb111-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="at">paired=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  df_wide$pre_skill and df_wide$post_skill
+## t = 0.9628, df = 149, p-value = 0.3372
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.2946581  0.8546581
+## sample estimates:
+## mean of the differences 
+##                    0.28</code></pre>
+<p>Geht auch für das long-Format und in Formel-Schreibweise:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="gruppenunterschiede-i.html#cb113-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb113-2"><a href="gruppenunterschiede-i.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(pre_skill,post_skill),</span>
+<span id="cb113-3"><a href="gruppenunterschiede-i.html#cb113-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&#39;time&#39;</span>,</span>
+<span id="cb113-4"><a href="gruppenunterschiede-i.html#cb113-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&#39;skill&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb113-5"><a href="gruppenunterschiede-i.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(skill <span class="sc">~</span> time, <span class="at">data=</span>.,</span>
+<span id="cb113-6"><a href="gruppenunterschiede-i.html#cb113-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative =</span> <span class="st">&#39;less&#39;</span>, <span class="at">paired=</span>T)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  skill by time
+## t = -0.9628, df = 149, p-value = 0.1686
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##       -Inf 0.2013441
+## sample estimates:
+## mean of the differences 
+##                   -0.28</code></pre>
+<p>Und genau wie bei den Regressionsanalysen können wir auch hier wieder <code>broom</code> benutzen, um eine übersichtliche Tabelle zu erhalten:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="gruppenunterschiede-i.html#cb115-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%$%</span> </span>
+<span id="cb115-2"><a href="gruppenunterschiede-i.html#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(<span class="at">x=</span>pre_skill, </span>
+<span id="cb115-3"><a href="gruppenunterschiede-i.html#cb115-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">y=</span>post_skill,</span>
+<span id="cb115-4"><a href="gruppenunterschiede-i.html#cb115-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb115-5"><a href="gruppenunterschiede-i.html#cb115-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-6"><a href="gruppenunterschiede-i.html#cb115-6" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-105">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-105">Tab. 10: </span> </caption><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">estimate</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">statistic</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p.value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">parameter</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.low</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.high</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">method</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">alternative</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.28</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.963</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.337</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">149</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.295</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.855</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Paired t-test</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">two.sided</td></tr>
+</table>
+
+<div id="aufgabe-6" class="section level4">
+<h4>Aufgabe</h4>
+<pre><code>## [1] &quot;t = -0.9628, df = 149, p-value = 0.1686&quot;</code></pre>
+<p><strong>Wie interpretieren wir das Ergebnis?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Die Skillwerte zwischen Pre- und Post-Zeitpunkt sind nicht unterschiedlich.</p></li>
+<li><p>Wir verwerfen die <span class="math inline">\(\text{H}_0\)</span> und nehmen an, dass die Skillwerte der Population sich zu den zwei Zeitpunkten unterschieden.</p></li>
+<li><p>Wir können die <span class="math inline">\(H_0\)</span> nicht verwerfen.</p></li>
+<li><p>Weil wir unabhängige Testzeitpunkte haben, ist das der falsche Test, das Ergebnis ist also tendenziell zu liberal.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<p>1 ist eine Interpretation der <span class="math inline">\(H_0\)</span>, 2 wäre richtig wäre der Test signifikant, 4 ist ein möchtegern-schlauer Distraktor.</p>
+Richtig ist 3.
+</details>
+</div>
+</div>
+<div id="zwei-stichproben-problem-unabhängiger-fall" class="section level3">
+<h3>Zwei-Stichproben-Problem, unabhängiger Fall</h3>
+<p>Beim unabhängigen Stichproben t-Test wird getestet, ob die Erwartungswerte zweier Stichproben unterschiedlich sind (<span class="math inline">\(H_0: {\mu}_1 = {\mu}_2\)</span>). Dabei wird vorausgesetzt, dass die abhängige Variable in beiden Gruppen normalverteilt ist und dieselbe Varianz hat. Gelten diese Voraussetzungen, ist die <span class="math inline">\(t\)</span>-Statistik unter der <span class="math inline">\(H_0\)</span> <span class="math inline">\(t_{n_1 + n_2 - 2}\)</span>-verteilt.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="gruppenunterschiede-i.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">y=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">paired=</span><span class="cn">FALSE</span>, </span>
+<span id="cb117-2"><a href="gruppenunterschiede-i.html#cb117-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>))</span></code></pre></div>
+<p>Auch als Formelschreibweise:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="gruppenunterschiede-i.html#cb118-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb118-2"><a href="gruppenunterschiede-i.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(post_skill <span class="sc">~</span> sex, <span class="at">data=</span>., </span>
+<span id="cb118-3"><a href="gruppenunterschiede-i.html#cb118-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;less&quot;</span>, <span class="at">paired=</span><span class="cn">FALSE</span>,<span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  post_skill by sex
+## t = -1.7207, df = 148, p-value = 0.0437
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##         -Inf -0.02840063
+## sample estimates:
+## mean in group f mean in group m 
+##        4.626667        5.373333</code></pre>
+<div id="ungleiche-varianzen-oder-stichprobengrößen" class="section level5">
+<h5>Ungleiche Varianzen (oder Stichprobengrößen)</h5>
+<p>Im Falle einer Varianzinhomogenität ist die t-Statistik nicht mehr gut mit der <span class="math inline">\(t_{n_1 + n_2 - 2}\)</span>-Verteilung zu vergleichen. Die Welch-Korrektur kann in diesem Fall dazu dienen, eine Anzahl von Freiheitsgraden zu schätzen, die besser zu der Verteilung unter der <span class="math inline">\(H_0\)</span> der Teststatistik passt.</p>
+<p>Mit dem <code>var.equal</code>-Argument lässt sich logisch angeben, ob die Freiheitsgrade nach Welch geschätzt werden sollen. Dabei ist <code>FALSE</code> der Standard.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="gruppenunterschiede-i.html#cb120-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb120-2"><a href="gruppenunterschiede-i.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(post_skill <span class="sc">~</span> sex, <span class="at">data=</span>., </span>
+<span id="cb120-3"><a href="gruppenunterschiede-i.html#cb120-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;less&quot;</span>, <span class="at">paired=</span><span class="cn">FALSE</span>,<span class="at">var.equal=</span>F)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  post_skill by sex
+## t = -1.7207, df = 145.74, p-value = 0.04372
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##         -Inf -0.02833062
+## sample estimates:
+## mean in group f mean in group m 
+##        4.626667        5.373333</code></pre>
+</div>
+</div>
+<div id="test-von-voraussetzungen" class="section level3">
+<h3>Test von Voraussetzungen</h3>
+<p>Obwohl t-Tests relativ robust gegen Verletzungen der Normalverteilungsvoraussetzung sind, kann man auf die Idee kommen, auf die Normalverteiltheit der AV zu testen
+Außerdem kann für den Zwei-Stichproben-Test überlegt werden, ob die Varianzhomogenität überprüft werden soll, um über das genutzte Verfahren zu entscheiden.</p>
+</div>
+<div id="test-auf-normalverteilung" class="section level3">
+<h3>Test auf Normalverteilung</h3>
+<p>Der Kolmogorov-Smirnov-Test auf eine feste Verteilung vergleicht die kumulierten relativen
+Häufigkeiten von Daten einer stetigen Variable mit einer frei wählbaren Verteilungsfunktion –
+etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständigkeit halber erwähnt, da er stark abhängig von der Stichprobengröße schnell zu suboptimalen Handlungen führen kann.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="gruppenunterschiede-i.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(<span class="at">x=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span> , <span class="at">y=</span><span class="st">&quot;&lt;Name der Verteilungsfunktion&gt;&quot;</span>, </span>
+<span id="cb122-2"><a href="gruppenunterschiede-i.html#cb122-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="gruppenunterschiede-i.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(df_wide<span class="sc">$</span>hawie_iq, <span class="st">&#39;pnorm&#39;</span>, <span class="dv">100</span>, <span class="dv">15</span>, <span class="at">alternative=</span><span class="st">&#39;two.sided&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  df_wide$hawie_iq
+## D = 0.19056, p-value = 3.715e-05
+## alternative hypothesis: two-sided</code></pre>
+<p>Bei kleinem N kann der Shapiro-Wilk-Test auf unspezifische Normalverteilung bessere Ergebnisse liefern, bei großem N hat dieser aber dasselbe Problem wie der KS-Test, und wird eigentlich immer signifikant.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="gruppenunterschiede-i.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(df_wide<span class="sc">$</span>hawie_iq)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  df_wide$hawie_iq
+## W = 0.99, p-value = 0.3654</code></pre>
+<p>Außerdem möglich sind grafisch-heuristische Testvarianten:</p>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-113-1.png" width="500px" style="display: block; margin: auto;" /></p>
+<div id="aufgabe-7" class="section level4">
+<h4>Aufgabe</h4>
+<p><strong>Was ist daran falsch?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Nichts, alle diese Verfahren können so angewendet werden</p></li>
+<li><p>Verfahren zum Testen von Verteilungsvoraussetzungen sind absurd! die Verfahren, die wir meistens benutzen, sind gegen alle Verletzungen der Voraussetzungen robust!</p></li>
+<li><p>Über alle Gruppen hinweg einen Test auf Normalverteilung durchzuführen ist nicht sinnvoll.</p></li>
+<li><p>Grafiken sind deutlich weniger aussagekräftig als inferenzstatistische Tests, die haben hier nichts zu suchen.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li>ist falsch, die Av über die Zellen zu poolen, ergibt keinen Sinn.</li>
+<li>könnte man argumentieren, bei sehr extremen Verletzungen oder der Verletzung mehrerer Voraussetzungen gleichzeitig kann man aber in Schwierigkeiten kommen</li>
+<li>ist richtig, siehe 1.</li>
+<li>sehe ich nicht so. Grafisch-heuristische Tests haben ihren heuristischen Entscheidungsanteil wenigstens im Namen.</li>
+</ol>
+</details>
+</div>
+</div>
+<div id="test-auf-varianzhomogenität" class="section level3">
+<h3>Test auf Varianzhomogenität</h3>
+<p>Varianzhomogenität lässt sich mit dem Levene-Test testen, einem Signifikanz-Test, der auf Abweichungen von der Varianzhomogenität in zwei oder mehr Populationen testet.
+Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum dieser Gruppe berechnet. Über die resultierenden Werte wird dann eine Varianzanalyse gerechnet.</p>
+<p>Dafür kann in <code>R</code> die Funktion <code>leveneTest()</code> aus dem <code>car</code>-Paket verwendet werden. Dabei testet der Standard nicht die von Levene ursprünglich aufgestellte Differenz zum Mittelwert, sondern die Version von Brown und Forsythe, bei der die Differenz zum Median gebildet wird.</p>
+<div id="levene-test-für-einen-faktor" class="section level4">
+<h4>Levene-Test für einen Faktor</h4>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="gruppenunterschiede-i.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb127-2"><a href="gruppenunterschiede-i.html#cb127-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb127-3"><a href="gruppenunterschiede-i.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-114">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-114">Tab. 11: </span> </caption><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.341</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.56</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">148</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
+</div>
+<div id="levene-test-für-mehr-als-einen-faktor" class="section level4">
+<h4>Levene-Test für mehr als einen Faktor</h4>
+<p>Mit Verknüpfung zweier Faktoren als Interaktion im Modellterm wird der Test als assoziierte einfaktorielle Varianzanalyse ausgeführt.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="gruppenunterschiede-i.html#cb128-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb128-2"><a href="gruppenunterschiede-i.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> group <span class="sc">*</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-115">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-115">Tab. 12: </span> </caption><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.489</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.784</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">144</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
+</div>
+</div>
+</div>
+<div id="varianzanalyse" class="section level2">
+<h2>Varianzanalyse</h2>
+<div id="ein-unabhängiger-faktor" class="section level3">
+<h3>Ein unabhängiger Faktor</h3>
+<p>Bei der einfaktoriellen, unabhängigen Varianzanalyse testen wir eine Variable in einer Reihe von Bedingungen darauf, ob die jeweiligen Erwartungswerte unterschiedlich sind. Bei Gültigkeit der <span class="math inline">\(\text{H}_0: {\mu}_1 = {\mu}_2 \ldots = {\mu}_J\)</span>, sowie Unabhängigkeit, Normalverteiltheit und gleicher Varianz der AV in allen Bedingungen ist die Teststatistik <span class="math inline">\(F_{J-1, N-J}\)</span>-verteilt.</p>
+<p>Für Varianzanalysen gibt es eine ganze Reihe von Paketen und Funktionen, <code>base-R</code> hat alleine drei, die man für diesen Zweck nutzen kann.
+Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir hier aber die Funktionen aus dem <code>ez</code>-Paket nutzen.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="gruppenunterschiede-i.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> <span class="sc">&lt;</span>data<span class="sc">&gt;</span>, </span>
+<span id="cb129-2"><a href="gruppenunterschiede-i.html#cb129-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">dv =</span> <span class="sc">&lt;</span>AV<span class="sc">&gt;</span>, </span>
+<span id="cb129-3"><a href="gruppenunterschiede-i.html#cb129-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">wid =</span> <span class="sc">&lt;</span>VP<span class="sc">-</span>Code<span class="sc">&gt;</span>,</span>
+<span id="cb129-4"><a href="gruppenunterschiede-i.html#cb129-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">between =</span> <span class="sc">&lt;</span>UV<span class="sc">&gt;</span>)</span></code></pre></div>
+<p>Als Beispiel sollen die Werte der zentralen Leistungs-AV zum ersten Messzeitpunkt in der follow-up Phase zwischen den Gruppen verglichen werden.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="gruppenunterschiede-i.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb130-2"><a href="gruppenunterschiede-i.html#cb130-2" aria-hidden="true" tabindex="-1"></a>anova_group <span class="ot">&lt;-</span> </span>
+<span id="cb130-3"><a href="gruppenunterschiede-i.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb130-4"><a href="gruppenunterschiede-i.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> post_skill,</span>
+<span id="cb130-5"><a href="gruppenunterschiede-i.html#cb130-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
+<span id="cb130-6"><a href="gruppenunterschiede-i.html#cb130-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">between =</span> group)</span></code></pre></div>
+<p>Ergebnis des Tests:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="gruppenunterschiede-i.html#cb131-1" aria-hidden="true" tabindex="-1"></a>anova_group</span></code></pre></div>
+<pre><code>## $ANOVA
+##   Effect DFn DFd        F            p p&lt;.05
+## 1  group   2 147 17.76712 1.227478e-07     *
+##         ges
+## 1 0.1946717
+## 
+## $`Levene&#39;s Test for Homogeneity of Variance`
+##   DFn DFd      SSn   SSd         F         p p&lt;.05
+## 1   2 147 2.773333 326.8 0.6237454 0.5373457</code></pre>
+<p>Der Output besteht aus den Ergebnistabellen für zwei inferenzstatistische Tests. Zum einen ist da das Ergebnis eines Levene-Tests:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="gruppenunterschiede-i.html#cb133-1" aria-hidden="true" tabindex="-1"></a>anova_group<span class="sc">$</span><span class="st">`</span><span class="at">Levene&#39;s Test for Homogeneity of Variance</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-119">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-119">Tab. 13: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SSn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SSd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.77</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">327</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.624</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.537</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td></tr>
+</table>
+
+<p>Mit</p>
+<ul>
+<li>Zähler- und Nennerfreiheitsgraden</li>
+<li>den entsprechenden Quadratsummen</li>
+<li>dem F-Wert</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+</ul>
+<p>Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="gruppenunterschiede-i.html#cb134-1" aria-hidden="true" tabindex="-1"></a>anova_group<span class="sc">$</span><span class="st">`</span><span class="at">ANOVA</span><span class="st">`</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-120">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-120">Tab. 14: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.23e-07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.195</td></tr>
+</table>
+
+<p>Mit</p>
+<ul>
+<li>einer Angabe des Effekts, für den die Ergebnisse berichtet werden</li>
+<li>Zähler- und Nennerfreiheitsgraden</li>
+<li>den entsprechenden Quadratsummen</li>
+<li>dem F-Wert</li>
+<li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
+<li>einem Schätzer für die Effektstärke <span class="math inline">\(\eta^2\)</span></li>
+</ul>
+<div id="aufgabe-8" class="section level4">
+<h4>Aufgabe</h4>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-121">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-121">Tab. 15: </span> </caption><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.23e-07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.195</td></tr>
+</table>
+
+<p><strong>Wie interpretieren wir das Ergebnis?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Es gibt keinen Unterschied zwischen den Gruppen.</p></li>
+<li><p>Der Test ist signifikant, deswegen nehmen wir an, dass die Interventionen zu größerem Skill führen.</p></li>
+<li><p>Der Test ist nicht signifikant, deswegen können wir keine Aussage treffen. Mit dem mittleren Effekt können wir aber mit G*Power eine Stichprobengröße ausrechnen, die zu Signifikanz führen würde.</p></li>
+<li><p>Der Test ist signifikant, deswegen entscheiden wir uns die Alternativhypothese anzunehmen, dass die Interventionen und die Kontrollgruppe sich in ihren Skill-Werten unterscheiden.</p></li>
+</ol>
+<details>
+<summary>
+Antwort
+</summary>
+<ol style="list-style-type: decimal">
+<li><p>ist falsch, der Test ist signifikant</p></li>
+<li><p>ist falsch, da eine Richtung mit-formuliert ist und wir ungerichtet getestet haben</p></li>
+<li><p>ist falsch da zum Einen der Test signifikant ist und zum Anderen so Power nicht funktioniert</p></li>
+<li><p>ist richtig</p></li>
+</ol>
+</details>
+</div>
+</div>
+<div id="grafisch-voraussetzungen-prüfen" class="section level3">
+<h3>Grafisch Voraussetzungen prüfen</h3>
+<p>Die Voraussetzungen der Varianzanalyse lassen sich zu folgender Aussage umformulieren:</p>
+<p>Die Fehler müssen unabhängige, normalverteilte Variablen mit Erwartungswert 0 und gleicher Streuung sein.</p>
+<p>Diese umformulierten Anforderungen lassen sich dann wieder wie bei der Regressionsanalyse grafisch-heuristisch untersuchen.</p>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-122-1.png" width="500px" style="display: block; margin: auto;" /></p>
+<p>Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen können, müssen wir aber noch das <code>return_aov</code>-Argument auf <code>TRUE</code> setzen.</p>
+<p><code>aov</code>-Modelle sind die <code>base-R</code> Version, Ergebnisse von Varianzanalysen in einem ähnlichen Format wie die von linearen Modellen abzuspeichern.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="gruppenunterschiede-i.html#cb135-1" aria-hidden="true" tabindex="-1"></a>anova_group <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb135-2"><a href="gruppenunterschiede-i.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> post_skill,</span>
+<span id="cb135-3"><a href="gruppenunterschiede-i.html#cb135-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
+<span id="cb135-4"><a href="gruppenunterschiede-i.html#cb135-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">between =</span> group,</span>
+<span id="cb135-5"><a href="gruppenunterschiede-i.html#cb135-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">return_aov =</span> T)</span>
+<span id="cb135-6"><a href="gruppenunterschiede-i.html#cb135-6" aria-hidden="true" tabindex="-1"></a>anova_group<span class="sc">$</span>aov</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = formula(aov_formula), data = data)
+## 
+## Terms:
+##                  group Residuals
+## Sum of Squares  207.52    858.48
+## Deg. of Freedom      2       147
+## 
+## Residual standard error: 2.416609
+## Estimated effects may be unbalanced</code></pre>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-124-1.png" width="500px" style="display: block; margin: auto;" /></p>
+</div>
+<div id="paarvergleiche-mit-t-tests-und-alpha-adjustierung" class="section level3">
+<h3>Paarvergleiche mit t-Tests und <span class="math inline">\(\alpha\)</span>-Adjustierung</h3>
+<p>Besteht nach einer ANOVA die Frage, bei welchen Paaren Erwartungswertunterschiede vorliegen, können
+t-Tests durchgeführt werden, um die Unterschiede jeweils zweier Gruppen auf Signifikanz zu prüfen.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="gruppenunterschiede-i.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(df_wide, <span class="fu">pairwise.t.test</span>(post_skill, group,</span>
+<span id="cb137-2"><a href="gruppenunterschiede-i.html#cb137-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">p.adjust.method=</span><span class="st">&quot;bonferroni&quot;</span>, <span class="at">paired=</span>F, <span class="at">pool.sd=</span>T))</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  post_skill and group 
+## 
+##           Control Training
+## Training  0.12089 -       
+## Training2 0.00062 8.1e-08 
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Das <code>p.adjust.method</code>-Argument übernimmt eine relativ große Zahl von Korrekturen:</p>
+<p><code>"holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"</code></p>
+
+<!-- #--- -->
+<!-- title: "EDV 2: Kapitel 5" -->
+<!-- subtitle: 'Gruppenunterschiede II' -->
+<!-- author: "Max Brede" -->
+<!-- date: \today -->
+<!-- output: -->
+<!--   ioslides_presentation: -->
+<!--     transition: faster -->
+<!--     css: /home/brede/MEGA/Honorar/111220_KfN/styles.css -->
+<!--     slide_level: 3 -->
+<!-- widescreen: true -->
+<!-- bibliography: references.bib -->
+<!-- csl: /home/brede/MEGA/Andres/Header/dgps.csl -->
+<!-- --- -->
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lineare-zusammenhänge-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gruppenunterschiede-ii.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["EDV2_SS21.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
