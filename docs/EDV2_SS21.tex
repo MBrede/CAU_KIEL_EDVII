@@ -4,6 +4,10 @@
 %
 \documentclass[
 ]{book}
+\title{EDV2}
+\author{Max Brede}
+\date{2021-07-03}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -155,10 +159,6 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-
-\title{EDV2}
-\author{Max Brede}
-\date{2021-06-04}
 
 \begin{document}
 \maketitle
@@ -4458,7 +4458,7 @@ Auch als Formelschreibweise:
 ## 
 ## data:  post_skill by sex
 ## t = -1.7207, df = 148, p-value = 0.0437
-## alternative hypothesis: true difference in means is less than 0
+## alternative hypothesis: true difference in means between group f and group m is less than 0
 ## 95 percent confidence interval:
 ##         -Inf -0.02840063
 ## sample estimates:
@@ -4487,7 +4487,7 @@ Mit dem \texttt{var.equal}-Argument lässt sich logisch angeben, ob die Freiheit
 ## 
 ## data:  post_skill by sex
 ## t = -1.7207, df = 145.74, p-value = 0.04372
-## alternative hypothesis: true difference in means is less than 0
+## alternative hypothesis: true difference in means between group f and group m is less than 0
 ## 95 percent confidence interval:
 ##         -Inf -0.02833062
 ## sample estimates:
@@ -5602,6 +5602,117 @@ Antwort
 \hypertarget{typen-von-quadratsummen}{%
 \subsubsection{Typen von Quadratsummen}\label{typen-von-quadratsummen}}
 
+\hypertarget{voraussetzungen}{%
+\subsection{Voraussetzungen}\label{voraussetzungen}}
+
+Die zweifaktorielle Varianzanalyse hat (ähnlich wie die einfaktorielle) die Voraussetzungen, dass die Zellen Normalverteilt mit gleichen Varianzen sind.
+
+Um das zu überprüfen, können wir einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also entweder qq-Plots:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{sample =}\NormalTok{ post\_skill)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(sex }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-141-1} \end{center}
+
+Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(group, sex) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{W =} \FunctionTok{shapiro.test}\NormalTok{(post\_skill)}\SpecialCharTok{$}\NormalTok{statistic,}
+            \AttributeTok{p =} \FunctionTok{shapiro.test}\NormalTok{(post\_skill)}\SpecialCharTok{$}\NormalTok{p.value,}
+            \StringTok{\textquotesingle{}sign. auf 20\%{-}Niveau\textquotesingle{}} \OtherTok{=} \FunctionTok{ifelse}\NormalTok{(p }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}*\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 5
+## # Groups:   group [4]
+##   group       sex       W         p
+##   <chr>       <chr> <dbl>     <dbl>
+## 1 Control     f     0.945 0.246    
+## 2 Control     m     0.982 0.902    
+## 3 Training    f     0.810 0.0000782
+## 4 Training    m     0.923 0.130    
+## 5 Training2   f     0.978 0.836    
+## 6 Training2   m     0.931 0.105    
+## 7 Wartegruppe f     0.793 0.000508 
+## 8 Wartegruppe m     0.913 0.0204   
+##   `sign. auf 20%-Niveau`
+##   <chr>                 
+## 1 ""                    
+## 2 ""                    
+## 3 "*"                   
+## 4 "*"                   
+## 5 ""                    
+## 6 "*"                   
+## 7 "*"                   
+## 8 "*"
+\end{verbatim}
+
+Für die Varianzhomogenität können wir einfach das von \texttt{ezANOVA} zurückgegebenen Levene-Test-Ergebnis nutzen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anova\_groupXsex}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Levene\textquotesingle{}s Test for Homogeneity of Variance}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-143} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{DFn} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{DFd} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{SSn} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{SSd} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{F} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{p} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{p$<$.05} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 7 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 192 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 9.35 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 318 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.807 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.583 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
 \hypertarget{varianzanalyse---zwei-abhuxe4ngige-faktoren}{%
 \section{Varianzanalyse - zwei abhängige Faktoren}\label{varianzanalyse---zwei-abhuxe4ngige-faktoren}}
 
@@ -5639,7 +5750,7 @@ In einem (fiktiven) Versuch zum Modell-Lernen wurde 10 Kindern an vier Terminen 
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-142} }
+\caption{\label{tab:unnamed-chunk-145} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -5704,7 +5815,7 @@ Der zugehörige Datensatz sieht wie folgt aus:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-144} }
+\caption{\label{tab:unnamed-chunk-147} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5879,7 +5990,7 @@ Das Ergebnis beteht dann wie im einfaktoriellen Fall wieder aus drei Tabellen, e
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-146} }
+\caption{\label{tab:unnamed-chunk-149} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -5968,7 +6079,7 @@ Als zweites dem Ergebnis der Varianzanalyse, natürlich wieder mit drei Zeilen f
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-147} }
+\caption{\label{tab:unnamed-chunk-150} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6047,7 +6158,7 @@ Und zu guter Letzt dem Ergebnis der Varianzanalyse nach den bekannten Korrekture
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-148} }
+\caption{\label{tab:unnamed-chunk-151} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6089,6 +6200,122 @@ Und zu guter Letzt dem Ergebnis der Varianzanalyse nach den bekannten Korrekture
 
 
 \hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{voraussetzungen-1}{%
+\subsection{Voraussetzungen}\label{voraussetzungen-1}}
+
+Die abhängige zweifaktorielle Varianzanalyse hat (ähnlich wie die einfaktorielle) die Voraussetzungen, dass die Zellen Normalverteilt sind und die Kovarianzmatrix Spherizität aufweist (die Varianzen der Differenzen sind gleich).
+
+Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also entweder qq-Plots:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aggr\_df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}
+               \AttributeTok{names\_to =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}model\_behav\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}model\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}.value\textquotesingle{}}\NormalTok{),}
+               \AttributeTok{names\_pattern =} \StringTok{\textquotesingle{}(.+)\_(.+)\_(.+)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{sample =}\NormalTok{ aggr)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(model }\SpecialCharTok{\textasciitilde{}}\NormalTok{ model\_behav) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-152-1} \end{center}
+
+Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aggr\_df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}
+               \AttributeTok{names\_to =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}model\_behav\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}model\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}.value\textquotesingle{}}\NormalTok{),}
+               \AttributeTok{names\_pattern =} \StringTok{\textquotesingle{}(.+)\_(.+)\_(.+)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(model\_behav, model) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{W =} \FunctionTok{shapiro.test}\NormalTok{(aggr)}\SpecialCharTok{$}\NormalTok{statistic,}
+            \AttributeTok{p =} \FunctionTok{shapiro.test}\NormalTok{(aggr)}\SpecialCharTok{$}\NormalTok{p.value,}
+            \StringTok{\textquotesingle{}sign. auf 20\%{-}Niveau\textquotesingle{}} \OtherTok{=} \FunctionTok{ifelse}\NormalTok{(p }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}*\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+## # Groups:   model_behav [2]
+##   model_behav model     W      p
+##   <chr>       <chr> <dbl>  <dbl>
+## 1 aggrMod     erw   0.938 0.528 
+## 2 aggrMod     jug   0.976 0.938 
+## 3 aggrMod     kind  0.929 0.435 
+## 4 nAggrMod    erw   0.940 0.556 
+## 5 nAggrMod    jug   0.800 0.0144
+## 6 nAggrMod    kind  0.951 0.675 
+##   `sign. auf 20%-Niveau`
+##   <chr>                 
+## 1 ""                    
+## 2 ""                    
+## 3 ""                    
+## 4 ""                    
+## 5 "*"                   
+## 6 ""
+\end{verbatim}
+
+Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegebenen Mauchly-Test-Ergebnis nutzen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anova\_behavXmodel}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Mauchly\textquotesingle{}s Test for Sphericity}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-154} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{Effect} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{W} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{p} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{p$<$.05} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} model \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.895 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.642 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} model:model\_behav \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.746 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.309 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
 \arrayrulecolor{black}
 \end{tabular}
 \end{threeparttable}\par\end{centerbox}
@@ -6139,7 +6366,7 @@ Die Ergebnisse sind dann wie im abhängigen Fall in die drei Tabellen für den M
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-150} }
+\caption{\label{tab:unnamed-chunk-156} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6197,7 +6424,7 @@ Die Ergebnisse der ANOVA:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-151} }
+\caption{\label{tab:unnamed-chunk-157} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6276,7 +6503,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-152} }
+\caption{\label{tab:unnamed-chunk-158} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6335,7 +6562,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-153} }
+\caption{\label{tab:unnamed-chunk-159} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6406,7 +6633,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-153} }
+\caption{\label{tab:unnamed-chunk-159} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6477,6 +6704,672 @@ Antwort
 \item
   Stimmt.
 \end{enumerate}
+
+\hypertarget{voraussetzungen-2}{%
+\subsection{Voraussetzungen}\label{voraussetzungen-2}}
+
+Die zweifaktorielle Varianzanalyse im split-plot-Design hat als Voraussetzung eine Kombination der aus dem jeweiligen einfaktoriellen Fall bekannten. So setzen wir voraus, dass die AV über die unabhängigen Faktor-Stufen Varianzhomogenität aufweist und ihre Kovarinazmatrix zirkulär ist.
+
+Außerdem ist wieder Normalverteiltheit in den Zellen Voraussetzung.
+
+Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also wieder entweder qq-Plots:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{contains}\NormalTok{(}\StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{),}
+               \AttributeTok{names\_to =} \StringTok{\textquotesingle{}time\textquotesingle{}}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{sample =}\NormalTok{ skill)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_qq\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(time }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-160-1} \end{center}
+
+Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{contains}\NormalTok{(}\StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{),}
+               \AttributeTok{names\_to =} \StringTok{\textquotesingle{}time\textquotesingle{}}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(time, group) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{W =} \FunctionTok{shapiro.test}\NormalTok{(skill)}\SpecialCharTok{$}\NormalTok{statistic,}
+            \AttributeTok{p =} \FunctionTok{shapiro.test}\NormalTok{(skill)}\SpecialCharTok{$}\NormalTok{p.value,}
+            \StringTok{\textquotesingle{}sign. auf 20\%{-}Niveau\textquotesingle{}} \OtherTok{=} \FunctionTok{ifelse}\NormalTok{(p }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}*\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 5
+## # Groups:   time [3]
+##    time       group           W         p
+##    <chr>      <chr>       <dbl>     <dbl>
+##  1 peri_skill Control     0.953 0.0433   
+##  2 peri_skill Training    0.968 0.184    
+##  3 peri_skill Training2   0.982 0.653    
+##  4 peri_skill Wartegruppe 0.928 0.00453  
+##  5 post_skill Control     0.971 0.247    
+##  6 post_skill Training    0.870 0.0000567
+##  7 post_skill Training2   0.977 0.441    
+##  8 post_skill Wartegruppe 0.866 0.0000419
+##  9 pre_skill  Control     0.953 0.0446   
+## 10 pre_skill  Training    0.943 0.0169   
+## 11 pre_skill  Training2   0.944 0.0187   
+## 12 pre_skill  Wartegruppe 0.897 0.000384 
+##    `sign. auf 20%-Niveau`
+##    <chr>                 
+##  1 "*"                   
+##  2 "*"                   
+##  3 ""                    
+##  4 "*"                   
+##  5 ""                    
+##  6 "*"                   
+##  7 ""                    
+##  8 "*"                   
+##  9 "*"                   
+## 10 "*"                   
+## 11 "*"                   
+## 12 "*"
+\end{verbatim}
+
+Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegebenen Mauchly-Test-Ergebnis nutzen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anova\_timeXgroup}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Mauchly\textquotesingle{}s Test for Sphericity}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-162} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{Effect} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{W} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{p} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{p$<$.05} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} time \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.95 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.00707 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} * \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group:time \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.95 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.00707 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} * \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+Zusätzlich müssen wir für den unabhängigen Faktor überprüfen, ob über alle Stufen Varianzhomogenität herrscht. Dafür können wir die \texttt{leveneTest}-Funktion aus dem \texttt{car}-Paket nutzen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(magrittr)}
+\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{contains}\NormalTok{(}\StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{),}
+               \AttributeTok{names\_to =} \StringTok{\textquotesingle{}time\textquotesingle{}}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%$\%} 
+\NormalTok{  car}\SpecialCharTok{::}\FunctionTok{leveneTest}\NormalTok{(skill }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group)}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-163} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{Df} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{F value} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{Pr($>$F)} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 3 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 1.79 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.148 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 596 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{beliebige-linearkontraste}{%
+\section{Beliebige Linearkontraste}\label{beliebige-linearkontraste}}
+
+\hypertarget{kontraste-ein-faktor}{%
+\subsection{Kontraste, ein Faktor}\label{kontraste-ein-faktor}}
+
+Wie schon bei der \protect\hyperlink{paarvergleiche-mit-t-tests-und-alpha-adjustierung}{Varianzanalyse mit einem unabhängigen Faktor} erwähnt, können mit \texttt{pairwise.t.test} alle Zellvergleiche als \(\alpha\)-korrigierte t-Tests durchgeführt werden.
+
+Als Alternative gibt es mit den beliebigen Linearkontrasten eine flexiblere Methode, um spezielle Vergleiche anzustreben.
+Jeder dieser Kontraste (\(\psi\)) ist eine Linearkombination der Gruppenerwartungswerte \(\mu_j\) mit den Koeffizienten \(c_j\), wobei die Koeffizienten in Summe 0 ergeben. Mit 1 \(\leq\) j \(\leq\) J könnte man entsprechend Kontraste wie folgt formulieren:
+
+\[\psi = \sum_1^Jc_j\cdot\mu_j\]
+
+Um diese theoretischen Kontraste zu testen, können wir den Dunns Test für mehrfache Vergleiche nutzen. Dieser nutzt die unter der Gültigkeit der Nullhypothese \(H_0: \psi = 0\) \(t_{N-J}\)-verteilte Teststatistik \(t = {{\hat\psi}\over{\sqrt{\sum_1^J {c^2_j\over{n_j}}MS_{Fehler}}}}\). Dabei steht \(N\) für die Stichprobengröße, \(MS_{w}\) für die mittlere Quadratsumme aus dem Nenner der einfaktoriellen Varianzanalyse, \(\hat\psi\) für den empirischen Schätzer \(\sum_1^Jc_j\cdot M_j\) des Kontrasts und \(n_j\) für die Zellbesetzung.
+
+Da wir mit einer t-Verteilung testen, können wir natürlich auch gerichtete Hypothesen aufstellen.
+
+In R lässt sich dieser Test mit der \texttt{glht} (generalized linear hypothesis test)-Funktion aus dem \texttt{multcomp}-Paket durchführen.
+
+Dazu brauchen wir zuerst ein \texttt{aov}-Modell für die Quadratsumme, die wir entweder mit der \texttt{aov}-Funktion erstellen können\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aov\_mod }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(post\_skill }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group, }\AttributeTok{data =}\NormalTok{ df\_wide)}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots oder uns mit Hilfe des \texttt{return\_aov}-Arguments der \texttt{ezANOVA}-Funktion mit ausgeben lassen können:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ez\_anova }\OtherTok{\textless{}{-}}\NormalTok{ df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ezANOVA}\NormalTok{(}\AttributeTok{dv =}\NormalTok{ post\_skill,}
+          \AttributeTok{wid =}\NormalTok{ vp\_nr,}
+          \AttributeTok{between =}\NormalTok{ group,}
+          \AttributeTok{return\_aov =}\NormalTok{ T)}
+\NormalTok{ez\_anova}\SpecialCharTok{$}\NormalTok{aov}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+##    aov(formula = formula(aov_formula), data = data)
+## 
+## Terms:
+##                    group Residuals
+## Sum of Squares  738.9439  700.5886
+## Deg. of Freedom        3       196
+## 
+## Residual standard error: 1.890617
+## Estimated effects may be unbalanced
+\end{verbatim}
+
+Als nächsten Schritt müssen wir unsere Linearkontraste formulieren. In unserem Fall könnten wir auf die Idee kommen, die Trainings-Bedingungen gegen die Kontrollbedingung testen zu wollen.
+
+Die einfachste (und übersichtlichste) Möglichkeit diesen Kontrast zu formulieren ist es, die dem gewünschten Kontrast entsprechende Linearkombination als Text zu notieren:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contr\_hypothesis }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}2 * Control {-} (Training + Training2) \textless{}= 0\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+Man kann die Kontraste unter Anderem zwar auch als Matrix formulieren, die Text-Variante hat aber die entscheidenden Vorteile dass 1. die Ordnung der Faktorstufen nicht bekannt sein muss und 2. auf den ersten Blick erkennbar ist, welche Richtung welcher Hypothese getestet werden soll.
+
+Unsere Nullhypothese ist also:
+
+\[H_0: 2\mu_{Control} - (\mu_{Training} + \mu_{Training2}) = \psi \leq 0\]
+
+Um diese Hypothese zu testen, müssen wir sie der \texttt{mcp}-Funktion auch aus dem \texttt{glht}-Paket übergeben. Dabei müssen wir darauf achten, dass wir den Namen des in der Varianzanalyse genutzten between-Faktors als Argument-Namen nutzen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(multcomp)}
+\NormalTok{cont }\OtherTok{\textless{}{-}} \FunctionTok{mcp}\NormalTok{(}\AttributeTok{group =}\NormalTok{ contr\_hypothesis)}
+\end{Highlighting}
+\end{Shaded}
+
+Mit diesen \texttt{mcp}-Objekt können wir nun endlich den Kontrast-Test rechnen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glht}\NormalTok{(ez\_anova}\SpecialCharTok{$}\NormalTok{aov, cont)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: User-defined Contrasts
+## 
+## 
+## Linear Hypotheses:
+##                                           Estimate
+## 2 * Control - (Training + Training2) <= 0  0.08774
+\end{verbatim}
+
+\textbf{Achtung:} Das Modell muss ursprünglich mit einem \texttt{factor} als Gruppierungsfaktor gerechnet worden sein. Netterweise wandelt \texttt{ezANOVA} das aber auch für uns um.
+
+Das Ergebnis von \texttt{glht} lässt sich auch wieder mit \texttt{broom} darstellen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glht}\NormalTok{(ez\_anova}\SpecialCharTok{$}\NormalTok{aov, cont) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-169} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{term} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{contrast} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{null.value} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{estimate} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{std.error} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{statistic} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{adj.p.value} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} 2 * Control - (Training + Training2) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.0877 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.655 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.134 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.447 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+Mit Setzen des \texttt{test} -Arguments können wir außerdem wieder auswählen, wie wir den p-Wert adjustieren, indem wir einen Aufruf der \texttt{adjusted}-Funktion übergeben. Bei einem Test müssen wir nicht unbedingt adjustieren, können also wie folgt vorgehen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glht}\NormalTok{(ez\_anova}\SpecialCharTok{$}\NormalTok{aov, cont) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{(}\AttributeTok{test =} \FunctionTok{adjusted}\NormalTok{(}\StringTok{\textquotesingle{}none\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-170} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{term} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{contrast} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{null.value} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{estimate} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{std.error} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{statistic} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{p.value} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} 2 * Control - (Training + Training2) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.0877 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.655 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.134 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.447 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+Die Möglichkeit der Korrektur weißt schon darauf hin, dass wir diese Methode auch für multiple Vergleiche einsetzen können.
+
+Dafür müssen wir aus der einen Hypothese einfach einen Vektor aus Hypothesen machen:
+
+So könnten wir zusätzlich zum bisherigen Kontrast auch alle Zellen noch mit der Wartegruppe vergleichen wollen. Dafür würden wir das ganze wie folgt formulieren:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contr\_hypothesis }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}2 * Control {-} (Training + Training2) \textless{}= 0\textquotesingle{}}\NormalTok{,}
+                      \StringTok{\textquotesingle{}Wartegruppe {-} Control \textless{}= 0\textquotesingle{}}\NormalTok{,}
+                      \StringTok{\textquotesingle{}Wartegruppe {-} Training \textless{}= 0\textquotesingle{}}\NormalTok{,}
+                      \StringTok{\textquotesingle{}Wartegruppe {-} Training2 \textless{}= 0\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{glht}\NormalTok{(ez\_anova}\SpecialCharTok{$}\NormalTok{aov,}\FunctionTok{mcp}\NormalTok{(}\AttributeTok{group =}\NormalTok{ contr\_hypothesis)) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{(}\AttributeTok{test =} \FunctionTok{adjusted}\NormalTok{(}\StringTok{\textquotesingle{}holm\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-171} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{term} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{contrast} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{null.value} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{estimate} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{std.error} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{statistic} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{adj.p.value} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} 2 * Control - (Training + Training2) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.0877 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.655 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.134 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.447\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} Wartegruppe - Control \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 3.9\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.378 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 10.3\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} Wartegruppe - Training \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 5.21\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.378 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 13.8\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} group \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} Wartegruppe - Training2 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 2.67\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.378 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 7.06\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 2.81e-11 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{kontraste-mehr-als-ein-faktor}{%
+\subsection{Kontraste, mehr als ein Faktor}\label{kontraste-mehr-als-ein-faktor}}
+
+Um Kontraste über mehr als einen between-Faktor rechnen zu können, müssen wir unser mehrfaktorielles Design in ein assoziiert einfaktorielles umwandeln.
+
+Dazu können wir die \texttt{interaction}-Funktion aus dem \texttt{base}-Umfang nutzen, die zwei Faktoren zu einem kombiniert.
+
+Als Beispiel betrachten wir nochmal die Unterschiede zwischen den Treatment-Gruppen und den Geschlechtern.
+Um eine assoziierte einfaktorielle Varianzanalyse über diese Faktoren zu rechnen, müssen wir einfach ein \texttt{mutate} mit einer \texttt{interaction} hinzufügen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide\_I }\OtherTok{\textless{}{-}}\NormalTok{ df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{groupXsex =} \FunctionTok{interaction}\NormalTok{(group, sex, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{))}
+
+\NormalTok{assoz\_anova }\OtherTok{\textless{}{-}}\NormalTok{ df\_wide\_I }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ezANOVA}\NormalTok{(}\AttributeTok{dv =}\NormalTok{ post\_skill,}
+          \AttributeTok{wid =}\NormalTok{ vp\_nr,}
+          \AttributeTok{between =}\NormalTok{ groupXsex,}
+          \AttributeTok{return\_aov =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+Auf dieser Basis können wir dann einfach wie im einfaktoriellen Fall unsere Kontraste formulieren. Zum Beispiel können wir je einen Haupteffekts- und Interaktionseffektskontrast formulieren und testen. Da die Kombinationen der Stufen sehr viele sind, bietet es sich hier an, die Matrix-Schreibweise zu nutzen. Die Textschreibweise würde aber auch funktionieren.
+
+In die Matrix schreiben wir zeilenweise die Gewichte, die getestet werden sollen.
+
+Damit wir genau wissen, welches Gewicht an welche Stelle kommt, können wir uns zuerst die Stufen des Interaktionsfaktors ausgeben lassen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(df\_wide\_I}\SpecialCharTok{$}\NormalTok{groupXsex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Control_f"     "Training_f"    "Training2_f"  
+## [4] "Wartegruppe_f" "Control_m"     "Training_m"   
+## [7] "Training2_m"   "Wartegruppe_m"
+\end{verbatim}
+
+Nun erstellen wir eine Matrix, bei der jede Spalte der Ordnung der Levels entsprechend dem zu gewichtenden Erwartungswert einer Zelle entspricht:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contrasts }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}
+  \FunctionTok{c}\NormalTok{(}
+    \DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\CommentTok{\# Haupteffekt des Geschlechts}
+    \DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{, }\CommentTok{\# Haupteffekt des Trainings}
+    \DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1} \CommentTok{\# Interaktionseffekt (Umgekehrte Wirkung bei Männern)}
+\NormalTok{  ),}
+  \AttributeTok{nrow =} \DecValTok{3}\NormalTok{,}
+  \AttributeTok{byrow =}\NormalTok{ T }\CommentTok{\# damit zeilenweise aufgefüllt wird.}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Der Übersicht halber können wir diese Kontraste auch noch für den Output benennen, außerdem müssen wir noch Spaltennamen für die \texttt{mcp}-Funktion hinzufügen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(contrasts) }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(df\_wide\_I}\SpecialCharTok{$}\NormalTok{groupXsex)}
+\FunctionTok{rownames}\NormalTok{(contrasts) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}f \textgreater{} m\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}T1, T2 \textless{} W, C\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Interaktion\textquotesingle{}}\NormalTok{)}
+\NormalTok{contrasts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Control_f Training_f Training2_f
+## f > m                 1          1           1
+## T1, T2 < W, C         1         -1          -1
+## Interaktion           1         -1          -1
+##               Wartegruppe_f Control_m Training_m
+## f > m                     1        -1         -1
+## T1, T2 < W, C             1         1         -1
+## Interaktion               1        -1          1
+##               Training2_m Wartegruppe_m
+## f > m                  -1            -1
+## T1, T2 < W, C          -1             1
+## Interaktion             1            -1
+\end{verbatim}
+
+Und diese Matrix können wir dann wie gewohnt für die Kontrasttests nutzen. Dabei können wir hier jetzt (da wir in der Kontrastmatrix noch keine Richtung vorgegeben haben) wie gewohnt die Testrichtung mit \texttt{alternative} festlegen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glht}\NormalTok{(assoz\_anova}\SpecialCharTok{$}\NormalTok{aov, }\FunctionTok{mcp}\NormalTok{(}\AttributeTok{groupXsex =}\NormalTok{ contrasts),}
+     \AttributeTok{alternative =} \StringTok{\textquotesingle{}greater\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{\label{tab:unnamed-chunk-176} }
+ \setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{term} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} \textbf{contrast} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{null.value} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{estimate} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{std.error} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{statistic} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{adj.p.value} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} groupXsex \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} f $>$ m \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -1.4\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 1.08 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -1.29\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.999\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} groupXsex \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} T1, T2 $<$ W, C \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 7.67\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 1.08 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 7.07\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 3.47e-11 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} groupXsex \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedright \hspace{6pt} Interaktion \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.452 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 1.08 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.417 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.698\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
 
   \bibliography{book.bib,packages.bib}
 
