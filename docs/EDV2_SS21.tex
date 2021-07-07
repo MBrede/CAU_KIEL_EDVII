@@ -6,7 +6,7 @@
 ]{book}
 \title{EDV2}
 \author{Max Brede}
-\date{2021-07-03}
+\date{2021-07-07}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -6835,66 +6835,6 @@ Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegeb
 \end{table}
  
 
-Zusätzlich müssen wir für den unabhängigen Faktor überprüfen, ob über alle Stufen Varianzhomogenität herrscht. Dafür können wir die \texttt{leveneTest}-Funktion aus dem \texttt{car}-Paket nutzen.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(magrittr)}
-\NormalTok{df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{contains}\NormalTok{(}\StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{),}
-               \AttributeTok{names\_to =} \StringTok{\textquotesingle{}time\textquotesingle{}}\NormalTok{,}
-               \AttributeTok{values\_to =} \StringTok{\textquotesingle{}skill\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%$\%} 
-\NormalTok{  car}\SpecialCharTok{::}\FunctionTok{leveneTest}\NormalTok{(skill }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group)}
-\end{Highlighting}
-\end{Shaded}
-
- 
-  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
-  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
-  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
-  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
-
-\begin{table}[ht]
-\begin{centerbox}
-\begin{threeparttable}
-\captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-163} }
- \setlength{\tabcolsep}{0pt}
-\begin{tabular}{l l l}
-
-
-\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{Df} \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{F value} \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \textbf{Pr($>$F)} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 3 \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 1.79 \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\cellcolor[RGB]{242, 242, 242}\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.148 \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.4}}|>{\huxb{0, 0, 0}{0.4}}|}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.4}}r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 596 \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
-\multicolumn{1}{r!{\huxvb{0, 0, 0}{0.4}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
-\arrayrulecolor{black}
-\end{tabular}
-\end{threeparttable}\par\end{centerbox}
-
-\end{table}
- 
-
 \hypertarget{beliebige-linearkontraste}{%
 \section{Beliebige Linearkontraste}\label{beliebige-linearkontraste}}
 
@@ -7014,7 +6954,7 @@ Das Ergebnis von \texttt{glht} lässt sich auch wieder mit \texttt{broom} darste
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-169} }
+\caption{\label{tab:unnamed-chunk-168} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7070,7 +7010,7 @@ Mit Setzen des \texttt{test} -Arguments können wir außerdem wieder auswählen,
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-170} }
+\caption{\label{tab:unnamed-chunk-169} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7135,7 +7075,7 @@ So könnten wir zusätzlich zum bisherigen Kontrast auch alle Zellen noch mit de
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-171} }
+\caption{\label{tab:unnamed-chunk-170} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7310,7 +7250,7 @@ Und diese Matrix können wir dann wie gewohnt für die Kontrasttests nutzen. Dab
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-176} }
+\caption{\label{tab:unnamed-chunk-175} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
