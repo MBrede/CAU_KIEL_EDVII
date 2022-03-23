@@ -178,7 +178,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">EDV 2 <br> SoSe 21</a></li>
+<li><a href="./">EDV 2 <br> SoSe 22</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
@@ -662,7 +662,7 @@ age
 <span id="cb4-6"><a href="deskriptive-statistik-und-data-cleaning.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Group&#39;</span>,</span>
 <span id="cb4-7"><a href="deskriptive-statistik-und-data-cleaning.html#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>,</span>
 <span id="cb4-8"><a href="deskriptive-statistik-und-data-cleaning.html#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&#39;Smoker&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-8-1.png" width="900px" style="display: block; margin: auto;" />
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-8-1.png" width="900px" style="display: block; margin: auto;" />
 Man sieht auf einen Blick, dass Geschlecht und Raucher ungefähr gleich aufgeteilt wurden, die Gruppen aber wesentlich unterschiedliche Größen aufweisen!</p>
 </div>
 <div id="aussagen-über-verteilungseigenschaften" class="section level3">
@@ -709,7 +709,7 @@ Dazu können wir uns entweder eine Tabelle mit den Verteilungsparametern der num
 <span id="cb7-11"><a href="deskriptive-statistik-und-data-cleaning.html#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">scales =</span> <span class="st">&#39;free&#39;</span>) <span class="sc">+</span></span>
 <span id="cb7-12"><a href="deskriptive-statistik-und-data-cleaning.html#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>,</span>
 <span id="cb7-13"><a href="deskriptive-statistik-und-data-cleaning.html#cb7-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-10-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-10-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Das Alter ist eindeutig schief verteilt, der IQ dafür mehrgipflig.</p>
 <p>Nach der von Tukey aufgestellten Regel <span class="citation">(<a href="#ref-tukeyExploratoryDataAnalysis1977" role="doc-biblioref">Tukey 1977</a>)</span> haben wir auch keine Ausreißer (dazu auch später mehr).</p>
 </div>
@@ -771,7 +771,7 @@ Dazu können wir uns entweder eine Tabelle mit den Verteilungsparametern der num
 <span id="cb10-14"><a href="deskriptive-statistik-und-data-cleaning.html#cb10-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> upper),</span>
 <span id="cb10-15"><a href="deskriptive-statistik-und-data-cleaning.html#cb10-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)<span class="sc">+</span></span>
 <span id="cb10-16"><a href="deskriptive-statistik-und-data-cleaning.html#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>( variable <span class="sc">~</span> sex , <span class="at">scales =</span> <span class="st">&#39;free&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-12-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-12-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Das wird zwar ein bisschen unübersichtlich (wenn man das wirklich sinnvoll betreiben wollen würde sollte man sich Gedanken dazu machen, welche Variablen tatsächlich von Relevanz sind), man könnte aber zu dem Schluss kommen dass die IQs relativ ähnlich sind, die Altersgruppen aber nicht.</p>
 </div>
 <div id="zusammenhänge" class="section level4">
@@ -803,14 +803,14 @@ Dazu können wir uns entweder eine Tabelle mit den Verteilungsparametern der num
 <span id="cb15-4"><a href="deskriptive-statistik-und-data-cleaning.html#cb15-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> group)) <span class="sc">+</span></span>
 <span id="cb15-5"><a href="deskriptive-statistik-und-data-cleaning.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb15-6"><a href="deskriptive-statistik-und-data-cleaning.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(smoker <span class="sc">~</span> sex)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-14-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-14-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Zum Anderen für die gesamte Stichprobe:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(IQ, age, <span class="at">color =</span> group)) <span class="sc">+</span></span>
 <span id="cb16-3"><a href="deskriptive-statistik-und-data-cleaning.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">001</span>) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="deskriptive-statistik-und-data-cleaning.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_grey</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="EDV2_SS21_files/figure-html/unnamed-chunk-15-1.png" alt="Original-Comic von [xkcd](https://xkcd.com/1725/)" width="900px" />
+<img src="EDV2_SS22_files/figure-html/unnamed-chunk-15-1.png" alt="Original-Comic von [xkcd](https://xkcd.com/1725/)" width="900px" />
 <p class="caption">
 Abb. 1: Original-Comic von <a href="https://xkcd.com/1725/">xkcd</a>
 </p>
@@ -1159,7 +1159,7 @@ liegen. Diese Regel ist auch der in <code>geom_boxplot</code> implementierte Sta
 <span id="cb43-8"><a href="deskriptive-statistik-und-data-cleaning.html#cb43-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&#39;red&#39;</span>,</span>
 <span id="cb43-9"><a href="deskriptive-statistik-und-data-cleaning.html#cb43-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">dotsize =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb43-10"><a href="deskriptive-statistik-und-data-cleaning.html#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name,<span class="at">scales =</span> <span class="st">&#39;free_y&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/eval-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/eval-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Auch hier können wir wieder zum radikalen Ausschluss greifen und den Datensatz einfach danach filtern, dass unsere Variablen zwischen den “Tukey Fences” liegen:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb44-1" aria-hidden="true" tabindex="-1"></a>df_3 <span class="sc">%&gt;%</span> </span>
 <span id="cb44-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(t_1, </span>
@@ -1177,7 +1177,7 @@ liegen. Diese Regel ist auch der in <code>geom_boxplot</code> implementierte Sta
 <span id="cb44-14"><a href="deskriptive-statistik-und-data-cleaning.html#cb44-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&#39;red&#39;</span>,</span>
 <span id="cb44-15"><a href="deskriptive-statistik-und-data-cleaning.html#cb44-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">dotsize =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb44-16"><a href="deskriptive-statistik-und-data-cleaning.html#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name,<span class="at">scales =</span> <span class="st">&#39;free_y&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-26-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-26-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Oder wir ‘winsorieren’ unsere Ausreißer, indem wir sie durch den Wert der jeweiligen Grenze ersetzen.
 Wir sagen also, dass diejenigen Werte, die außerhalb der Fences liegen auf den Wert der jeweiligen Grenze gesetzt werden sollen:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb45-1" aria-hidden="true" tabindex="-1"></a>df_3 <span class="sc">%&gt;%</span> </span>
@@ -1198,7 +1198,7 @@ Wir sagen also, dass diejenigen Werte, die außerhalb der Fences liegen auf den 
 <span id="cb45-16"><a href="deskriptive-statistik-und-data-cleaning.html#cb45-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&#39;red&#39;</span>,</span>
 <span id="cb45-17"><a href="deskriptive-statistik-und-data-cleaning.html#cb45-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">dotsize =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb45-18"><a href="deskriptive-statistik-und-data-cleaning.html#cb45-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name,<span class="at">scales =</span> <span class="st">&#39;free_y&#39;</span>)</span></code></pre></div>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-27-1.png" width="900px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-27-1.png" width="900px" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="organisationsformen-von-datensätzen" class="section level2">
@@ -1474,7 +1474,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["EDV2_SS21.pdf"],
+"download": ["EDV2_SS22.pdf"],
 "toc": {
 "collapse": "subsection"
 }
