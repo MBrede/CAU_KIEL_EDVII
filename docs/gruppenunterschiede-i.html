@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Gruppenunterschiede I | EDV2</title>
-  <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Gruppenunterschiede I | EDV2" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Gruppenunterschiede I | EDV2" />
   
-  <meta name="twitter:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2021" />
+  <meta name="twitter:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
 
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2021-08-09" />
+<meta name="date" content="2022-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="lineare-zusammenhänge-ii.html"/>
 <link rel="next" href="gruppenunterschiede-ii.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -55,25 +55,26 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.107.10/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.107.10/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.107.10/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.107.10/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.107.10/CanvasMatrix.src.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
 
 
 <style type="text/css">
@@ -197,7 +198,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a>
 <ul>
-<li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#organisatorisches-1"><i class="fa fa-check"></i>Organisatorisches</a></li>
 <li class="chapter" data-level="" data-path="hilfsmittel-für-die-inferenzstatistik.html"><a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik-1"><i class="fa fa-check"></i>Hilfsmittel für die Inferenzstatistik</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="einfache-lineare-zusammenhänge.html"><a href="einfache-lineare-zusammenhänge.html"><i class="fa fa-check"></i>Einfache lineare Zusammenhänge</a>
@@ -208,19 +208,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html"><i class="fa fa-check"></i>Lineare Zusammenhänge II</a>
 <ul>
-<li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#organisatorisches-2"><i class="fa fa-check"></i>Organisatorisches</a></li>
 <li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#multiple-lineare-regression"><i class="fa fa-check"></i>Multiple Lineare Regression</a></li>
 <li class="chapter" data-level="" data-path="lineare-zusammenhänge-ii.html"><a href="lineare-zusammenhänge-ii.html#regressionsdiagnostik"><i class="fa fa-check"></i>Regressionsdiagnostik</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html"><i class="fa fa-check"></i>Gruppenunterschiede I</a>
 <ul>
-<li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#organisatorisches-3"><i class="fa fa-check"></i>Organisatorisches</a></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#t-test"><i class="fa fa-check"></i>t-Test</a></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-i.html"><a href="gruppenunterschiede-i.html#varianzanalyse---ein-unabhängiger-faktor"><i class="fa fa-check"></i>Varianzanalyse - ein unabhängiger Faktor</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html"><i class="fa fa-check"></i>Gruppenunterschiede II</a>
 <ul>
-<li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#organisatorisches-4"><i class="fa fa-check"></i>Organisatorisches</a></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#varianzanalyse---ein-abhängiger-faktor"><i class="fa fa-check"></i>Varianzanalyse - ein abhängiger Faktor</a></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#varianzanalyse---zwei-unabhängige-faktoren"><i class="fa fa-check"></i>Varianzanalyse - zwei unabhängige Faktoren</a></li>
 <li class="chapter" data-level="" data-path="gruppenunterschiede-ii.html"><a href="gruppenunterschiede-ii.html#varianzanalyse---zwei-abhängige-faktoren"><i class="fa fa-check"></i>Varianzanalyse - zwei abhängige Faktoren</a></li>
@@ -250,148 +247,14 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="gruppenunterschiede-i" class="section level1">
 <h1>Gruppenunterschiede I</h1>
-<div id="organisatorisches-3" class="section level2">
-<h2>Organisatorisches</h2>
-<div id="semesterplan-4" class="section level3">
-<h3>Semesterplan</h3>
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Einheit
-</th>
-<th style="text-align:left;">
-Vorlesung
-</th>
-<th style="text-align:left;">
-Übungswoche
-</th>
-<th style="text-align:left;">
-Thema
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-23.04.21
-</td>
-<td style="text-align:left;">
-keine Übung
-</td>
-<td style="text-align:left;">
-Deskriptive Statistik
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Data Cleaning
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-07.05.21
-</td>
-<td style="text-align:left;">
-KW 19
-</td>
-<td style="text-align:left;">
-Hilfsmittel für die Inferenzstatistik
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Lineare Regression I
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-21.05.21
-</td>
-<td style="text-align:left;">
-KW 21
-</td>
-<td style="text-align:left;">
-Lineare Regression II
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-04.06.21
-</td>
-<td style="text-align:left;">
-KW 23
-</td>
-<td style="text-align:left;">
-t- Tests
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-einfaktorielle Varianzanalyse
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-18.06.21
-</td>
-<td style="text-align:left;">
-KW 25
-</td>
-<td style="text-align:left;">
-zweifaktorielle Varianzanalyse
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-02.07.21
-</td>
-<td style="text-align:left;">
-KW 27
-</td>
-<td style="text-align:left;">
-Kontrasttests
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+<!-- ## Organisatorisches -->
+<!-- ### Semesterplan -->
+<!-- ```{r, results='asis', echo=F} -->
+<!-- library(usefullFunctions) -->
+<!-- read.csv('/home/brede/MEGA/Andres/EDV2/SoSe21/semesterplan.csv') %>%  -->
+<!--   mutate(across(everything(), ~replace_na(.,''))) %>%  -->
+<!--   kbl() -->
+<!-- ``` -->
 <div id="datensatz-2" class="section level3">
 <h3>Datensatz</h3>
 <p>Wir verwenden den (leicht erweiterten), simulierten Datensatz aus den letzten Wochen:</p>
@@ -467,7 +330,6 @@ motorischer Skill nach dem Treatment
 </tbody>
 </table>
 </div>
-</div>
 <div id="t-test" class="section level2">
 <h2>t-Test</h2>
 <div id="ein-stichproben-problem" class="section level3">
@@ -532,8 +394,8 @@ motorischer Skill nach dem Treatment
 <span id="cb115-4"><a href="gruppenunterschiede-i.html#cb115-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, </span>
 <span id="cb115-5"><a href="gruppenunterschiede-i.html#cb115-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb115-6"><a href="gruppenunterschiede-i.html#cb115-6" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-105">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-105">Tab. 10: </span> </caption><col><col><col><col><col><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-101">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-101">Tab. 10: </span> </caption><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">estimate</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">statistic</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p.value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">parameter</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.low</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">conf.high</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">method</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">alternative</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.28</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.963</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.337</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">149</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.295</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.855</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Paired t-test</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">two.sided</td></tr>
@@ -625,7 +487,7 @@ etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständ
 ## data:  df_wide$hawie_iq
 ## W = 0.99, p-value = 0.3654</code></pre>
 <p>Außerdem möglich sind grafisch-heuristische Testvarianten:</p>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-113-1.png" width="500px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-109-1.png" width="500px" style="display: block; margin: auto;" /></p>
 <div id="aufgabe-7" class="section level4">
 <h4>Aufgabe</h4>
 <p><strong>Was ist daran falsch?</strong></p>
@@ -658,8 +520,8 @@ Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum di
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="gruppenunterschiede-i.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb127-2"><a href="gruppenunterschiede-i.html#cb127-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb127-3"><a href="gruppenunterschiede-i.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-114">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-114">Tab. 11: </span> </caption><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-110">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-110">Tab. 11: </span> </caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.341</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.56</td></tr>
@@ -673,8 +535,8 @@ Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum di
 <p>Mit Verknüpfung zweier Faktoren als Interaktion im Modellterm wird der Test als assoziierte einfaktorielle Varianzanalyse ausgeführt.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="gruppenunterschiede-i.html#cb128-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb128-2"><a href="gruppenunterschiede-i.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> group <span class="sc">*</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-115">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-115">Tab. 12: </span> </caption><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-111">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-111">Tab. 12: </span> </caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.489</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.784</td></tr>
@@ -716,8 +578,8 @@ Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir h
 ## 1   2 147 2.773333 326.8 0.6237454 0.5373457</code></pre>
 <p>Der Output besteht aus den Ergebnistabellen für zwei inferenzstatistische Tests. Zum einen ist da das Ergebnis eines Levene-Tests:</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="gruppenunterschiede-i.html#cb133-1" aria-hidden="true" tabindex="-1"></a>anova_group<span class="sc">$</span><span class="st">`</span><span class="at">Levene&#39;s Test for Homogeneity of Variance</span><span class="st">`</span></span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-119">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-119">Tab. 13: </span> </caption><col><col><col><col><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-115">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-115">Tab. 13: </span> </caption><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SSn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SSd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.77</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">327</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.624</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.537</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td></tr>
@@ -732,8 +594,8 @@ Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir h
 </ul>
 <p>Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="gruppenunterschiede-i.html#cb134-1" aria-hidden="true" tabindex="-1"></a>anova_group<span class="sc">$</span><span class="st">`</span><span class="at">ANOVA</span><span class="st">`</span></span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-120">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-120">Tab. 14: </span> </caption><col><col><col><col><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-116">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-116">Tab. 14: </span> </caption><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.23e-07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.195</td></tr>
@@ -750,8 +612,8 @@ Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir h
 </ul>
 <div id="aufgabe-8" class="section level4">
 <h4>Aufgabe</h4>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-121">
-<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-121">Tab. 15: </span> </caption><col><col><col><col><col><col><col><tr>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-117">
+<caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-117">Tab. 15: </span> </caption><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">147</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.23e-07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">*</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.195</td></tr>
@@ -782,7 +644,7 @@ Antwort
 <p>Die Voraussetzungen der Varianzanalyse lassen sich zu folgender Aussage umformulieren:</p>
 <p>Die Fehler müssen unabhängige, normalverteilte Variablen mit Erwartungswert 0 und gleicher Streuung sein.</p>
 <p>Diese umformulierten Anforderungen lassen sich dann wieder wie bei der Regressionsanalyse grafisch-heuristisch untersuchen.</p>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-122-1.png" width="500px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-118-1.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen können, müssen wir aber noch das <code>return_aov</code>-Argument auf <code>TRUE</code> setzen.</p>
 <p><code>aov</code>-Modelle sind die <code>base-R</code> Version, Ergebnisse von Varianzanalysen in einem ähnlichen Format wie die von linearen Modellen abzuspeichern.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="gruppenunterschiede-i.html#cb135-1" aria-hidden="true" tabindex="-1"></a>anova_group <span class="ot">&lt;-</span> df_wide <span class="sc">%&gt;%</span> </span>
@@ -801,7 +663,7 @@ Antwort
 ## 
 ## Residual standard error: 2.416609
 ## Estimated effects may be unbalanced</code></pre>
-<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-124-1.png" width="500px" style="display: block; margin: auto;" /></p>
+<p><img src="EDV2_SS21_files/figure-html/unnamed-chunk-120-1.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
 <div id="paarvergleiche-mit-t-tests-und-alpha-adjustierung" class="section level3">
 <h3>Paarvergleiche mit t-Tests und <span class="math inline">\(\alpha\)</span>-Adjustierung</h3>

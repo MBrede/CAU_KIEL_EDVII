@@ -4,10 +4,6 @@
 %
 \documentclass[
 ]{book}
-\title{EDV2}
-\author{Max Brede}
-\date{2021-08-09}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -160,6 +156,10 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
+\title{EDV2}
+\author{Max Brede}
+\date{2022-03-23}
+
 \begin{document}
 \maketitle
 
@@ -170,7 +170,7 @@
 \hypertarget{vorwort}{%
 \chapter{Vorwort}\label{vorwort}}
 
-Dieses mit \texttt{bookdown} erstellte Dokument ist das über das Sommersemester 2021 hinweg wachsende Skript zur Übung ``PSY\_B\_12-2: Computerunterstützte Datenanalyse II'' der CAU zu Kiel.
+Dieses mit \texttt{bookdown} erstellte Dokument ist das Skript zur Übung ``PSY\_B\_12-2: Computerunterstützte Datenanalyse II'' der CAU zu Kiel.
 
 \hypertarget{lehrplan}{%
 \chapter{Lehrplan}\label{lehrplan}}
@@ -267,6 +267,16 @@ Die Studierenden können nach dem Absolvieren der Übung\ldots{}
   paarweise post-hoc t-Tests in R durchführen und die Ergebnisse interpretieren.
 \end{itemize}
 
+\hypertarget{einheit-7}{%
+\subsubsection*{Einheit 7}\label{einheit-7}}
+\addcontentsline{toc}{subsubsection}{Einheit 7}
+
+\begin{itemize}
+\tightlist
+\item
+  erfolgreich an der Klausur teilnehmen.
+\end{itemize}
+
 \hypertarget{pruxfcfungsleistung}{%
 \section{Prüfungsleistung}\label{pruxfcfungsleistung}}
 
@@ -280,30 +290,10 @@ Mit maximal einer nicht sinnvoll bearbeiteten Serie werden die Studierenden zur 
 \hypertarget{organisatorisches}{%
 \section{Organisatorisches}\label{organisatorisches}}
 
-\hypertarget{semesterplan-1}{%
-\subsection{Semesterplan}\label{semesterplan-1}}
-
-\begin{tabular}[t]{llll}
-\toprule
-Einheit & Vorlesung & Übungswoche & Thema\\
-\midrule
-1 & 23.04.21 & keine Übung & Deskriptive Statistik\\
- &  &  & Data Cleaning\\
-2 & 07.05.21 & KW 19 & Hilfsmittel für die Inferenzstatistik\\
- &  &  & Lineare Regression I\\
-3 & 21.05.21 & KW 21 & Lineare Regression II\\
-\addlinespace
-4 & 04.06.21 & KW 23 & t- Tests\\
- &  &  & einfaktorielle Varianzanalyse\\
-5 & 18.06.21 & KW 25 & zweifaktorielle Varianzanalyse\\
-6 & 02.07.21 & KW 27 & Kontrasttests\\
-\bottomrule
-\end{tabular}
-
 \hypertarget{uxfcbungsablauf}{%
 \subsection{Übungsablauf}\label{uxfcbungsablauf}}
 
-Es wird alle zwei Wochen eine 45-minütige Vorlesung geben und dazu alternierend online-Übungsstunden in mit je einem Kurs. (Eine Ausnahme ist die erste Woche, in der wir eine Vorlesung haben.)
+Es wird alle zwei Wochen eine 45-minütige Vorlesung geben und dazu alternierend online-Übungsstunden in mit je einem Kurs. (Eine Ausnahme ist die erste Woche, in der wir nur eine 90-minütige Vorlesung haben.)
 
 \hypertarget{uxfcbungsablauf-1}{%
 \subsection{Übungsablauf}\label{uxfcbungsablauf-1}}
@@ -323,15 +313,6 @@ Es wird alle zwei Wochen eine 45-minütige Vorlesung geben und dazu alternierend
 Genauere Informationen gibt es über das Olat.
 
 Als Zulassung für die Gruppenarbeit ist wieder die sinnvolle Bearbeitung von allen bis auf eine Hausaufgabenserien nötig.
-
-\hypertarget{tutorien}{%
-\subsection{Tutorien}\label{tutorien}}
-
-Ronja und Katharina geben (online-)Tutorien dieses Semester.
-
-Katharinas Tutorium wird immer dienstags, 14-16 Uhr stattfinden.
-
-Ronjas Tutorium wird immer dienstags, 16-18 Uhr stattfinden.
 
 \hypertarget{deskriptive-statistik}{%
 \section{Deskriptive Statistik}\label{deskriptive-statistik}}
@@ -421,7 +402,7 @@ Aber vielleicht ein bisschen übersichtlicher in einer Grafik:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 Man sieht auf einen Blick, dass Geschlecht und Raucher ungefähr gleich aufgeteilt wurden, die Gruppen aber wesentlich unterschiedliche Größen aufweisen!
 
@@ -487,7 +468,7 @@ Oder, wieder ein bisschen übersichtlicher, in einem Diagramm. So könnten wir d
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 Das Alter ist eindeutig schief verteilt, der IQ dafür mehrgipflig.
 
@@ -569,7 +550,7 @@ Oder Plots erstellen um die möglichen Unterschiede darzustellen:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 Das wird zwar ein bisschen unübersichtlich (wenn man das wirklich sinnvoll betreiben wollen würde sollte man sich Gedanken dazu machen, welche Variablen tatsächlich von Relevanz sind), man könnte aber zu dem Schluss kommen dass die IQs relativ ähnlich sind, die Altersgruppen aber nicht.
 
@@ -626,7 +607,7 @@ Hier ist so weit nichts auffällig. Ein letzter zu überprüfender Aspekt sind d
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 Zum Anderen für die gesamte Stichprobe:
 
@@ -641,11 +622,11 @@ Zum Anderen für die gesamte Stichprobe:
 
 \begin{figure}
 
-{\centering \includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-16-1} 
+{\centering \includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-15-1} 
 
 }
 
-\caption{Original-Comic von [xkcd](https://xkcd.com/1725/)}\label{fig:unnamed-chunk-16}
+\caption{Original-Comic von [xkcd](https://xkcd.com/1725/)}\label{fig:unnamed-chunk-15}
 \end{figure}
 
 \hypertarget{data-cleaning}{%
@@ -981,7 +962,7 @@ Auch hier können wir wieder zum radikalen Ausschluss greifen und den Datensatz 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-27-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 Oder wir `winsorieren' unsere Ausreißer, indem wir sie durch den Wert der jeweiligen Grenze ersetzen.
 Wir sagen also, dass diejenigen Werte, die außerhalb der Fences liegen auf den Wert der jeweiligen Grenze gesetzt werden sollen:
@@ -1009,7 +990,7 @@ Wir sagen also, dass diejenigen Werte, die außerhalb der Fences liegen auf den 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-28-1} \end{center}
+\begin{center}\includegraphics[width=450pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 \hypertarget{organisationsformen-von-datensuxe4tzen}{%
 \section{Organisationsformen von Datensätzen}\label{organisationsformen-von-datensuxe4tzen}}
@@ -1126,29 +1107,6 @@ Die \texttt{pivot}-Funktionen \texttt{pivot\_longer} und \texttt{pivot\_wider} b
 \hypertarget{hilfsmittel-fuxfcr-die-inferenzstatistik}{%
 \chapter{Hilfsmittel für die Inferenzstatistik}\label{hilfsmittel-fuxfcr-die-inferenzstatistik}}
 
-\hypertarget{organisatorisches-1}{%
-\section{Organisatorisches}\label{organisatorisches-1}}
-
-\hypertarget{semesterplan-2}{%
-\subsection{Semesterplan}\label{semesterplan-2}}
-
-\begin{tabular}[t]{llll}
-\toprule
-Einheit & Vorlesung & Übungswoche & Thema\\
-\midrule
-1 & 23.04.21 & keine Übung & Deskriptive Statistik\\
- &  &  & Data Cleaning\\
-2 & 07.05.21 & KW 19 & Hilfsmittel für die Inferenzstatistik\\
- &  &  & Lineare Regression I\\
-3 & 21.05.21 & KW 21 & Lineare Regression II\\
-\addlinespace
-4 & 04.06.21 & KW 23 & t- Tests\\
- &  &  & einfaktorielle Varianzanalyse\\
-5 & 18.06.21 & KW 25 & zweifaktorielle Varianzanalyse\\
-6 & 02.07.21 & KW 27 & Kontrasttests\\
-\bottomrule
-\end{tabular}
-
 \hypertarget{hilfsmittel-fuxfcr-die-inferenzstatistik-1}{%
 \section{Hilfsmittel für die Inferenzstatistik}\label{hilfsmittel-fuxfcr-die-inferenzstatistik-1}}
 
@@ -1170,7 +1128,7 @@ Die Formulierung folgt dabei grundsätzlich dem folgenden System, das sich am Be
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-39} }
+\caption{\label{tab:unnamed-chunk-37} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -1547,7 +1505,7 @@ Als Beispiel soll die Leistung auf der Skala zum wahrnehmungsgebundenen logische
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-52-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-50-1} \end{center}
 
 \hypertarget{beta-gewicht}{%
 \subsection{\texorpdfstring{\(\beta\)-Gewicht}{\textbackslash beta-Gewicht}}\label{beta-gewicht}}
@@ -1610,7 +1568,7 @@ Oder wir benutzen die Index-pipe \texttt{\%\$\%} aus dem \texttt{magrittr}-Paket
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-55-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-53-1} \end{center}
 
 \hypertarget{weitere-parameter}{%
 \subsection{weitere Parameter}\label{weitere-parameter}}
@@ -1711,7 +1669,7 @@ Im \texttt{broom}-Paket gibt es außerdem die \texttt{augment}-Funktion, die uns
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-58-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 \hypertarget{regressionsanalyse}{%
 \section{Regressionsanalyse}\label{regressionsanalyse}}
@@ -1823,29 +1781,6 @@ C könnte man so sagen.
 
 \hypertarget{lineare-zusammenhuxe4nge-ii}{%
 \chapter{Lineare Zusammenhänge II}\label{lineare-zusammenhuxe4nge-ii}}
-
-\hypertarget{organisatorisches-2}{%
-\section{Organisatorisches}\label{organisatorisches-2}}
-
-\hypertarget{semesterplan-3}{%
-\subsection{Semesterplan}\label{semesterplan-3}}
-
-\begin{tabular}[t]{llll}
-\toprule
-Einheit & Vorlesung & Übungswoche & Thema\\
-\midrule
-1 & 23.04.21 & keine Übung & Deskriptive Statistik\\
- &  &  & Data Cleaning\\
-2 & 07.05.21 & KW 19 & Hilfsmittel für die Inferenzstatistik\\
- &  &  & Lineare Regression I\\
-3 & 21.05.21 & KW 21 & Lineare Regression II\\
-\addlinespace
-4 & 04.06.21 & KW 23 & t- Tests\\
- &  &  & einfaktorielle Varianzanalyse\\
-5 & 18.06.21 & KW 25 & zweifaktorielle Varianzanalyse\\
-6 & 02.07.21 & KW 27 & Kontrasttests\\
-\bottomrule
-\end{tabular}
 
 \hypertarget{datensatz-1}{%
 \subsection{Datensatz}\label{datensatz-1}}
@@ -1972,7 +1907,7 @@ Dafür benutzen wir hier eine grafische Darstellung, um einen Überblick über d
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-66-1} \end{center}
 
 \hypertarget{hebelwirkung}{%
 \subsection{Hebelwirkung}\label{hebelwirkung}}
@@ -2006,7 +1941,7 @@ Mit einem Spikeplot lassen sich diese dann veranschaulichen.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-72-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-69-1} \end{center}
 
 \hypertarget{einfluss}{%
 \subsection{Einfluss}\label{einfluss}}
@@ -2021,7 +1956,7 @@ Am besten lässt sich dieser mit folgender Funktion grafisch überprüfen:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-73-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus dem \texttt{car}-Paket:
 
@@ -2031,7 +1966,7 @@ Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-73-1} \end{center}
 
  
   \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
@@ -2043,7 +1978,7 @@ Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-76} }
+\caption{\label{tab:unnamed-chunk-73} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -2115,7 +2050,7 @@ Außerdem können wir uns auch hier das \texttt{broom}-Paket benutzen, diesmal u
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-77} }
+\caption{\label{tab:unnamed-chunk-74} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l}
 
@@ -2902,7 +2837,7 @@ Oder auch wieder mit \texttt{broom::tidy()}:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-79} }
+\caption{\label{tab:unnamed-chunk-76} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l}
 
@@ -2968,7 +2903,7 @@ Oder auch wieder mit \texttt{broom::tidy()}:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-80} }
+\caption{\label{tab:unnamed-chunk-77} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l}
 
@@ -3076,7 +3011,7 @@ Oder die \texttt{broom::glance()}-Funktion nutzen:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-82} }
+\caption{\label{tab:unnamed-chunk-79} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l l l l}
 
@@ -3136,7 +3071,7 @@ Oder die \texttt{broom::glance()}-Funktion nutzen:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-83} }
+\caption{\label{tab:unnamed-chunk-80} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l l l l}
 
@@ -3230,7 +3165,7 @@ Die Verteilungseigenschaften können wir dann grafisch-heuristisch mit einem qq-
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-84-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 Je weiter die Punkte von der eingezeichneten Gerade abweichen, desto weniger können wir von einer Normalverteiltheit der Residuen ausgehen. Wie groß ``noch akzeptable'' Abweichung ist, ist ein Stück weit Gefühlssache.
 
@@ -3250,17 +3185,17 @@ Wenn wir diesem Plot jetzt noch einen lokalen Schätzer des Mittelwerts hinzufü
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-86-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-83-1} \end{center}
 
 In unserem Fall haben wir scheinbar ein paar Ausreißer (wie vorher auch schon gesehen), sonst ist die Punktwolke aber unproblematisch. Die Abweichung der loess-Regression sieht oft dramatischer aus als es faktisch ist, vor allem bei wenigen Beobachtungen wie bei uns.
 
 Man muss immer im Hinterkopf behalten, dass das genaue Bild stark von der Verteilung der Prädiktoren abhängt. So ist keins der folgenden Muster wirklich eine typische Punktwolke, trotzdem sind die Voraussetzungen überall gegeben:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-87-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-84-1} \end{center}
 
 Wirklich Grund zur Sorge sollten uns Bilder wie die folgenden geben:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-85-1} \end{center}
 
 \hypertarget{inferenstatistischer-test-der-voraussetzungen}{%
 \subsection{Inferenstatistischer Test der Voraussetzungen}\label{inferenstatistischer-test-der-voraussetzungen}}
@@ -3337,7 +3272,7 @@ Die Regression wurden jeweils auf einem nach dem folgenden Schema simulierten Da
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-92} }
+\caption{\label{tab:unnamed-chunk-89} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4160,11 +4095,11 @@ Die Regression wurden jeweils auf einem nach dem folgenden Schema simulierten Da
 
 Insgesamt verteilen sich die Ergebnisse wie folgt:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 Gewisse Linearkombinationen der Koeffizienten sind deutlich stabiler als die Koeffizienten allein, wie man hier am Beispiel von \(b_1 + b_2 + 2\) gut sehen kann. Welche Linearkombination gerade besonders stabil sein könnte, kann man einfach an einer Punktwolke wie der folgenden ablesen:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-91-1} \end{center}
 
 Paarweise lineare Zusammenhänge lassen sich anhand der Korrelationsmatrix der Prädiktoren prüfen.
 
@@ -4203,29 +4138,6 @@ Faustregel: VIF-Faktor \textgreater{} 4 \(\rightarrow\) starke Multikollinearit�
 
 \hypertarget{gruppenunterschiede-i}{%
 \chapter{Gruppenunterschiede I}\label{gruppenunterschiede-i}}
-
-\hypertarget{organisatorisches-3}{%
-\section{Organisatorisches}\label{organisatorisches-3}}
-
-\hypertarget{semesterplan-4}{%
-\subsection{Semesterplan}\label{semesterplan-4}}
-
-\begin{tabular}[t]{llll}
-\toprule
-Einheit & Vorlesung & Übungswoche & Thema\\
-\midrule
-1 & 23.04.21 & keine Übung & Deskriptive Statistik\\
- &  &  & Data Cleaning\\
-2 & 07.05.21 & KW 19 & Hilfsmittel für die Inferenzstatistik\\
- &  &  & Lineare Regression I\\
-3 & 21.05.21 & KW 21 & Lineare Regression II\\
-\addlinespace
-4 & 04.06.21 & KW 23 & t- Tests\\
- &  &  & einfaktorielle Varianzanalyse\\
-5 & 18.06.21 & KW 25 & zweifaktorielle Varianzanalyse\\
-6 & 02.07.21 & KW 27 & Kontrasttests\\
-\bottomrule
-\end{tabular}
 
 \hypertarget{datensatz-2}{%
 \subsection{Datensatz}\label{datensatz-2}}
@@ -4364,7 +4276,7 @@ Und genau wie bei den Regressionsanalysen können wir auch hier wieder \texttt{b
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-105} }
+\caption{\label{tab:unnamed-chunk-101} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l}
 
@@ -4548,7 +4460,7 @@ Bei kleinem N kann der Shapiro-Wilk-Test auf unspezifische Normalverteilung bess
 
 Außerdem möglich sind grafisch-heuristische Testvarianten:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-109-1} \end{center}
 
 \hypertarget{aufgabe-7}{%
 \subsubsection{Aufgabe}\label{aufgabe-7}}
@@ -4611,7 +4523,7 @@ Dafür kann in \texttt{R} die Funktion \texttt{leveneTest()} aus dem \texttt{car
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-114} }
+\caption{\label{tab:unnamed-chunk-110} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4670,7 +4582,7 @@ Mit Verknüpfung zweier Faktoren als Interaktion im Modellterm wird der Test als
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-115} }
+\caption{\label{tab:unnamed-chunk-111} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4778,7 +4690,7 @@ Der Output besteht aus den Ergebnistabellen für zwei inferenzstatistische Tests
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-119} }
+\caption{\label{tab:unnamed-chunk-115} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4847,7 +4759,7 @@ Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-120} }
+\caption{\label{tab:unnamed-chunk-116} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4915,7 +4827,7 @@ Mit
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-121} }
+\caption{\label{tab:unnamed-chunk-117} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4989,7 +4901,7 @@ Die Fehler müssen unabhängige, normalverteilte Variablen mit Erwartungswert 0 
 
 Diese umformulierten Anforderungen lassen sich dann wieder wie bei der Regressionsanalyse grafisch-heuristisch untersuchen.
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-118-1} \end{center}
 
 Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen können, müssen wir aber noch das \texttt{return\_aov}-Argument auf \texttt{TRUE} setzen.
 
@@ -5019,7 +4931,7 @@ Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen könne
 ## Estimated effects may be unbalanced
 \end{verbatim}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-124-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-120-1} \end{center}
 
 \hypertarget{paarvergleiche-mit-t-tests-und-alpha-adjustierung}{%
 \subsection{\texorpdfstring{Paarvergleiche mit t-Tests und \(\alpha\)-Adjustierung}{Paarvergleiche mit t-Tests und \textbackslash alpha-Adjustierung}}\label{paarvergleiche-mit-t-tests-und-alpha-adjustierung}}
@@ -5053,29 +4965,6 @@ Das \texttt{p.adjust.method}-Argument übernimmt eine relativ große Zahl von Ko
 
 \hypertarget{gruppenunterschiede-ii}{%
 \chapter{Gruppenunterschiede II}\label{gruppenunterschiede-ii}}
-
-\hypertarget{organisatorisches-4}{%
-\section{Organisatorisches}\label{organisatorisches-4}}
-
-\hypertarget{semesterplan-5}{%
-\subsection{Semesterplan}\label{semesterplan-5}}
-
-\begin{tabular}[t]{llll}
-\toprule
-Einheit & Vorlesung & Übungswoche & Thema\\
-\midrule
-1 & 23.04.21 & keine Übung & Deskriptive Statistik\\
- &  &  & Data Cleaning\\
-2 & 07.05.21 & KW 19 & Hilfsmittel für die Inferenzstatistik\\
- &  &  & Lineare Regression I\\
-3 & 21.05.21 & KW 21 & Lineare Regression II\\
-\addlinespace
-4 & 04.06.21 & KW 23 & t- Tests\\
- &  &  & einfaktorielle Varianzanalyse\\
-5 & 18.06.21 & KW 25 & zweifaktorielle Varianzanalyse\\
-6 & 02.07.21 & KW 27 & Kontrasttests\\
-\bottomrule
-\end{tabular}
 
 \hypertarget{datensatz-3}{%
 \subsection{Datensatz}\label{datensatz-3}}
@@ -5193,7 +5082,7 @@ Als Erstes ist da das Ergebnis eines Mauchly-Tests (ein Test auf Sphärizität):
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-132} }
+\caption{\label{tab:unnamed-chunk-127} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -5254,7 +5143,7 @@ Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-133} }
+\caption{\label{tab:unnamed-chunk-128} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5327,7 +5216,7 @@ Und zu guter Letzt mit dem Ergebnis der Varianzanalyse nach Greenhouse-Geisser u
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-134} }
+\caption{\label{tab:unnamed-chunk-129} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5485,7 +5374,7 @@ Der Output ist dann auch nicht weiter überraschend, wir bekommen wieder eine Er
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-138} }
+\caption{\label{tab:unnamed-chunk-133} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5619,7 +5508,7 @@ Um das zu überprüfen, können wir einfach die uns schon bekannten Verfahren an
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-141-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-136-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -5676,7 +5565,7 @@ Für die Varianzhomogenität können wir einfach das von \texttt{ezANOVA} zurüc
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-143} }
+\caption{\label{tab:unnamed-chunk-138} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5750,7 +5639,7 @@ In einem (fiktiven) Versuch zum Modell-Lernen wurde 10 Kindern an vier Terminen 
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-145} }
+\caption{\label{tab:unnamed-chunk-140} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -5815,7 +5704,7 @@ Der zugehörige Datensatz sieht wie folgt aus:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-147} }
+\caption{\label{tab:unnamed-chunk-142} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5990,7 +5879,7 @@ Das Ergebnis beteht dann wie im einfaktoriellen Fall wieder aus drei Tabellen, e
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-149} }
+\caption{\label{tab:unnamed-chunk-144} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6079,7 +5968,7 @@ Als zweites dem Ergebnis der Varianzanalyse, natürlich wieder mit drei Zeilen f
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-150} }
+\caption{\label{tab:unnamed-chunk-145} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6158,7 +6047,7 @@ Und zu guter Letzt dem Ergebnis der Varianzanalyse nach den bekannten Korrekture
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-151} }
+\caption{\label{tab:unnamed-chunk-146} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6227,7 +6116,7 @@ Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Ve
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-152-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-147-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -6283,7 +6172,7 @@ Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegeb
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-154} }
+\caption{\label{tab:unnamed-chunk-149} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6366,7 +6255,7 @@ Die Ergebnisse sind dann wie im abhängigen Fall in die drei Tabellen für den M
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-156} }
+\caption{\label{tab:unnamed-chunk-151} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6424,7 +6313,7 @@ Die Ergebnisse der ANOVA:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-157} }
+\caption{\label{tab:unnamed-chunk-152} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6503,7 +6392,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-158} }
+\caption{\label{tab:unnamed-chunk-153} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6562,7 +6451,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-159} }
+\caption{\label{tab:unnamed-chunk-154} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6633,7 +6522,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-159} }
+\caption{\label{tab:unnamed-chunk-154} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6727,7 +6616,7 @@ Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Ve
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-160-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS21_files/figure-latex/unnamed-chunk-155-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -6795,7 +6684,7 @@ Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegeb
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-162} }
+\caption{\label{tab:unnamed-chunk-157} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6954,7 +6843,7 @@ Das Ergebnis von \texttt{glht} lässt sich auch wieder mit \texttt{broom} darste
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-168} }
+\caption{\label{tab:unnamed-chunk-163} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7010,7 +6899,7 @@ Mit Setzen des \texttt{test} -Arguments können wir außerdem wieder auswählen,
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-169} }
+\caption{\label{tab:unnamed-chunk-164} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7075,7 +6964,7 @@ So könnten wir zusätzlich zum bisherigen Kontrast auch alle Zellen noch mit de
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-170} }
+\caption{\label{tab:unnamed-chunk-165} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7250,7 +7139,7 @@ Und diese Matrix können wir dann wie gewohnt für die Kontrasttests nutzen. Dab
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-175} }
+\caption{\label{tab:unnamed-chunk-170} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
