@@ -158,7 +158,7 @@
 
 \title{EDV2}
 \author{Max Brede}
-\date{2022-04-12}
+\date{2022-05-10}
 
 \begin{document}
 \maketitle
@@ -1866,6 +1866,40 @@ Mit der Funktion \texttt{scatter3d()} aus dem Paket \texttt{car} lassen sich die
 \end{Highlighting}
 \end{Shaded}
 
+Ein bisschen komplizierter geht das auch mit dem Paket \texttt{plotly}. Dafür muss zuerst ein Datensatz erstellt werden, der den gesamten Raum der im darzustellenden Datensatz vorliegenden Prädiktoren abdeckt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dummy }\OtherTok{\textless{}{-}}\NormalTok{  df\_wide }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(hawie\_iq, hawie\_wahr\_log) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{expand.grid}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Für alle diese Kombinationen müssen wir jetzt mit unserem Modell eine Vorhersage treffen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dummy}\SpecialCharTok{$}\NormalTok{post\_skill }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit\_post\_il, dummy)}
+\end{Highlighting}
+\end{Shaded}
+
+Und diesen Datensatz können wir jetzt mit \texttt{plotly} darstellen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plotly)}
+
+\FunctionTok{plot\_ly}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df\_wide,}
+        \AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{hawie\_iq,}
+        \AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{hawie\_wahr\_log,}
+        \AttributeTok{z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{post\_skill,}
+        \AttributeTok{type =} \StringTok{\textquotesingle{}scatter3d\textquotesingle{}}\NormalTok{,}
+        \AttributeTok{mode =} \StringTok{\textquotesingle{}markers\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_mesh}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dummy)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{regressionsdiagnostik}{%
 \section{Regressionsdiagnostik}\label{regressionsdiagnostik}}
 
@@ -1907,7 +1941,7 @@ Dafür benutzen wir hier eine grafische Darstellung, um einen Überblick über d
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-66-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-69-1} \end{center}
 
 \hypertarget{hebelwirkung}{%
 \subsection{Hebelwirkung}\label{hebelwirkung}}
@@ -1941,7 +1975,7 @@ Mit einem Spikeplot lassen sich diese dann veranschaulichen.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-72-1} \end{center}
 
 \hypertarget{einfluss}{%
 \subsection{Einfluss}\label{einfluss}}
@@ -1956,7 +1990,7 @@ Am besten lässt sich dieser mit folgender Funktion grafisch überprüfen:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-70-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-73-1} \end{center}
 
 Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus dem \texttt{car}-Paket:
 
@@ -1966,7 +2000,7 @@ Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-73-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
  
   \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
@@ -1978,7 +2012,7 @@ Ganz hübsche Alternativen bieten auch die Funktion \texttt{influencePlot()} aus
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-73} }
+\caption{\label{tab:unnamed-chunk-76} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -2050,7 +2084,7 @@ Außerdem können wir uns auch hier das \texttt{broom}-Paket benutzen, diesmal u
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-74} }
+\caption{\label{tab:unnamed-chunk-77} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l}
 
@@ -2837,7 +2871,7 @@ Oder auch wieder mit \texttt{broom::tidy()}:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-76} }
+\caption{\label{tab:unnamed-chunk-79} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l}
 
@@ -2903,7 +2937,7 @@ Oder auch wieder mit \texttt{broom::tidy()}:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-77} }
+\caption{\label{tab:unnamed-chunk-80} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l}
 
@@ -3011,7 +3045,7 @@ Oder die \texttt{broom::glance()}-Funktion nutzen:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-79} }
+\caption{\label{tab:unnamed-chunk-82} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l l l l}
 
@@ -3071,7 +3105,7 @@ Oder die \texttt{broom::glance()}-Funktion nutzen:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-80} }
+\caption{\label{tab:unnamed-chunk-83} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l l l l l}
 
@@ -3165,7 +3199,7 @@ Die Verteilungseigenschaften können wir dann grafisch-heuristisch mit einem qq-
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-84-1} \end{center}
 
 Je weiter die Punkte von der eingezeichneten Gerade abweichen, desto weniger können wir von einer Normalverteiltheit der Residuen ausgehen. Wie groß ``noch akzeptable'' Abweichung ist, ist ein Stück weit Gefühlssache.
 
@@ -3185,17 +3219,17 @@ Wenn wir diesem Plot jetzt noch einen lokalen Schätzer des Mittelwerts hinzufü
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-86-1} \end{center}
 
 In unserem Fall haben wir scheinbar ein paar Ausreißer (wie vorher auch schon gesehen), sonst ist die Punktwolke aber unproblematisch. Die Abweichung der loess-Regression sieht oft dramatischer aus als es faktisch ist, vor allem bei wenigen Beobachtungen wie bei uns.
 
 Man muss immer im Hinterkopf behalten, dass das genaue Bild stark von der Verteilung der Prädiktoren abhängt. So ist keins der folgenden Muster wirklich eine typische Punktwolke, trotzdem sind die Voraussetzungen überall gegeben:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-84-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 Wirklich Grund zur Sorge sollten uns Bilder wie die folgenden geben:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-85-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
 \hypertarget{inferenstatistischer-test-der-voraussetzungen}{%
 \subsection{Inferenstatistischer Test der Voraussetzungen}\label{inferenstatistischer-test-der-voraussetzungen}}
@@ -3272,7 +3306,7 @@ Die Regression wurden jeweils auf einem nach dem folgenden Schema simulierten Da
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-89} }
+\caption{\label{tab:unnamed-chunk-92} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4095,11 +4129,11 @@ Die Regression wurden jeweils auf einem nach dem folgenden Schema simulierten Da
 
 Insgesamt verteilen sich die Ergebnisse wie folgt:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Gewisse Linearkombinationen der Koeffizienten sind deutlich stabiler als die Koeffizienten allein, wie man hier am Beispiel von \(b_1 + b_2 + 2\) gut sehen kann. Welche Linearkombination gerade besonders stabil sein könnte, kann man einfach an einer Punktwolke wie der folgenden ablesen:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 Paarweise lineare Zusammenhänge lassen sich anhand der Korrelationsmatrix der Prädiktoren prüfen.
 
@@ -4276,7 +4310,7 @@ Und genau wie bei den Regressionsanalysen können wir auch hier wieder \texttt{b
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-101} }
+\caption{\label{tab:unnamed-chunk-104} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l l}
 
@@ -4460,7 +4494,7 @@ Bei kleinem N kann der Shapiro-Wilk-Test auf unspezifische Normalverteilung bess
 
 Außerdem möglich sind grafisch-heuristische Testvarianten:
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-109-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-112-1} \end{center}
 
 \hypertarget{aufgabe-7}{%
 \subsubsection{Aufgabe}\label{aufgabe-7}}
@@ -4523,7 +4557,7 @@ Dafür kann in \texttt{R} die Funktion \texttt{leveneTest()} aus dem \texttt{car
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-110} }
+\caption{\label{tab:unnamed-chunk-113} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4582,7 +4616,7 @@ Mit Verknüpfung zweier Faktoren als Interaktion im Modellterm wird der Test als
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-111} }
+\caption{\label{tab:unnamed-chunk-114} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -4690,7 +4724,7 @@ Der Output besteht aus den Ergebnistabellen für zwei inferenzstatistische Tests
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-115} }
+\caption{\label{tab:unnamed-chunk-118} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4759,7 +4793,7 @@ Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-116} }
+\caption{\label{tab:unnamed-chunk-119} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4827,7 +4861,7 @@ Mit
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-117} }
+\caption{\label{tab:unnamed-chunk-120} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -4901,7 +4935,7 @@ Die Fehler müssen unabhängige, normalverteilte Variablen mit Erwartungswert 0 
 
 Diese umformulierten Anforderungen lassen sich dann wieder wie bei der Regressionsanalyse grafisch-heuristisch untersuchen.
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-118-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-121-1} \end{center}
 
 Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen können, müssen wir aber noch das \texttt{return\_aov}-Argument auf \texttt{TRUE} setzen.
 
@@ -4931,7 +4965,7 @@ Damit wir die bekannten Funktionen zur Standardisierung der Fehler nutzen könne
 ## Estimated effects may be unbalanced
 \end{verbatim}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-120-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-123-1} \end{center}
 
 \hypertarget{paarvergleiche-mit-t-tests-und-alpha-adjustierung}{%
 \subsection{\texorpdfstring{Paarvergleiche mit t-Tests und \(\alpha\)-Adjustierung}{Paarvergleiche mit t-Tests und \textbackslash alpha-Adjustierung}}\label{paarvergleiche-mit-t-tests-und-alpha-adjustierung}}
@@ -5082,7 +5116,7 @@ Als Erstes ist da das Ergebnis eines Mauchly-Tests (ein Test auf Sphärizität):
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-127} }
+\caption{\label{tab:unnamed-chunk-130} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -5143,7 +5177,7 @@ Zum Anderen dem Ergebnis der eigentlichen Varianzanalyse:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-128} }
+\caption{\label{tab:unnamed-chunk-131} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5216,7 +5250,7 @@ Und zu guter Letzt mit dem Ergebnis der Varianzanalyse nach Greenhouse-Geisser u
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-129} }
+\caption{\label{tab:unnamed-chunk-132} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5374,7 +5408,7 @@ Der Output ist dann auch nicht weiter überraschend, wir bekommen wieder eine Er
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-133} }
+\caption{\label{tab:unnamed-chunk-136} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5508,7 +5542,7 @@ Um das zu überprüfen, können wir einfach die uns schon bekannten Verfahren an
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-136-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-139-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -5565,7 +5599,7 @@ Für die Varianzhomogenität können wir einfach das von \texttt{ezANOVA} zurüc
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-138} }
+\caption{\label{tab:unnamed-chunk-141} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5639,7 +5673,7 @@ In einem (fiktiven) Versuch zum Modell-Lernen wurde 10 Kindern an vier Terminen 
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-140} }
+\caption{\label{tab:unnamed-chunk-143} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l}
 
@@ -5704,7 +5738,7 @@ Der zugehörige Datensatz sieht wie folgt aus:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-142} }
+\caption{\label{tab:unnamed-chunk-145} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -5879,7 +5913,7 @@ Das Ergebnis beteht dann wie im einfaktoriellen Fall wieder aus drei Tabellen, e
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-144} }
+\caption{\label{tab:unnamed-chunk-147} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -5968,7 +6002,7 @@ Als zweites dem Ergebnis der Varianzanalyse, natürlich wieder mit drei Zeilen f
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-145} }
+\caption{\label{tab:unnamed-chunk-148} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6047,7 +6081,7 @@ Und zu guter Letzt dem Ergebnis der Varianzanalyse nach den bekannten Korrekture
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-146} }
+\caption{\label{tab:unnamed-chunk-149} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6116,7 +6150,7 @@ Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Ve
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-147-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-150-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -6172,7 +6206,7 @@ Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegeb
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-149} }
+\caption{\label{tab:unnamed-chunk-152} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6255,7 +6289,7 @@ Die Ergebnisse sind dann wie im abhängigen Fall in die drei Tabellen für den M
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-151} }
+\caption{\label{tab:unnamed-chunk-154} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6313,7 +6347,7 @@ Die Ergebnisse der ANOVA:
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-152} }
+\caption{\label{tab:unnamed-chunk-155} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6392,7 +6426,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-153} }
+\caption{\label{tab:unnamed-chunk-156} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6451,7 +6485,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-154} }
+\caption{\label{tab:unnamed-chunk-157} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6522,7 +6556,7 @@ Und die Sphärizitäts-Korrektur aufgeteilt.
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-154} }
+\caption{\label{tab:unnamed-chunk-157} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6616,7 +6650,7 @@ Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Ve
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-155-1} \end{center}
+\begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-158-1} \end{center}
 
 Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:
 
@@ -6684,7 +6718,7 @@ Für die Sphärizität können wir einfach das von \texttt{ezANOVA} zurückgegeb
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-157} }
+\caption{\label{tab:unnamed-chunk-160} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l}
 
@@ -6843,7 +6877,7 @@ Das Ergebnis von \texttt{glht} lässt sich auch wieder mit \texttt{broom} darste
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-163} }
+\caption{\label{tab:unnamed-chunk-166} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6899,7 +6933,7 @@ Mit Setzen des \texttt{test} -Arguments können wir außerdem wieder auswählen,
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-164} }
+\caption{\label{tab:unnamed-chunk-167} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -6964,7 +6998,7 @@ So könnten wir zusätzlich zum bisherigen Kontrast auch alle Zellen noch mit de
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-165} }
+\caption{\label{tab:unnamed-chunk-168} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
@@ -7139,7 +7173,7 @@ Und diese Matrix können wir dann wie gewohnt für die Kontrasttests nutzen. Dab
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{\label{tab:unnamed-chunk-170} }
+\caption{\label{tab:unnamed-chunk-173} }
  \setlength{\tabcolsep}{0pt}
 \begin{tabular}{l l l l l l l}
 
