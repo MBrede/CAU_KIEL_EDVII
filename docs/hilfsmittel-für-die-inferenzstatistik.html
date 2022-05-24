@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Hilfsmittel für die Inferenzstatistik | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Hilfsmittel für die Inferenzstatistik | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="deskriptive-statistik-und-data-cleaning.html"/>
 <link rel="next" href="einfache-lineare-zusammenhänge.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,8 +250,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hilfsmittel-für-die-inferenzstatistik" class="section level1">
-<h1>Hilfsmittel für die Inferenzstatistik</h1>
+<div id="hilfsmittel-für-die-inferenzstatistik" class="section level1 hasAnchor">
+<h1>Hilfsmittel für die Inferenzstatistik<a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- ## Organisatorisches -->
 <!-- ### Semesterplan -->
 <!-- ```{r, results='asis', echo=F} -->
@@ -261,10 +260,10 @@ div.csl-indent {
 <!--   mutate(across(everything(), ~replace_na(.,''))) %>%  -->
 <!--   kbl() -->
 <!-- ``` -->
-<div id="hilfsmittel-für-die-inferenzstatistik-1" class="section level2">
-<h2>Hilfsmittel für die Inferenzstatistik</h2>
-<div id="modellterme" class="section level3">
-<h3>Modellterme</h3>
+<div id="hilfsmittel-für-die-inferenzstatistik-1" class="section level2 hasAnchor">
+<h2>Hilfsmittel für die Inferenzstatistik<a href="hilfsmittel-für-die-inferenzstatistik.html#hilfsmittel-für-die-inferenzstatistik-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="modellterme" class="section level3 hasAnchor">
+<h3>Modellterme<a href="hilfsmittel-für-die-inferenzstatistik.html#modellterme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Alle inferenzstatistischen Verfahren im <code>base-R</code>-Umfang und viele andere aus Zusatzpaketen nutzen die sogenannte <em>Formelschreibweise</em> um Modelle zu definieren.
 Am Anfang ist die Syntax ein bisschen ungewohnt, am Ende resultiert aus dieser Schreibweise aber eine sehr übersichtliche und schnell erfassbare Modell-Formulierung.</p>
 <p>Die Formulierung folgt dabei grundsätzlich dem folgenden System, das sich am Besten analog zu einer mathematischen Funktionsgleichung vorgestellt werden kann. Da das <code>=</code> aber schon für Zuweisungen belegt ist, wird es in <code>formula</code>-Schreibweise durch eine Tilde (~) ersetzt:</p>
@@ -281,8 +280,8 @@ Am Anfang ist die Syntax ein bisschen ungewohnt, am Ende resultiert aus dieser S
 <td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">*Varianzanalyse:*</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">AV</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">~</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">UV(s als Faktor(en))</td></tr>
 </table>
 
-<div id="modell-term" class="section level4">
-<h4>Modell-Term</h4>
+<div id="modell-term" class="section level4 hasAnchor">
+<h4>Modell-Term<a href="hilfsmittel-für-die-inferenzstatistik.html#modell-term" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Der Modell-Term auf der rechten Seite der Tilde wird dabei aus einer Reihe von Variablen und Kombinationsoperatoren zusammengesetzt. Zuerst etwas unintuitiv sind diese Operatoren im normalen R-Kontext mit anderen Bedeutungen belegt, in <code>formula</code>s funktionieren sie aber so <em>nicht</em> Die Operatoren sind die folgenden:</p>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -411,15 +410,15 @@ kategoriale Varable (Faktor)
 </tbody>
 </table>
 </div>
-<div id="regressionsmodelle" class="section level4">
-<h4>Regressionsmodelle</h4>
+<div id="regressionsmodelle" class="section level4 hasAnchor">
+<h4>Regressionsmodelle<a href="hilfsmittel-für-die-inferenzstatistik.html#regressionsmodelle" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>Y ~ X1</code>: einfache lineare Regression von <code>Y</code> auf <code>X1</code></p>
 <p><code>Y ~ X1 + X2</code>: multiple lineare Regression von <code>Y</code> auf <code>X1</code> und <code>X2</code></p>
 <p><code>Y ~ X1+X2+X1:X2</code>: multiple lineare Regression von <code>Y</code> auf <code>X1</code> und <code>X2</code> sowie auf den Interaktionsterm von <code>X1</code> und <code>X2</code></p>
 <p><code>Y ~ X1*X2</code>: multiple lineare Regression von <code>Y</code> auf <code>X1</code> und <code>X2</code> sowie auf den Interaktionsterm von <code>X1</code> und <code>X2</code></p>
 </div>
-<div id="varianzanalytische-modelle" class="section level4">
-<h4>Varianzanalytische Modelle</h4>
+<div id="varianzanalytische-modelle" class="section level4 hasAnchor">
+<h4>Varianzanalytische Modelle<a href="hilfsmittel-für-die-inferenzstatistik.html#varianzanalytische-modelle" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>Y ~ F1</code>: einfaktorielle Varianzanalyse</p>
 <p><code>Y ~ F1 + F2 + F1:F2</code>: zweifaktorielle Varianzanalyse mit beiden Haupteffekten und der Interaktion</p>
 <p><code>Y ~ F1 * F2</code>: auch zweifaktorielle Varianzanalyse mit beiden Haupteffekten und der Interaktion</p>
@@ -430,8 +429,8 @@ Wenn wir die für die Formulierung genutzten Operatoren für arithmetische Opera
 <p><span class="math display">\[Y \sim \texttt{I}(2*X)\]</span></p>
 </div>
 </div>
-<div id="aufgabe" class="section level3">
-<h3>Aufgabe</h3>
+<div id="aufgabe" class="section level3 hasAnchor">
+<h3>Aufgabe<a href="hilfsmittel-für-die-inferenzstatistik.html#aufgabe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Welche Hypothese(n) pass(t/en) zu folgender Modellformel:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="hilfsmittel-für-die-inferenzstatistik.html#cb52-1" aria-hidden="true" tabindex="-1"></a>IQ <span class="sc">~</span> Geschlecht <span class="sc">+</span> Raucher</span></code></pre></div>
 <ul>

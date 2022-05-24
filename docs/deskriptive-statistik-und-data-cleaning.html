@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Deskriptive Statistik und Data Cleaning | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Deskriptive Statistik und Data Cleaning | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="lehrplan.html"/>
 <link rel="next" href="hilfsmittel-für-die-inferenzstatistik.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,10 +250,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="deskriptive-statistik-und-data-cleaning" class="section level1">
-<h1>Deskriptive Statistik und Data Cleaning</h1>
-<div id="organisatorisches" class="section level2">
-<h2>Organisatorisches</h2>
+<div id="deskriptive-statistik-und-data-cleaning" class="section level1 hasAnchor">
+<h1>Deskriptive Statistik und Data Cleaning<a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik-und-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="organisatorisches" class="section level2 hasAnchor">
+<h2>Organisatorisches<a href="deskriptive-statistik-und-data-cleaning.html#organisatorisches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <!-- ### Semesterplan -->
 <!-- ```{r, results='asis', echo=F} -->
 <!-- library(usefullFunctions) -->
@@ -262,16 +261,16 @@ div.csl-indent {
 <!--   mutate(across(everything(), ~replace_na(.,''))) %>%  -->
 <!--   kbl() -->
 <!-- ``` -->
-<div id="übungsablauf" class="section level3">
-<h3>Übungsablauf</h3>
+<div id="übungsablauf" class="section level3 hasAnchor">
+<h3>Übungsablauf<a href="deskriptive-statistik-und-data-cleaning.html#übungsablauf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Es wird alle zwei Wochen eine 45-minütige Vorlesung geben und dazu alternierend online-Übungsstunden in mit je einem Kurs. (Eine Ausnahme ist die erste Woche, in der wir nur eine 90-minütige Vorlesung haben.)</p>
 </div>
-<div id="übungsablauf-1" class="section level3">
-<h3>Übungsablauf</h3>
+<div id="übungsablauf-1" class="section level3 hasAnchor">
+<h3>Übungsablauf<a href="deskriptive-statistik-und-data-cleaning.html#übungsablauf-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="imgs/univis.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
-<div id="prüfungsleistung-1" class="section level3">
-<h3>Prüfungsleistung</h3>
+<div id="prüfungsleistung-1" class="section level3 hasAnchor">
+<h3>Prüfungsleistung<a href="deskriptive-statistik-und-data-cleaning.html#prüfungsleistung-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Gruppenarbeit(4-5 Personen) über 3 Wochen</p></li>
 <li><p>Termin für die Klausur entweder vor oder mit Anfang in der Klausurphase.</p></li>
@@ -284,16 +283,16 @@ div.csl-indent {
 <!-- Ronjas Tutorium wird immer dienstags, 16-18 Uhr stattfinden. -->
 </div>
 </div>
-<div id="deskriptive-statistik" class="section level2">
-<h2>Deskriptive Statistik</h2>
-<div id="wozu-brauche-ich-das" class="section level3">
-<h3>Wozu brauche ich das?</h3>
+<div id="deskriptive-statistik" class="section level2 hasAnchor">
+<h2>Deskriptive Statistik<a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="wozu-brauche-ich-das" class="section level3 hasAnchor">
+<h3>Wozu brauche ich das?<a href="deskriptive-statistik-und-data-cleaning.html#wozu-brauche-ich-das" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Im Gegensatz zur Inferenzstatistik ist das erklärte Ziel der deskriptiven Statistik, (wie der Name schon sagt) beschreibende Aussagen über die vorliegende Stichprobe zu treffen.</p>
 <p>Wir wollen uns also möglichst genau angucken, wie unsere Stichprobe aussieht.</p>
 <p>Wozu könnte das gut sein?</p>
 </div>
-<div id="gründe-für-deskriptive-statistik" class="section level3">
-<h3>Gründe für deskriptive Statistik</h3>
+<div id="gründe-für-deskriptive-statistik" class="section level3 hasAnchor">
+<h3>Gründe für deskriptive Statistik<a href="deskriptive-statistik-und-data-cleaning.html#gründe-für-deskriptive-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Indikatoren zur externen Validität(Verteilung von Organismusvariablen, Demografie,…)</p></li>
 <li><p>Aussagen über Verteilungseigenschaften</p>
@@ -304,22 +303,14 @@ div.csl-indent {
 <li><p>Übersicht über Effekte und Zusammenhänge, inklusive solcher, die möglicherweise nicht a-priori erwartet wurden</p></li>
 </ul>
 </div>
-<div id="deskriptive-statistik-1" class="section level3">
-<h3>deskriptive Statistik</h3>
+<div id="deskriptive-statistik-1" class="section level3 hasAnchor">
+<h3>deskriptive Statistik<a href="deskriptive-statistik-und-data-cleaning.html#deskriptive-statistik-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Für einen ganz einfachen, schnellen und umfassenden Überblick über die Daten funktioniert die <code>skim</code>-Funktion aus dem <code>skimr</code>-Paket gut:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb1-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(df)</span></code></pre></div>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 <span id="tab:unnamed-chunk-6">Tab. 1: </span>Data summary
 </caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
@@ -639,8 +630,8 @@ age
 </tbody>
 </table>
 </div>
-<div id="demografie" class="section level3">
-<h3>Demografie</h3>
+<div id="demografie" class="section level3 hasAnchor">
+<h3>Demografie<a href="deskriptive-statistik-und-data-cleaning.html#demografie" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Einfache, schnell zu erfassende Beschreibung der Stichprobe zum Beispiel über eine Tabelle:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex, smoker, group) <span class="sc">%&gt;%</span> </span>
@@ -671,8 +662,8 @@ age
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-8-1.png" width="900px" style="display: block; margin: auto;" />
 Man sieht auf einen Blick, dass Geschlecht und Raucher ungefähr gleich aufgeteilt wurden, die Gruppen aber wesentlich unterschiedliche Größen aufweisen!</p>
 </div>
-<div id="aussagen-über-verteilungseigenschaften" class="section level3">
-<h3>Aussagen über Verteilungseigenschaften</h3>
+<div id="aussagen-über-verteilungseigenschaften" class="section level3 hasAnchor">
+<h3>Aussagen über Verteilungseigenschaften<a href="deskriptive-statistik-und-data-cleaning.html#aussagen-über-verteilungseigenschaften" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In der <code>skim</code>-Ausgabe haben wir ja schon sehen können, dass keine fehlenden Werte vorliegen (<code>n_missing</code> war 0).</p>
 <p>Wir könnten uns aber noch die Frage stellen, ob Extremwerte in den Gruppen auftauchen, außerdem wollen wir möglichst übersichtlich unsere Verteilungseigenschaften präsentieren.</p>
 <p>Das hilft uns zum Einen, um einen besseren Überblick über die Daten zu erhalten, die wir auswerten wollen, zum Anderen hilft es bei einem späteren Bereicht der Leserin, unsere Statistik einzuschätzen.
@@ -719,10 +710,10 @@ Dazu können wir uns entweder eine Tabelle mit den Verteilungsparametern der num
 <p>Das Alter ist eindeutig schief verteilt, der IQ dafür mehrgipflig.</p>
 <p>Nach der von Tukey aufgestellten Regel <span class="citation">(<a href="#ref-tukeyExploratoryDataAnalysis1977" role="doc-biblioref">Tukey 1977</a>)</span> haben wir auch keine Ausreißer (dazu auch später mehr).</p>
 </div>
-<div id="darstellung-von-effekten-und-zusammenhängen" class="section level3">
-<h3>Darstellung von Effekten und Zusammenhängen</h3>
-<div id="unterschiede" class="section level4">
-<h4>Unterschiede</h4>
+<div id="darstellung-von-effekten-und-zusammenhängen" class="section level3 hasAnchor">
+<h3>Darstellung von Effekten und Zusammenhängen<a href="deskriptive-statistik-und-data-cleaning.html#darstellung-von-effekten-und-zusammenhängen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="unterschiede" class="section level4 hasAnchor">
+<h4>Unterschiede<a href="deskriptive-statistik-und-data-cleaning.html#unterschiede" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Da wir eine Reihe von Gruppierungsvariablen haben, könnte der erste Impuls sein, sich die Variablen nach diesen Gruppen aufgeteilt darstellen zu lassen, um mögliche Gruppenunterschiede zu verdeutlichen.</p>
 <p>Auch hier können wir uns Tabellen erstellen:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
@@ -780,8 +771,8 @@ Dazu können wir uns entweder eine Tabelle mit den Verteilungsparametern der num
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-12-1.png" width="900px" style="display: block; margin: auto;" /></p>
 <p>Das wird zwar ein bisschen unübersichtlich (wenn man das wirklich sinnvoll betreiben wollen würde sollte man sich Gedanken dazu machen, welche Variablen tatsächlich von Relevanz sind), man könnte aber zu dem Schluss kommen dass die IQs relativ ähnlich sind, die Altersgruppen aber nicht.</p>
 </div>
-<div id="zusammenhänge" class="section level4">
-<h4>Zusammenhänge</h4>
+<div id="zusammenhänge" class="section level4 hasAnchor">
+<h4>Zusammenhänge<a href="deskriptive-statistik-und-data-cleaning.html#zusammenhänge" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Zuletzt wollen wir noch gucken, ob in den Daten irgendwelche (linearen) Zusammenhänge direkt ersichtlich sind. Dazu können wir zuerst Korrelationen berechnen, zum Beispiel einmal für die gesamte Stichprobe und einmal für die Untergruppen:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb11-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -824,10 +815,10 @@ Abb. 1: Original-Comic von <a href="https://xkcd.com/1725/">xkcd</a>
 </div>
 </div>
 </div>
-<div id="data-cleaning" class="section level2">
-<h2>Data Cleaning</h2>
-<div id="umgang-mit-fehlenden-werten" class="section level3">
-<h3>Umgang mit fehlenden Werten</h3>
+<div id="data-cleaning" class="section level2 hasAnchor">
+<h2>Data Cleaning<a href="deskriptive-statistik-und-data-cleaning.html#data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="umgang-mit-fehlenden-werten" class="section level3 hasAnchor">
+<h3>Umgang mit fehlenden Werten<a href="deskriptive-statistik-und-data-cleaning.html#umgang-mit-fehlenden-werten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>NA</code>s sind das in R zur Codierung von fehlenden Werten genutzte Datenformat.</p>
 <p>Sie können in Vektoren (und damit auch <code>tibble</code>-Spalten) jeden Datenformats auftreten:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(T,<span class="cn">NA</span>,F)</span></code></pre></div>
@@ -848,8 +839,8 @@ Abb. 1: Original-Comic von <a href="https://xkcd.com/1725/">xkcd</a>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">is.na</span>(aVector))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div id="fehlende-werte-und-einfache-kennwerte" class="section level3">
-<h3>fehlende Werte und einfache Kennwerte</h3>
+<div id="fehlende-werte-und-einfache-kennwerte" class="section level3 hasAnchor">
+<h3>fehlende Werte und einfache Kennwerte<a href="deskriptive-statistik-und-data-cleaning.html#fehlende-werte-und-einfache-kennwerte" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die meisten Funktionen im <code>base R</code> Umfang haben ein <code>na.rm</code>-Argument mit dem wir fehlende Werte von Berechnungen ausschließen können. Das kann an vielen Stellen schon eine sinnvolle Lösung sein, zum Beispiel wenn wir die Infos über die Anzahl fehlender Werte nicht verlieren wollen.</p>
 <p>Das könnte dann zum Beispiel so aussehen:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(aVector)</span></code></pre></div>
@@ -898,8 +889,8 @@ Abb. 1: Original-Comic von <a href="https://xkcd.com/1725/">xkcd</a>
 ## 3   0.79     3           1
 ## 4   0.73     3           0</code></pre>
 </div>
-<div id="na-bereinigung-von-datensätzen" class="section level3">
-<h3><code>NA</code>-Bereinigung von Datensätzen</h3>
+<div id="na-bereinigung-von-datensätzen" class="section level3 hasAnchor">
+<h3><code>NA</code>-Bereinigung von Datensätzen<a href="deskriptive-statistik-und-data-cleaning.html#na-bereinigung-von-datensätzen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vor statistischen Auswertungen kann es aber einfacher sein, den Datensatz komplett von fehlenden Werten zu bereinigen.</p>
 <p>Je nach dem Fall und der Person die man fragt, gibt es verschiedene Vorgehensweisen. Wir gucken uns hier genauer den fallweisen Ausschluss und das ersetzen durch Werte der zentralen Tendenz an.</p>
 <p><em>Die Entscheidung für das Auffüllen oder das Ausschließen muss von Fall zu Fall gefällt werden!</em></p>
@@ -909,8 +900,8 @@ Gleichzeitig wird oft das Argument vorgebracht, dass insbesondere diejenigen Ver
 Wenn wir diese Versuchspersonen ausschließen, verzerren wir nach diesem Argument also systematisch unsere Stichprobe.</p>
 <p>Wichtig ist also vor jeder Bereinigung, Überlegungen darüber anzustellen, was im gegebenen Fall gerade die angemessenste Lösung darstellt.
 Bei unserem Datensatz df_2 sind beide Methoden nicht wirklich gut, der Datensatz ist aber auch extrem.</p>
-<div id="fallweiser-ausschluss" class="section level4">
-<h4>Fallweiser Ausschluss</h4>
+<div id="fallweiser-ausschluss" class="section level4 hasAnchor">
+<h4>Fallweiser Ausschluss<a href="deskriptive-statistik-und-data-cleaning.html#fallweiser-ausschluss" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Die radikalste Methode ist der Fallweise Ausschluss, also der Ausschluss aller Eintragungen einer Versuchsperson, die mindestens einen fehlenden Wert vorliegen hat.</p>
 <p>Als Erinnerung, hier nochmal unser Datensatz <code>df_2</code>:</p>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -1116,8 +1107,8 @@ NA
 ## 6    11     3 3.79   2.57 
 ## 7    12     4 5.37   4.95</code></pre>
 </div>
-<div id="ersetzen-fehlender-werte" class="section level4">
-<h4>Ersetzen fehlender Werte</h4>
+<div id="ersetzen-fehlender-werte" class="section level4 hasAnchor">
+<h4>Ersetzen fehlender Werte<a href="deskriptive-statistik-und-data-cleaning.html#ersetzen-fehlender-werte" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Statt radikal alle Fälle auszuschließen, die mindestens einen fehlenden Wert beinhalten, gibt es auch Ansätze, diese aufzufüllen.
 Gängige Verfahren hier sind die fehlenden Werte hypothesenunabhängig (also nicht gruppenweise) mit dem (getrimmten) Mittelwert, dem Median oder dem Modus der Gesamtstichprobe aufzufüllen. Die Umsetzung in R sieht dann immer gleich aus, die einzige Änderung findet im Kennwert statt, den man zur Ergänzung wählt.</p>
 <p>Hier mal ein Beispiel mit dem getrimmten Mittelwert:</p>
@@ -1144,8 +1135,8 @@ Gängige Verfahren hier sind die fehlenden Werte hypothesenunabhängig (also nic
 ## 12    12     4 5.37   4.95</code></pre>
 </div>
 </div>
-<div id="umgang-mit-ausreißern" class="section level3">
-<h3>Umgang mit Ausreißern</h3>
+<div id="umgang-mit-ausreißern" class="section level3 hasAnchor">
+<h3>Umgang mit Ausreißern<a href="deskriptive-statistik-und-data-cleaning.html#umgang-mit-ausreißern" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ausreißerbereinigung sind ein komplexes Thema, über das viel diskutiert werden kann und auch muss.</p>
 <p>Da wir uns hier aber im Rahmen einer praktischen Übung befinden sparen wir uns das und nutzen die weit verbreitete Regel, die <span class="citation">Tukey (<a href="#ref-tukeyExploratoryDataAnalysis1977" role="doc-biblioref">1977</a>)</span> formuliert hat:</p>
 <p>Diejenigen Werte sind als Ausreißer zu betrachten, die außerhalb des Intervals
@@ -1207,13 +1198,13 @@ Wir sagen also, dass diejenigen Werte, die außerhalb der Fences liegen auf den 
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-27-1.png" width="900px" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="organisationsformen-von-datensätzen" class="section level2">
-<h2>Organisationsformen von Datensätzen</h2>
-<div id="long-vs.-wide-format" class="section level3">
-<h3>long vs. wide format</h3>
+<div id="organisationsformen-von-datensätzen" class="section level2 hasAnchor">
+<h2>Organisationsformen von Datensätzen<a href="deskriptive-statistik-und-data-cleaning.html#organisationsformen-von-datensätzen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="long-vs.-wide-format" class="section level3 hasAnchor">
+<h3>long vs. wide format<a href="deskriptive-statistik-und-data-cleaning.html#long-vs.-wide-format" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="cols">
-<div id="long-format" class="section level5 col">
-<h5>long-format</h5>
+<div id="long-format" class="section level5 hasAnchor col">
+<h5>long-format<a href="deskriptive-statistik-und-data-cleaning.html#long-format" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1298,8 +1289,8 @@ Vera Baum
 </tbody>
 </table>
 </div>
-<div id="wide-format" class="section level5 col">
-<h5>wide-format</h5>
+<div id="wide-format" class="section level5 hasAnchor col">
+<h5>wide-format<a href="deskriptive-statistik-und-data-cleaning.html#wide-format" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1359,8 +1350,8 @@ Vera Baum
 ## 4    Vera Baum 1252         1
 ## 5    Vera Baum 2346         2
 ## 6    Vera Baum 4321         3</code></pre>
-<div id="long-to-wide" class="section level4">
-<h4>long to wide</h4>
+<div id="long-to-wide" class="section level4 hasAnchor">
+<h4>long to wide<a href="deskriptive-statistik-und-data-cleaning.html#long-to-wide" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb48-1" aria-hidden="true" tabindex="-1"></a>wideFormat <span class="ot">&lt;-</span> longFormat <span class="sc">%&gt;%</span></span>
 <span id="cb48-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&#39;Bedingung&#39;</span>,</span>
 <span id="cb48-3"><a href="deskriptive-statistik-und-data-cleaning.html#cb48-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="st">&#39;RT&#39;</span>,</span>
@@ -1372,8 +1363,8 @@ Vera Baum
 ## 1 Snake Müller  2624  3902  6293
 ## 2 Vera Baum     1252  2346  4321</code></pre>
 </div>
-<div id="wide-to-long" class="section level4">
-<h4>wide to long</h4>
+<div id="wide-to-long" class="section level4 hasAnchor">
+<h4>wide to long<a href="deskriptive-statistik-und-data-cleaning.html#wide-to-long" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="deskriptive-statistik-und-data-cleaning.html#cb50-1" aria-hidden="true" tabindex="-1"></a>longFormat <span class="ot">&lt;-</span> wideFormat <span class="sc">%&gt;%</span></span>
 <span id="cb50-2"><a href="deskriptive-statistik-und-data-cleaning.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
 <span id="cb50-3"><a href="deskriptive-statistik-und-data-cleaning.html#cb50-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&#39;RT_&#39;</span>,</span>
@@ -1425,7 +1416,7 @@ Vera Baum
 </div>
 </div>
 </div>
-<h3>Literatur</h3>
+<h3>Literatur<a href="literatur.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-tukeyExploratoryDataAnalysis1977" class="csl-entry">
 Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Vol. 2. <span>Reading, Mass.</span>

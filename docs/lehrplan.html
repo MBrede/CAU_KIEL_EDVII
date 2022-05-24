@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lehrplan | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lehrplan | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="deskriptive-statistik-und-data-cleaning.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,10 +250,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lehrplan" class="section level1">
-<h1>Lehrplan</h1>
-<div id="semesterplan" class="section level2">
-<h2>Semesterplan</h2>
+<div id="lehrplan" class="section level1 hasAnchor">
+<h1>Lehrplan<a href="lehrplan.html#lehrplan" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="semesterplan" class="section level2 hasAnchor">
+<h2>Semesterplan<a href="lehrplan.html#semesterplan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -417,19 +416,19 @@ Klausurvorbereitung
 </tbody>
 </table>
 </div>
-<div id="übungsformat" class="section level2">
-<h2>Übungsformat</h2>
+<div id="übungsformat" class="section level2 hasAnchor">
+<h2>Übungsformat<a href="lehrplan.html#übungsformat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Übung soll zur Hälfte in 45-minütigen Sitzungen im Vorlesungsformat zur Vorstellung der Funktionen und zur anderen Hälfte als 45-minütige praktische Übung stattfinden.
 Es wird pro Übungs-Sitzung ein Übungszettel ausgegeben, der mit Hilfe der in der Zugehörigen Vorlesung besprochenen Funktionen bearbeitet werden können soll.
 Diese Zettel sollen nach der jeweiligen Vorlesung für die Übungen vorbereitet werden, in denen der Zettel dann besprochen und mögliche Fragen geklärt werden.
 Nach den Übungssitzungen haben die Studierenden dann eine Woche Zeit, zusätzliche Hausaufgaben zu bearbeiten.</p>
 <p>Eine Ausnahme von diesem Ablauf ist die erste Sitzung, in der organisatorisches und Grundlagen in 90 minütigem Vorlesungsstil besprochen werden sollen. Auch nach dieser Sitzung werden aber Übungszettel und Hausaufgaben ausgegeben.</p>
 </div>
-<div id="lehrziele-für-jede-sitzung" class="section level2">
-<h2>Lehrziele für jede Sitzung</h2>
+<div id="lehrziele-für-jede-sitzung" class="section level2 hasAnchor">
+<h2>Lehrziele für jede Sitzung<a href="lehrplan.html#lehrziele-für-jede-sitzung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Studierenden können nach dem Absolvieren der Übung…</p>
-<div id="einheit-1" class="section level4 unnumbered">
-<h4>Einheit 1</h4>
+<div id="einheit-1" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 1<a href="lehrplan.html#einheit-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Gründe für deskriptive Statistik nennen.</li>
 <li>für verschiedene Ausgangssituationen entscheiden, welche Darstellungsform angemessen ist.</li>
@@ -437,49 +436,49 @@ Nach den Übungssitzungen haben die Studierenden dann eine Woche Zeit, zusätzli
 <li>Verfahren zum Umgang mit Ausreißern nennen und anwenden.</li>
 </ul>
 </div>
-<div id="einheit-2" class="section level4 unnumbered">
-<h4>Einheit 2</h4>
+<div id="einheit-2" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 2<a href="lehrplan.html#einheit-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>R <code>formula</code>s lesen und verwenden.</li>
 <li>Korrelationsanalysen in R durchführen und die Ergebnisse interpretieren.</li>
 <li>einfache lineare Regressionen in R durchführen und die Ergebnisse interpretieren.</li>
 </ul>
 </div>
-<div id="einheit-3" class="section level4 unnumbered">
-<h4>Einheit 3</h4>
+<div id="einheit-3" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 3<a href="lehrplan.html#einheit-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>multiple lineare Regressionen in R durchführen und die Ergebnisse interpretieren.</li>
 </ul>
 </div>
-<div id="einheit-4" class="section level4 unnumbered">
-<h4>Einheit 4</h4>
+<div id="einheit-4" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 4<a href="lehrplan.html#einheit-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>t-Tests in R durchführen und die Ergebnisse interpretieren.</li>
 <li>einfaktorielle Varianzanalysen in R durchführen und die Ergebnisse interpretieren.</li>
 </ul>
 </div>
-<div id="einheit-5" class="section level4 unnumbered">
-<h4>Einheit 5</h4>
+<div id="einheit-5" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 5<a href="lehrplan.html#einheit-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>zweifaktorielle Varianzanalysen in R durchführen und die Ergebnisse interpretieren.</li>
 </ul>
 </div>
-<div id="einheit-6" class="section level4 unnumbered">
-<h4>Einheit 6</h4>
+<div id="einheit-6" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 6<a href="lehrplan.html#einheit-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>beliebige Linearkontraste in R durchführen und die Ergebnisse interpretieren.</li>
 <li>paarweise post-hoc t-Tests in R durchführen und die Ergebnisse interpretieren.</li>
 </ul>
 </div>
-<div id="einheit-7" class="section level4 unnumbered">
-<h4>Einheit 7</h4>
+<div id="einheit-7" class="section level4 unnumbered hasAnchor">
+<h4>Einheit 7<a href="lehrplan.html#einheit-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>erfolgreich an der Klausur teilnehmen.</li>
 </ul>
 </div>
 </div>
-<div id="prüfungsleistung" class="section level2">
-<h2>Prüfungsleistung</h2>
+<div id="prüfungsleistung" class="section level2 hasAnchor">
+<h2>Prüfungsleistung<a href="lehrplan.html#prüfungsleistung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Studierenden <strong>müssen</strong> während des Semesters die nach den Übungssitzungen ausgegebenen Hausaufgaben innerhalb einer Woche sinnvoll bearbeitet abgeben.</p>
 <p>Mit maximal einer nicht sinnvoll bearbeiteten Serie werden die Studierenden zur Gruppenarbeit am Ende des Semesters zugelassen.</p>
 

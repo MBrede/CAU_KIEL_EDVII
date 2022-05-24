@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Einfache lineare Zusammenhänge | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Einfache lineare Zusammenhänge | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="hilfsmittel-für-die-inferenzstatistik.html"/>
 <link rel="next" href="lineare-zusammenhänge-ii.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,10 +250,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="einfache-lineare-zusammenhänge" class="section level1">
-<h1>Einfache lineare Zusammenhänge</h1>
-<div id="datensatz" class="section level3">
-<h3>Datensatz</h3>
+<div id="einfache-lineare-zusammenhänge" class="section level1 hasAnchor">
+<h1>Einfache lineare Zusammenhänge<a href="einfache-lineare-zusammenhänge.html#einfache-lineare-zusammenhänge" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="datensatz" class="section level3 hasAnchor">
+<h3>Datensatz<a href="einfache-lineare-zusammenhänge.html#datensatz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Für die Tests auf linearen Zusammenhänge werden wir den Datensatz <code>df_wide</code> mit den folgenden Variablen benutzen:</p>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -311,10 +310,10 @@ Skalenwert Wahrnehmungsgebundenes logisches Denken aus HAWIE
 </tbody>
 </table>
 </div>
-<div id="test-auf-korrelation" class="section level2">
-<h2>Test auf Korrelation</h2>
-<div id="test-hintergrund" class="section level3">
-<h3>Test-Hintergrund</h3>
+<div id="test-auf-korrelation" class="section level2 hasAnchor">
+<h2>Test auf Korrelation<a href="einfache-lineare-zusammenhänge.html#test-auf-korrelation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="test-hintergrund" class="section level3 hasAnchor">
+<h3>Test-Hintergrund<a href="einfache-lineare-zusammenhänge.html#test-hintergrund" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die empirische Korrelation zweier gemeinsam normalverteilter Variablen lässt sich daraufhin testen, ob sie
 mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang’ (<span class="math inline">\(\text{H}_{0}:\rho_{X,Y} = 0\)</span>) verträglich ist.</p>
 <p>Dabei wird genutzt, dass bei Multinormalverteilung und Unkorreliertheit der Variablen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> die Teststatistik <span class="math inline">\(t_r = r_{x,y} \sqrt{{n-2}\over{1-r_{x,y}}^2}\)</span> <span class="math inline">\(t-\)</span>verteilt ist, mit <span class="math inline">\(n-2\)</span> Freiheitsgraden.</p>
@@ -322,8 +321,8 @@ mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang�
 <p>Ist der Test signifikant, wird die <span class="math inline">\(H_1\)</span> angenommen, also dass die ‘wahre’ Korrelation zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> ungleich 0 ist.</p>
 <p>Gerichtete Hypothesen lassen sich analog testen.</p>
 </div>
-<div id="test-auf-korrelation-in-r" class="section level3">
-<h3>Test auf Korrelation in R</h3>
+<div id="test-auf-korrelation-in-r" class="section level3 hasAnchor">
+<h3>Test auf Korrelation in R<a href="einfache-lineare-zusammenhänge.html#test-auf-korrelation-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Man kann den Test in R mit Vektoren als Eingabe…</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="einfache-lineare-zusammenhänge.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_wide<span class="sc">$</span>hawie_iq, df_wide<span class="sc">$</span>hawie_wahr_log)</span></code></pre></div>
 <pre><code>## 
@@ -382,8 +381,8 @@ mit der <span class="math inline">\(H_0\)</span> ‘kein linearer Zusammenhang�
 ##   &lt;chr&gt;      
 ## 1 greater</code></pre>
 </div>
-<div id="aufgabe-1" class="section level3">
-<h3>Aufgabe</h3>
+<div id="aufgabe-1" class="section level3 hasAnchor">
+<h3>Aufgabe<a href="einfache-lineare-zusammenhänge.html#aufgabe-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Wie kann ich das Ergebnis interpretieren?</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="einfache-lineare-zusammenhänge.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> hawie_iq <span class="sc">+</span> hawie_wahr_log, </span>
 <span id="cb61-2"><a href="einfache-lineare-zusammenhänge.html#cb61-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df_wide,</span>
@@ -413,10 +412,10 @@ C und D könnte man so sagen, D hat aber natürlich mehr Informationsgehalt.
 </details>
 </div>
 </div>
-<div id="einfache-lineare-regression" class="section level2">
-<h2>Einfache lineare Regression</h2>
-<div id="modellanpassung" class="section level3">
-<h3>Modellanpassung</h3>
+<div id="einfache-lineare-regression" class="section level2 hasAnchor">
+<h2>Einfache lineare Regression<a href="einfache-lineare-zusammenhänge.html#einfache-lineare-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="modellanpassung" class="section level3 hasAnchor">
+<h3>Modellanpassung<a href="einfache-lineare-zusammenhänge.html#modellanpassung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bei der einfachen linearen Regression werden anhand der paarweise vorhandenen Daten zweier
 Variablen X und Y die Parameter a und b der Vorhersagegleichung <span class="math inline">\(\hat{Y} = bX + a\)</span> so bestimmt,
 dass die Werte von <span class="math inline">\(Y\)</span> (dem Kriterium) bestmöglich mit der Vorhersage <span class="math inline">\(\hat{Y}\)</span> aus den Werten
@@ -427,8 +426,8 @@ Kriteriumswerten herangezogen.</p>
 <p>Lineare Modelle wie das der Regression lassen sich mit lm() anpassen und so die Parameter a und b schätzen.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="einfache-lineare-zusammenhänge.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula=</span> <span class="sc">&lt;</span>Modellformel<span class="sc">&gt;</span> , <span class="at">data=</span><span class="sc">&lt;</span>Datensatz<span class="sc">&gt;</span>)</span></code></pre></div>
 <p>Ein von lm() zurückgegebenes Objekt stellt ein deskriptives Modell der Daten dar, das in anderen Funktionen weiter verwendet werden kann.</p>
-<div id="beispiel-für-deskriptive-modellanpassung" class="section level4">
-<h4>Beispiel für deskriptive Modellanpassung</h4>
+<div id="beispiel-für-deskriptive-modellanpassung" class="section level4 hasAnchor">
+<h4>Beispiel für deskriptive Modellanpassung<a href="einfache-lineare-zusammenhänge.html#beispiel-für-deskriptive-modellanpassung" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Als Beispiel soll die Leistung auf der Skala zum wahrnehmungsgebundenen logischen Denken als Kriterium mit dem IQ als Prädiktor vorhergesagt werden.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="einfache-lineare-zusammenhänge.html#cb64-1" aria-hidden="true" tabindex="-1"></a>(fitI <span class="ot">&lt;-</span> <span class="fu">lm</span>(hawie_wahr_log <span class="sc">~</span> hawie_iq, <span class="at">data =</span> df_wide)) </span></code></pre></div>
 <pre><code>## 
@@ -445,8 +444,8 @@ Kriteriumswerten herangezogen.</p>
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-50-1.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="beta-gewicht" class="section level3">
-<h3><span class="math inline">\(\beta\)</span>-Gewicht</h3>
+<div id="beta-gewicht" class="section level3 hasAnchor">
+<h3><span class="math inline">\(\beta\)</span>-Gewicht<a href="einfache-lineare-zusammenhänge.html#beta-gewicht" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Will man statt des <span class="math inline">\(b\)</span>-Gewichtes das standardisierte <span class="math inline">\(\beta\)</span>-Gewicht angeben, muss in der Modellformel z-transformiert werden.</p>
 <p>Dafür könenn wir entweder alle Teile der <code>formula</code> <code>scale</code>n:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="einfache-lineare-zusammenhänge.html#cb67-1" aria-hidden="true" tabindex="-1"></a>(fitZ <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">scale</span>(hawie_wahr_log) <span class="sc">~</span> <span class="fu">scale</span>(hawie_iq), </span>
@@ -483,8 +482,8 @@ Kriteriumswerten herangezogen.</p>
 <span id="cb71-8"><a href="einfache-lineare-zusammenhänge.html#cb71-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">&#39;lm&#39;</span>,<span class="at">col =</span><span class="st">&#39;red&#39;</span>,<span class="at">se =</span> F)</span></code></pre></div>
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-53-1.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
-<div id="weitere-parameter" class="section level3">
-<h3>weitere Parameter</h3>
+<div id="weitere-parameter" class="section level3 hasAnchor">
+<h3>weitere Parameter<a href="einfache-lineare-zusammenhänge.html#weitere-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>lm()</code> gibt eine Liste zurück, die ein deskriptives Modell der Daten darstellt.</p>
 <p>R bietet weitere Funktionen um einzelne Parameter dieses Outputs auszulesen.</p>
 <p>Zum Beispiel:
@@ -559,15 +558,15 @@ Kriteriumswerten herangezogen.</p>
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-56-1.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="regressionsanalyse" class="section level2">
-<h2>Regressionsanalyse</h2>
-<div id="test-hintergrund-1" class="section level3">
-<h3>Test-Hintergrund</h3>
+<div id="regressionsanalyse" class="section level2 hasAnchor">
+<h2>Regressionsanalyse<a href="einfache-lineare-zusammenhänge.html#regressionsanalyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="test-hintergrund-1" class="section level3 hasAnchor">
+<h3>Test-Hintergrund<a href="einfache-lineare-zusammenhänge.html#test-hintergrund-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Unter Voraussetzungen von Varianzhomogenität und Normalverteilung der <span class="math inline">\(Y\)</span>-Werte für jeden möglichen Wert von <span class="math inline">\(X\)</span> können Regressionskoeffizienten ähnlich wie Korrelationskoeffizienten auf Unterschiedlichkeit von 0 getestet werden.</p>
 <p>Dazu wird genutzt, dass der Term <span class="math inline">\(t = {{b}\over{{s_{Y \cdot X}}\over {s_X \sqrt{N-1}}}}\)</span> <span class="math inline">\(t_{N-1}\)</span>-verteilt ist, wenn das tatsächliche <span class="math inline">\(b^*\)</span> nicht unterschiedlich von 0 ist und für jeden Wert von <span class="math inline">\(X\)</span> <span class="math inline">\(Y\)</span> normalverteilt ist mit <span class="math inline">\(\mu = b^*X + a^*\)</span> und einer Varianz <span class="math inline">\(\sigma^2\)</span>. Die Nullhypothese ist also <span class="math inline">\(\text{H}_0: b^* = 0\)</span>.</p>
 </div>
-<div id="test-in-r" class="section level3">
-<h3>Test in R</h3>
+<div id="test-in-r" class="section level3 hasAnchor">
+<h3>Test in R<a href="einfache-lineare-zusammenhänge.html#test-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Um zusätzliche Informationen (insbesondere inferenzstatistische Kennwerte) eine mit <code>lm()</code> erstellten Regressions-Modells zu erhalten, kann einfach <code>summary()</code> verwendet werden.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="einfache-lineare-zusammenhänge.html#cb77-1" aria-hidden="true" tabindex="-1"></a>fitZ <span class="sc">%&gt;%</span> </span>
 <span id="cb77-2"><a href="einfache-lineare-zusammenhänge.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
@@ -606,8 +605,8 @@ Kriteriumswerten herangezogen.</p>
 ## 1   -0.187     0.187
 ## 2    0.570     0.948</code></pre>
 </div>
-<div id="aufgabe-2" class="section level3">
-<h3>Aufgabe</h3>
+<div id="aufgabe-2" class="section level3 hasAnchor">
+<h3>Aufgabe<a href="einfache-lineare-zusammenhänge.html#aufgabe-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- \footnotesize -->
 <!-- \ttfamily{ -->
 <!-- \begin{tabular}{|l r r r r r l|} -->

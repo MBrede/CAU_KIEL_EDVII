@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Gruppenunterschiede II | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Gruppenunterschiede II | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="gruppenunterschiede-i.html"/>
 <link rel="next" href="literatur.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,8 +250,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gruppenunterschiede-ii" class="section level1">
-<h1>Gruppenunterschiede II</h1>
+<div id="gruppenunterschiede-ii" class="section level1 hasAnchor">
+<h1>Gruppenunterschiede II<a href="gruppenunterschiede-ii.html#gruppenunterschiede-ii" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- ## Organisatorisches -->
 <!-- ### Semesterplan -->
 <!-- ```{r, results='asis', echo=F} -->
@@ -261,8 +260,8 @@ div.csl-indent {
 <!--   mutate(across(everything(), ~replace_na(.,''))) %>%  -->
 <!--   kbl() -->
 <!-- ``` -->
-<div id="datensatz-3" class="section level3">
-<h3>Datensatz</h3>
+<div id="datensatz-3" class="section level3 hasAnchor">
+<h3>Datensatz<a href="gruppenunterschiede-ii.html#datensatz-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Wir verwenden den (leicht erweiterten), simulierten Datensatz aus den letzten Wochen:</p>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -351,10 +350,10 @@ Substanzgabe vor der jeweiligen Testung
 </tbody>
 </table>
 </div>
-<div id="varianzanalyse---ein-abhängiger-faktor" class="section level2">
-<h2>Varianzanalyse - ein abhängiger Faktor</h2>
-<div id="ein-abhängiger-faktor" class="section level3">
-<h3>ein abhängiger Faktor</h3>
+<div id="varianzanalyse---ein-abhängiger-faktor" class="section level2 hasAnchor">
+<h2>Varianzanalyse - ein abhängiger Faktor<a href="gruppenunterschiede-ii.html#varianzanalyse---ein-abhängiger-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ein-abhängiger-faktor" class="section level3 hasAnchor">
+<h3>ein abhängiger Faktor<a href="gruppenunterschiede-ii.html#ein-abhängiger-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die einfaktorielle Varianzanalyse mit abhängigen Gruppen dient dazu, Mittelwerte zu vergleichen, die aus einer Reihe von Beobachtungen stammen, bei denen statistische Abhängigkeit angenommen werden muss. Das ist zum Beispiel bei einem Design mit wiederholten Messungen in jeweils ein und derselben Versuchsperson der Fall.</p>
 <p>Wenn die Variablen normalverteilt, die wiederholten Messungen untereinander (zwischen den Versuchspersonen) unabhängig sind und Sphärizität gegeben ist, ist die Teststatistik im Falle der Gültigkeit der <span class="math inline">\(\text{H}_0: {\mu}_1 = {\mu}_2 \ldots = {\mu}_k\)</span> <span class="math inline">\(F_{k-1,(k-1)(N-1)}\)</span>-verteilt.</p>
 <p>Für die Durchführung der Varianzanalyse mit abhängigen Gruppen mit <code>ezANOVA()</code> muss</p>
@@ -445,8 +444,8 @@ Als Erstes ist da das Ergebnis eines Mauchly-Tests (ein Test auf Sphärizität):
 <li>dem <span class="math inline">\(\epsilon\)</span> nach Hyunh-Feldt</li>
 <li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
 </ul>
-<div id="aufgabe-9" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-9" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-ii.html#aufgabe-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>## $ANOVA
 ##   Effect DFn DFd        F          p p&lt;.05        ges
 ## 2   time   2 398 4.329244 0.01380361     * 0.01245873
@@ -481,10 +480,10 @@ Antwort
 </div>
 </div>
 </div>
-<div id="varianzanalyse---zwei-unabhängige-faktoren" class="section level2">
-<h2>Varianzanalyse - zwei unabhängige Faktoren</h2>
-<div id="zwei-unabhängige-faktoren" class="section level3">
-<h3>Zwei unabhängige Faktoren</h3>
+<div id="varianzanalyse---zwei-unabhängige-faktoren" class="section level2 hasAnchor">
+<h2>Varianzanalyse - zwei unabhängige Faktoren<a href="gruppenunterschiede-ii.html#varianzanalyse---zwei-unabhängige-faktoren" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="zwei-unabhängige-faktoren" class="section level3 hasAnchor">
+<h3>Zwei unabhängige Faktoren<a href="gruppenunterschiede-ii.html#zwei-unabhängige-faktoren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Das Modell der zweifaktoriellen Varianzanalyse erlaubt es, drei Effekte zu testen: den Haupteffekt der ersten sowie der zweiten UV und den Interaktionseffekt.</p>
 <p>Statistische <span class="math inline">\(H_0\)</span>en:</p>
 <p><span class="math inline">\(\begin{array}{l l c l c l c l} \text{H}_{0A}: &amp; \mu_{1\cdot} &amp; = &amp; \mu_{2\cdot} &amp; = &amp; \cdots &amp; = &amp; \mu_{J\cdot} \\ \text{H}_{0B}: &amp; \mu_{\cdot 1} &amp; = &amp; \mu_{\cdot 2} &amp; = &amp; \cdots &amp; = &amp; \mu_{\cdot K} \\ \text{H}_{0I}: &amp; \forall {\mu}_{jk} &amp; \text{ gilt}: &amp;{\mu}_{jk} &amp; = &amp; {\mu}_{j\cdot}&amp; + {\mu}_{\cdot k} -&amp; \mu \end{array}\)</span></p>
@@ -502,7 +501,7 @@ Antwort
 <span id="cb151-4"><a href="gruppenunterschiede-ii.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ezANOVA</span>(<span class="at">dv =</span> post_skill,</span>
 <span id="cb151-5"><a href="gruppenunterschiede-ii.html#cb151-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">wid =</span> vp_nr,</span>
 <span id="cb151-6"><a href="gruppenunterschiede-ii.html#cb151-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">between =</span> .(group,sex))</span></code></pre></div>
-<p>Der Output ist dann auch nicht weiter überraschend, wir bekommen wieder eine Ergebnistabelle für die ANOVA und eine für den Levene-Test. Die Tabelle für die ANOVA ist jetzt aber natürlich etwas länger<a href="literatur.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Der Output ist dann auch nicht weiter überraschend, wir bekommen wieder eine Ergebnistabelle für die ANOVA und eine für den Levene-Test. Die Tabelle für die ANOVA ist jetzt aber natürlich etwas länger<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="gruppenunterschiede-ii.html#cb152-1" aria-hidden="true" tabindex="-1"></a>anova_groupXsex<span class="sc">$</span>ANOVA</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-136">
 <caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-136">Tab. 19: </span> </caption><col><col><col><col><col><col><col><tr>
@@ -515,8 +514,8 @@ Antwort
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">group:sex</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">192</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.659</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.578&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0102</td></tr>
 </table>
 
-<div id="aufgabe-10" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-10" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-ii.html#aufgabe-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="gruppenunterschiede-ii.html#cb153-1" aria-hidden="true" tabindex="-1"></a>anova_groupXsex</span></code></pre></div>
 <pre><code>## $ANOVA
 ##      Effect DFn DFd         F            p p&lt;.05
@@ -550,14 +549,14 @@ Antwort
 </ol>
 </details>
 </div>
-<div id="typen-von-quadratsummen" class="section level4">
-<h4>Typen von Quadratsummen</h4>
+<div id="typen-von-quadratsummen" class="section level4 hasAnchor">
+<h4>Typen von Quadratsummen<a href="gruppenunterschiede-ii.html#typen-von-quadratsummen" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <iframe width="900" height="600" src="https://mbrede.shinyapps.io/EDV2/">
 </iframe>
 </div>
 </div>
-<div id="voraussetzungen" class="section level3">
-<h3>Voraussetzungen</h3>
+<div id="voraussetzungen" class="section level3 hasAnchor">
+<h3>Voraussetzungen<a href="gruppenunterschiede-ii.html#voraussetzungen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die zweifaktorielle Varianzanalyse hat (ähnlich wie die einfaktorielle) die Voraussetzungen, dass die Zellen Normalverteilt mit gleichen Varianzen sind.</p>
 <p>Um das zu überprüfen, können wir einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also entweder qq-Plots:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="gruppenunterschiede-ii.html#cb155-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
@@ -605,10 +604,10 @@ Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:</p>
 
 </div>
 </div>
-<div id="varianzanalyse---zwei-abhängige-faktoren" class="section level2">
-<h2>Varianzanalyse - zwei abhängige Faktoren</h2>
-<div id="zwei-abhängige-faktoren" class="section level3">
-<h3>Zwei abhängige Faktoren</h3>
+<div id="varianzanalyse---zwei-abhängige-faktoren" class="section level2 hasAnchor">
+<h2>Varianzanalyse - zwei abhängige Faktoren<a href="gruppenunterschiede-ii.html#varianzanalyse---zwei-abhängige-faktoren" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="zwei-abhängige-faktoren" class="section level3 hasAnchor">
+<h3>Zwei abhängige Faktoren<a href="gruppenunterschiede-ii.html#zwei-abhängige-faktoren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Statistische <span class="math inline">\(H_0\)</span>en:</p>
 <p><span class="math inline">\(\begin{array}{l l c l c l c l} \text{H}_{0A}: &amp; \mu_{1\cdot} &amp; = &amp; \mu_{2\cdot} &amp; = &amp; \cdots &amp; = &amp; \mu_{J\cdot} \\ \text{H}_{0B}: &amp; \mu_{\cdot 1} &amp; = &amp; \mu_{\cdot 2} &amp; = &amp; \cdots &amp; = &amp; \mu_{\cdot K} \\ \text{H}_{0I}: &amp; \forall {\mu}_{jk} &amp; \text{ gilt}: &amp;{\mu}_{jk} &amp; = &amp; {\mu}_{j\cdot}&amp; + {\mu}_{\cdot k} -&amp; \mu \end{array}\)</span></p>
 <p>Für die Durchführung der Zweifaktoriellen Varianzanalyse mit abhängigen Gruppen mit <code>ezANOVA</code> müssen natürlich wieder die zu benutzenden Faktoren im <code>long</code>-Format vorliegen.
@@ -677,8 +676,8 @@ Dabei wurde die AV von einem Beobachter erhoben, der auf einem Fragebogen ein (d
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">model:model_behav</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.746</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.309</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td></tr>
 </table>
 
-<div id="aufgabe-11" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-11" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-ii.html#aufgabe-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Warum taucht kein Test für die Sphärizität des Modellverhaltens auf?</p>
 <ol style="list-style-type: decimal">
 <li><p>Da das Modellverhalten ein unabhängiger Faktor ist.</p></li>
@@ -723,8 +722,8 @@ Antwort
 
 </div>
 </div>
-<div id="voraussetzungen-1" class="section level3">
-<h3>Voraussetzungen</h3>
+<div id="voraussetzungen-1" class="section level3 hasAnchor">
+<h3>Voraussetzungen<a href="gruppenunterschiede-ii.html#voraussetzungen-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die abhängige zweifaktorielle Varianzanalyse hat (ähnlich wie die einfaktorielle) die Voraussetzungen, dass die Zellen Normalverteilt sind und die Kovarianzmatrix Spherizität aufweist (die Varianzen der Differenzen sind gleich).</p>
 <p>Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also entweder qq-Plots:</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="gruppenunterschiede-ii.html#cb165-1" aria-hidden="true" tabindex="-1"></a>aggr_df <span class="sc">%&gt;%</span> </span>
@@ -776,10 +775,10 @@ Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:</p>
 
 </div>
 </div>
-<div id="varianzanalyse---unabhängige-und-abhängige-faktoren" class="section level2">
-<h2>Varianzanalyse - unabhängige und abhängige Faktoren</h2>
-<div id="zweifaktorielle-varianzanalyse-mit-split-plot-design" class="section level3">
-<h3>Zweifaktorielle Varianzanalyse mit split-plot-Design</h3>
+<div id="varianzanalyse---unabhängige-und-abhängige-faktoren" class="section level2 hasAnchor">
+<h2>Varianzanalyse - unabhängige und abhängige Faktoren<a href="gruppenunterschiede-ii.html#varianzanalyse---unabhängige-und-abhängige-faktoren" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="zweifaktorielle-varianzanalyse-mit-split-plot-design" class="section level3 hasAnchor">
+<h3>Zweifaktorielle Varianzanalyse mit split-plot-Design<a href="gruppenunterschiede-ii.html#zweifaktorielle-varianzanalyse-mit-split-plot-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ein Split-Plot-Design liegt im zweifaktoriellen Fall vor, wenn within- und between-Faktoren kombiniert werden.</p>
 <p>Für die Durchführung der Zweifaktoriellen Varianzanalyse mit split-plot-Design über <code>ezANOVA</code> müssen natürlich genau wie in den vorangegangenen Fällen die zu benutzenden Faktoren im <code>long</code>-Format vorliegen.</p>
 <p>Wir wollen die Haupteffekte und die Interaktion vom Testzeitpunkt und dem Treatment untersuchen. Dafür müssen wir natürlich wieder zuerst den Datensatz pivotieren um dann entsprechend das <code>within</code> und das <code>between</code>-Argument setzen.</p>
@@ -861,8 +860,8 @@ Antwort
 </ol>
 </details>
 </div>
-<div id="voraussetzungen-2" class="section level3">
-<h3>Voraussetzungen</h3>
+<div id="voraussetzungen-2" class="section level3 hasAnchor">
+<h3>Voraussetzungen<a href="gruppenunterschiede-ii.html#voraussetzungen-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die zweifaktorielle Varianzanalyse im split-plot-Design hat als Voraussetzung eine Kombination der aus dem jeweiligen einfaktoriellen Fall bekannten. So setzen wir voraus, dass die AV über die unabhängigen Faktor-Stufen Varianzhomogenität aufweist und ihre Kovarinazmatrix zirkulär ist.</p>
 <p>Außerdem ist wieder Normalverteiltheit in den Zellen Voraussetzung.</p>
 <p>Um das zu überprüfen, können wir auch hier einfach die uns schon bekannten Verfahren anwenden. Für die Normalverteiltheit also wieder entweder qq-Plots:</p>
@@ -927,10 +926,10 @@ Oder zellenweise inferenzstatistische Tests, zum Beispiel Shapiro-Wilk:</p>
 
 </div>
 </div>
-<div id="beliebige-linearkontraste" class="section level2">
-<h2>Beliebige Linearkontraste</h2>
-<div id="kontraste-ein-faktor" class="section level3">
-<h3>Kontraste, ein Faktor</h3>
+<div id="beliebige-linearkontraste" class="section level2 hasAnchor">
+<h2>Beliebige Linearkontraste<a href="gruppenunterschiede-ii.html#beliebige-linearkontraste" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="kontraste-ein-faktor" class="section level3 hasAnchor">
+<h3>Kontraste, ein Faktor<a href="gruppenunterschiede-ii.html#kontraste-ein-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Wie schon bei der <a href="gruppenunterschiede-i.html#paarvergleiche-mit-t-tests-und-alpha-adjustierung">Varianzanalyse mit einem unabhängigen Faktor</a> erwähnt, können mit <code>pairwise.t.test</code> alle Zellvergleiche als <span class="math inline">\(\alpha\)</span>-korrigierte t-Tests durchgeführt werden.</p>
 <p>Als Alternative gibt es mit den beliebigen Linearkontrasten eine flexiblere Methode, um spezielle Vergleiche anzustreben.
 Jeder dieser Kontraste (<span class="math inline">\(\psi\)</span>) ist eine Linearkombination der Gruppenerwartungswerte <span class="math inline">\(\mu_j\)</span> mit den Koeffizienten <span class="math inline">\(c_j\)</span>, wobei die Koeffizienten in Summe 0 ergeben. Mit 1 <span class="math inline">\(\leq\)</span> j <span class="math inline">\(\leq\)</span> J könnte man entsprechend Kontraste wie folgt formulieren:</p>
@@ -1022,8 +1021,8 @@ Mit Setzen des <code>test</code> -Arguments können wir außerdem wieder auswäh
 </table>
 
 </div>
-<div id="kontraste-mehr-als-ein-faktor" class="section level3">
-<h3>Kontraste, mehr als ein Faktor</h3>
+<div id="kontraste-mehr-als-ein-faktor" class="section level3 hasAnchor">
+<h3>Kontraste, mehr als ein Faktor<a href="gruppenunterschiede-ii.html#kontraste-mehr-als-ein-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Um Kontraste über mehr als einen between-Faktor rechnen zu können, müssen wir unser mehrfaktorielles Design in ein assoziiert einfaktorielles umwandeln.</p>
 <p>Dazu können wir die <code>interaction</code>-Funktion aus dem <code>base</code>-Umfang nutzen, die zwei Faktoren zu einem kombiniert.</p>
 <p>Als Beispiel betrachten wir nochmal die Unterschiede zwischen den Treatment-Gruppen und den Geschlechtern.
@@ -1087,6 +1086,12 @@ Um eine assoziierte einfaktorielle Varianzanalyse über diese Faktoren zu rechne
 
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Und in diesem Beispiel auch nicht mehr ganz richtig. Um zu einer akkuraten Schätzung für das <span class="math inline">\(\eta^2\)</span> zu kommen, müsste man eigentlich noch das <code>observed</code>-Argument auf <code>sex</code> setzen, aber das würde hier jetzt ein bisschen zu weit führen.<a href="gruppenunterschiede-ii.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

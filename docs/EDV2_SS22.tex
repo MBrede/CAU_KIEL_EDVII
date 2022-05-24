@@ -158,7 +158,7 @@
 
 \title{EDV2}
 \author{Max Brede}
-\date{2022-05-10}
+\date{2022-05-24}
 
 \begin{document}
 \maketitle
@@ -3231,8 +3231,8 @@ Wirklich Grund zur Sorge sollten uns Bilder wie die folgenden geben:
 
 \begin{center}\includegraphics[width=250pt]{EDV2_SS22_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
-\hypertarget{inferenstatistischer-test-der-voraussetzungen}{%
-\subsection{Inferenstatistischer Test der Voraussetzungen}\label{inferenstatistischer-test-der-voraussetzungen}}
+\hypertarget{inferenzstatistischer-test-der-voraussetzungen}{%
+\subsection{Inferenzstatistischer Test der Voraussetzungen}\label{inferenzstatistischer-test-der-voraussetzungen}}
 
 Inferenz-statistisch lässt sich die Normalverteilung der Residuen zum Beispiel mit dem Kolmogorov-Smirnov-Test überprüfen:
 
@@ -3245,7 +3245,7 @@ Inferenz-statistisch lässt sich die Normalverteilung der Residuen zum Beispiel 
 
 \begin{verbatim}
 ## 
-##  One-sample Kolmogorov-Smirnov test
+##  Asymptotic one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  rstudent(fit_post_il)
 ## D = 0.093678, p-value = 0.7726
@@ -3257,7 +3257,7 @@ Inferenz-statistisch lässt sich die Normalverteilung der Residuen zum Beispiel 
 
 \begin{verbatim}
 ## 
-##  One-sample Kolmogorov-Smirnov test
+##  Asymptotic one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  rstudent(fit_post_il)
 ## D = 0.093678, p-value = 0.7726
@@ -4252,12 +4252,12 @@ Die Teststatistik ist hier auch \(t_{n-1}\)-verteilt. Dabei steht das \(n\) hier
 ## 
 ## data:  df_wide$pre_skill and df_wide$post_skill
 ## t = 0.9628, df = 149, p-value = 0.3372
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.2946581  0.8546581
 ## sample estimates:
-## mean of the differences 
-##                    0.28
+## mean difference 
+##            0.28
 \end{verbatim}
 
 Geht auch für das long-Format und in Formel-Schreibweise:
@@ -4279,12 +4279,12 @@ Geht auch für das long-Format und in Formel-Schreibweise:
 ## 
 ## data:  skill by time
 ## t = -0.9628, df = 149, p-value = 0.1686
-## alternative hypothesis: true difference in means is less than 0
+## alternative hypothesis: true mean difference is less than 0
 ## 95 percent confidence interval:
 ##       -Inf 0.2013441
 ## sample estimates:
-## mean of the differences 
-##                   -0.28
+## mean difference 
+##           -0.28
 \end{verbatim}
 
 Und genau wie bei den Regressionsanalysen können wir auch hier wieder \texttt{broom} benutzen, um eine übersichtliche Tabelle zu erhalten:
@@ -4469,7 +4469,7 @@ etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständ
 
 \begin{verbatim}
 ## 
-##  One-sample Kolmogorov-Smirnov test
+##  Asymptotic one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  df_wide$hawie_iq
 ## D = 0.19056, p-value = 3.715e-05

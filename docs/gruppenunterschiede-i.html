@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Gruppenunterschiede I | EDV2</title>
   <meta name="description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Gruppenunterschiede I | EDV2" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Einführung in die computerunterstützte Datananalyse mit R im Sommersemester 2022" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Max Brede" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="lineare-zusammenhänge-ii.html"/>
 <link rel="next" href="gruppenunterschiede-ii.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,30 +49,31 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-0.108.3/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-0.108.3/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-0.108.3/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/utils.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/textures.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/projection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/init.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/draw.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/controls.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/selection.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-0.108.3/axes.src.js"></script>
-<script src="libs/CanvasMatrix4-0.108.3/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.108.3.2/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.108.3.2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.108.3.2/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-0.108.3.2/axes.src.js"></script>
+<script src="libs/CanvasMatrix4-0.108.3.2/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -251,8 +250,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gruppenunterschiede-i" class="section level1">
-<h1>Gruppenunterschiede I</h1>
+<div id="gruppenunterschiede-i" class="section level1 hasAnchor">
+<h1>Gruppenunterschiede I<a href="gruppenunterschiede-i.html#gruppenunterschiede-i" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- ## Organisatorisches -->
 <!-- ### Semesterplan -->
 <!-- ```{r, results='asis', echo=F} -->
@@ -261,8 +260,8 @@ div.csl-indent {
 <!--   mutate(across(everything(), ~replace_na(.,''))) %>%  -->
 <!--   kbl() -->
 <!-- ``` -->
-<div id="datensatz-2" class="section level3">
-<h3>Datensatz</h3>
+<div id="datensatz-2" class="section level3 hasAnchor">
+<h3>Datensatz<a href="gruppenunterschiede-i.html#datensatz-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Wir verwenden den (leicht erweiterten), simulierten Datensatz aus den letzten Wochen:</p>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -336,10 +335,10 @@ motorischer Skill nach dem Treatment
 </tbody>
 </table>
 </div>
-<div id="t-test" class="section level2">
-<h2>t-Test</h2>
-<div id="ein-stichproben-problem" class="section level3">
-<h3>Ein-Stichproben-Problem</h3>
+<div id="t-test" class="section level2 hasAnchor">
+<h2>t-Test<a href="gruppenunterschiede-i.html#t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ein-stichproben-problem" class="section level3 hasAnchor">
+<h3>Ein-Stichproben-Problem<a href="gruppenunterschiede-i.html#ein-stichproben-problem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Beim Ein-Stichproben-t-Test wird der Erwartungswert einer Stichprobe gegen den bekannten Erwartungswert einer Population getestet.(<span class="math inline">\(\text{H}_0: \mu = \mu_0\)</span>)</p>
 <p>Der Test setzt eigentlich voraus, dass die abhängige Variable normalverteilt ist. Wenn die Stichprobe groß genug ist, um eine näherungsweise Normalverteilung des Mittelwertes zu gewährleisten, kann man die <span class="math inline">\(t\)</span>-Statistik aber ohne viele Probleme mit der entsprechenden <span class="math inline">\(t\)</span>-Verteilung (<span class="math inline">\(t_{n-1}\)</span>) verglichen werden.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="gruppenunterschiede-i.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>), <span class="at">mu=</span><span class="dv">0</span>)</span></code></pre></div>
@@ -357,8 +356,8 @@ motorischer Skill nach dem Treatment
 ## mean of x 
 ##  94.42667</code></pre>
 </div>
-<div id="zwei-stichproben-problem-abhängiger-fall" class="section level3">
-<h3>Zwei-Stichproben-Problem, abhängiger Fall</h3>
+<div id="zwei-stichproben-problem-abhängiger-fall" class="section level3 hasAnchor">
+<h3>Zwei-Stichproben-Problem, abhängiger Fall<a href="gruppenunterschiede-i.html#zwei-stichproben-problem-abhängiger-fall" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Beim abhängigen Zwei-Stichproben-Fall wird im Prinzip derselbe Test durchgeführt, nur dass hier die Differenzwerte der Beobachtungen als Stichprobe genutzt werden. Da die Frage hier nicht ist, ob der Erwartungswert einer Population einem spezifischen Erwartungswert gleich ist, sondern ob sich die Erwartungswerte der jeweiligen Beobachtungen unterscheiden, ist die Nullhypothese hier: <span class="math display">\[\text{H}_0: { \mu}_D =  { \mu}_1 - { \mu}_2= 0 \]</span></p>
 <p>Die Teststatistik ist hier auch <span class="math inline">\(t_{n-1}\)</span>-verteilt. Dabei steht das <span class="math inline">\(n\)</span> hier aber für die Anzahl der Beobachtungs-Paare, nicht die Gesamtzahl der Beobachtungen.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="gruppenunterschiede-i.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span>df_wide<span class="sc">$</span>pre_skill, </span>
@@ -369,12 +368,12 @@ motorischer Skill nach dem Treatment
 ## 
 ## data:  df_wide$pre_skill and df_wide$post_skill
 ## t = 0.9628, df = 149, p-value = 0.3372
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.2946581  0.8546581
 ## sample estimates:
-## mean of the differences 
-##                    0.28</code></pre>
+## mean difference 
+##            0.28</code></pre>
 <p>Geht auch für das long-Format und in Formel-Schreibweise:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="gruppenunterschiede-i.html#cb116-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb116-2"><a href="gruppenunterschiede-i.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(pre_skill,post_skill),</span>
@@ -387,12 +386,12 @@ motorischer Skill nach dem Treatment
 ## 
 ## data:  skill by time
 ## t = -0.9628, df = 149, p-value = 0.1686
-## alternative hypothesis: true difference in means is less than 0
+## alternative hypothesis: true mean difference is less than 0
 ## 95 percent confidence interval:
 ##       -Inf 0.2013441
 ## sample estimates:
-## mean of the differences 
-##                   -0.28</code></pre>
+## mean difference 
+##           -0.28</code></pre>
 <p>Und genau wie bei den Regressionsanalysen können wir auch hier wieder <code>broom</code> benutzen, um eine übersichtliche Tabelle zu erhalten:</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="gruppenunterschiede-i.html#cb118-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%$%</span> </span>
 <span id="cb118-2"><a href="gruppenunterschiede-i.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(<span class="at">x=</span>pre_skill, </span>
@@ -407,8 +406,8 @@ motorischer Skill nach dem Treatment
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.28</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.963</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.337</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">149</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.295</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.855</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Paired t-test</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">two.sided</td></tr>
 </table>
 
-<div id="aufgabe-6" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-6" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-i.html#aufgabe-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>## [1] &quot;t = -0.9628, df = 149, p-value = 0.1686&quot;</code></pre>
 <p><strong>Wie interpretieren wir das Ergebnis?</strong></p>
 <ol style="list-style-type: decimal">
@@ -426,8 +425,8 @@ Richtig ist 3.
 </details>
 </div>
 </div>
-<div id="zwei-stichproben-problem-unabhängiger-fall" class="section level3">
-<h3>Zwei-Stichproben-Problem, unabhängiger Fall</h3>
+<div id="zwei-stichproben-problem-unabhängiger-fall" class="section level3 hasAnchor">
+<h3>Zwei-Stichproben-Problem, unabhängiger Fall<a href="gruppenunterschiede-i.html#zwei-stichproben-problem-unabhängiger-fall" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Beim unabhängigen Stichproben t-Test wird getestet, ob die Erwartungswerte zweier Stichproben unterschiedlich sind (<span class="math inline">\(H_0: {\mu}_1 = {\mu}_2\)</span>). Dabei wird vorausgesetzt, dass die abhängige Variable in beiden Gruppen normalverteilt ist und dieselbe Varianz hat. Gelten diese Voraussetzungen, ist die <span class="math inline">\(t\)</span>-Statistik unter der <span class="math inline">\(H_0\)</span> <span class="math inline">\(t_{n_1 + n_2 - 2}\)</span>-verteilt.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="gruppenunterschiede-i.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">y=</span><span class="sc">&lt;</span>Vektor<span class="sc">&gt;</span>, <span class="at">paired=</span><span class="cn">FALSE</span>, </span>
 <span id="cb120-2"><a href="gruppenunterschiede-i.html#cb120-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>))</span></code></pre></div>
@@ -446,8 +445,8 @@ Richtig ist 3.
 ## sample estimates:
 ## mean in group f mean in group m 
 ##        4.626667        5.373333</code></pre>
-<div id="ungleiche-varianzen-oder-stichprobengrößen" class="section level5">
-<h5>Ungleiche Varianzen (oder Stichprobengrößen)</h5>
+<div id="ungleiche-varianzen-oder-stichprobengrößen" class="section level5 hasAnchor">
+<h5>Ungleiche Varianzen (oder Stichprobengrößen)<a href="gruppenunterschiede-i.html#ungleiche-varianzen-oder-stichprobengrößen" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Im Falle einer Varianzinhomogenität ist die t-Statistik nicht mehr gut mit der <span class="math inline">\(t_{n_1 + n_2 - 2}\)</span>-Verteilung zu vergleichen. Die Welch-Korrektur kann in diesem Fall dazu dienen, eine Anzahl von Freiheitsgraden zu schätzen, die besser zu der Verteilung unter der <span class="math inline">\(H_0\)</span> der Teststatistik passt.</p>
 <p>Mit dem <code>var.equal</code>-Argument lässt sich logisch angeben, ob die Freiheitsgrade nach Welch geschätzt werden sollen. Dabei ist <code>FALSE</code> der Standard.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="gruppenunterschiede-i.html#cb123-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
@@ -466,13 +465,13 @@ Richtig ist 3.
 ##        4.626667        5.373333</code></pre>
 </div>
 </div>
-<div id="test-von-voraussetzungen" class="section level3">
-<h3>Test von Voraussetzungen</h3>
+<div id="test-von-voraussetzungen" class="section level3 hasAnchor">
+<h3>Test von Voraussetzungen<a href="gruppenunterschiede-i.html#test-von-voraussetzungen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Obwohl t-Tests relativ robust gegen Verletzungen der Normalverteilungsvoraussetzung sind, kann man auf die Idee kommen, auf die Normalverteiltheit der AV zu testen
 Außerdem kann für den Zwei-Stichproben-Test überlegt werden, ob die Varianzhomogenität überprüft werden soll, um über das genutzte Verfahren zu entscheiden.</p>
 </div>
-<div id="test-auf-normalverteilung" class="section level3">
-<h3>Test auf Normalverteilung</h3>
+<div id="test-auf-normalverteilung" class="section level3 hasAnchor">
+<h3>Test auf Normalverteilung<a href="gruppenunterschiede-i.html#test-auf-normalverteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Der Kolmogorov-Smirnov-Test auf eine feste Verteilung vergleicht die kumulierten relativen
 Häufigkeiten von Daten einer stetigen Variable mit einer frei wählbaren Verteilungsfunktion –
 etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständigkeit halber erwähnt, da er stark abhängig von der Stichprobengröße schnell zu suboptimalen Handlungen führen kann.</p>
@@ -480,7 +479,7 @@ etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständ
 <span id="cb125-2"><a href="gruppenunterschiede-i.html#cb125-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative=</span><span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="gruppenunterschiede-i.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(df_wide<span class="sc">$</span>hawie_iq, <span class="st">&#39;pnorm&#39;</span>, <span class="dv">100</span>, <span class="dv">15</span>, <span class="at">alternative=</span><span class="st">&#39;two.sided&#39;</span>)</span></code></pre></div>
 <pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
+##  Asymptotic one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  df_wide$hawie_iq
 ## D = 0.19056, p-value = 3.715e-05
@@ -494,8 +493,8 @@ etwa der einer bestimmten Normalverteilung. Hier wird er aber nur der Vollständ
 ## W = 0.99, p-value = 0.3654</code></pre>
 <p>Außerdem möglich sind grafisch-heuristische Testvarianten:</p>
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-112-1.png" width="500px" style="display: block; margin: auto;" /></p>
-<div id="aufgabe-7" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-7" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-i.html#aufgabe-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Was ist daran falsch?</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Nichts, alle diese Verfahren können so angewendet werden</p></li>
@@ -516,13 +515,13 @@ Antwort
 </details>
 </div>
 </div>
-<div id="test-auf-varianzhomogenität" class="section level3">
-<h3>Test auf Varianzhomogenität</h3>
+<div id="test-auf-varianzhomogenität" class="section level3 hasAnchor">
+<h3>Test auf Varianzhomogenität<a href="gruppenunterschiede-i.html#test-auf-varianzhomogenität" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Varianzhomogenität lässt sich mit dem Levene-Test testen, einem Signifikanz-Test, der auf Abweichungen von der Varianzhomogenität in zwei oder mehr Populationen testet.
 Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum dieser Gruppe berechnet. Über die resultierenden Werte wird dann eine Varianzanalyse gerechnet.</p>
 <p>Dafür kann in <code>R</code> die Funktion <code>leveneTest()</code> aus dem <code>car</code>-Paket verwendet werden. Dabei testet der Standard nicht die von Levene ursprünglich aufgestellte Differenz zum Mittelwert, sondern die Version von Brown und Forsythe, bei der die Differenz zum Median gebildet wird.</p>
-<div id="levene-test-für-einen-faktor" class="section level4">
-<h4>Levene-Test für einen Faktor</h4>
+<div id="levene-test-für-einen-faktor" class="section level4 hasAnchor">
+<h4>Levene-Test für einen Faktor<a href="gruppenunterschiede-i.html#levene-test-für-einen-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="gruppenunterschiede-i.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb130-2"><a href="gruppenunterschiede-i.html#cb130-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb130-3"><a href="gruppenunterschiede-i.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
@@ -536,8 +535,8 @@ Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum di
 </table>
 
 </div>
-<div id="levene-test-für-mehr-als-einen-faktor" class="section level4">
-<h4>Levene-Test für mehr als einen Faktor</h4>
+<div id="levene-test-für-mehr-als-einen-faktor" class="section level4 hasAnchor">
+<h4>Levene-Test für mehr als einen Faktor<a href="gruppenunterschiede-i.html#levene-test-für-mehr-als-einen-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Mit Verknüpfung zweier Faktoren als Interaktion im Modellterm wird der Test als assoziierte einfaktorielle Varianzanalyse ausgeführt.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="gruppenunterschiede-i.html#cb131-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb131-2"><a href="gruppenunterschiede-i.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leveneTest</span>(hawie_iq <span class="sc">~</span> group <span class="sc">*</span> sex, <span class="at">data=</span>.)</span></code></pre></div>
@@ -553,10 +552,10 @@ Im Prinzip wird die absolute Abweichung jedes Wertes einer Gruppe vom Zentrum di
 </div>
 </div>
 </div>
-<div id="varianzanalyse---ein-unabhängiger-faktor" class="section level2">
-<h2>Varianzanalyse - ein unabhängiger Faktor</h2>
-<div id="ein-unabhängiger-faktor" class="section level3">
-<h3>Ein unabhängiger Faktor</h3>
+<div id="varianzanalyse---ein-unabhängiger-faktor" class="section level2 hasAnchor">
+<h2>Varianzanalyse - ein unabhängiger Faktor<a href="gruppenunterschiede-i.html#varianzanalyse---ein-unabhängiger-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ein-unabhängiger-faktor" class="section level3 hasAnchor">
+<h3>Ein unabhängiger Faktor<a href="gruppenunterschiede-i.html#ein-unabhängiger-faktor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bei der einfaktoriellen, unabhängigen Varianzanalyse testen wir eine Variable in einer Reihe von Bedingungen darauf, ob die jeweiligen Erwartungswerte unterschiedlich sind. Bei Gültigkeit der <span class="math inline">\(\text{H}_0: {\mu}_1 = {\mu}_2 \ldots = {\mu}_J\)</span>, sowie Unabhängigkeit, Normalverteiltheit und gleicher Varianz der AV in allen Bedingungen ist die Teststatistik <span class="math inline">\(F_{J-1, N-J}\)</span>-verteilt.</p>
 <p>Für Varianzanalysen gibt es eine ganze Reihe von Paketen und Funktionen, <code>base-R</code> hat alleine drei, die man für diesen Zweck nutzen kann.
 Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir hier aber die Funktionen aus dem <code>ez</code>-Paket nutzen.</p>
@@ -616,8 +615,8 @@ Für die bessere Integration in den <code>tidyverse</code>-workflow werden wir h
 <li>dem entsprechenden p-Wert und einer Signifikanzaussage</li>
 <li>einem Schätzer für die Effektstärke <span class="math inline">\(\eta^2\)</span></li>
 </ul>
-<div id="aufgabe-8" class="section level4">
-<h4>Aufgabe</h4>
+<div id="aufgabe-8" class="section level4 hasAnchor">
+<h4>Aufgabe<a href="gruppenunterschiede-i.html#aufgabe-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-120">
 <caption style="caption-side: top; text-align: center;"><span id="tab:unnamed-chunk-120">Tab. 15: </span> </caption><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Effect</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFn</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DFd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">p&lt;.05</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ges</th></tr>
@@ -645,8 +644,8 @@ Antwort
 </details>
 </div>
 </div>
-<div id="grafisch-voraussetzungen-prüfen" class="section level3">
-<h3>Grafisch Voraussetzungen prüfen</h3>
+<div id="grafisch-voraussetzungen-prüfen" class="section level3 hasAnchor">
+<h3>Grafisch Voraussetzungen prüfen<a href="gruppenunterschiede-i.html#grafisch-voraussetzungen-prüfen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Voraussetzungen der Varianzanalyse lassen sich zu folgender Aussage umformulieren:</p>
 <p>Die Fehler müssen unabhängige, normalverteilte Variablen mit Erwartungswert 0 und gleicher Streuung sein.</p>
 <p>Diese umformulierten Anforderungen lassen sich dann wieder wie bei der Regressionsanalyse grafisch-heuristisch untersuchen.</p>
@@ -671,8 +670,8 @@ Antwort
 ## Estimated effects may be unbalanced</code></pre>
 <p><img src="EDV2_SS22_files/figure-html/unnamed-chunk-123-1.png" width="500px" style="display: block; margin: auto;" /></p>
 </div>
-<div id="paarvergleiche-mit-t-tests-und-alpha-adjustierung" class="section level3">
-<h3>Paarvergleiche mit t-Tests und <span class="math inline">\(\alpha\)</span>-Adjustierung</h3>
+<div id="paarvergleiche-mit-t-tests-und-alpha-adjustierung" class="section level3 hasAnchor">
+<h3>Paarvergleiche mit t-Tests und <span class="math inline">\(\alpha\)</span>-Adjustierung<a href="gruppenunterschiede-i.html#paarvergleiche-mit-t-tests-und-alpha-adjustierung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Besteht nach einer ANOVA die Frage, bei welchen Paaren Erwartungswertunterschiede vorliegen, können
 t-Tests durchgeführt werden, um die Unterschiede jeweils zweier Gruppen auf Signifikanz zu prüfen.</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="gruppenunterschiede-i.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(df_wide, <span class="fu">pairwise.t.test</span>(post_skill, group,</span>
